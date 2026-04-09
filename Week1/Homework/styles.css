@@ -1,0 +1,362 @@
+html {
+    scroll-behavior: smooth; /* 스크롤 부드럽게 */
+}
+
+body {
+    margin: 0; /* 바깥 여백 없앰 */
+    width: 100%;
+    height: auto;
+    background-color: #CAF4FF;
+}
+
+/* 헤더 */
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
+    box-sizing: border-box;
+    background-color: #A0DEFF;
+    z-index: 1000;
+}
+
+/* 미니 프로필 로고 */
+.profileimg {
+    width: 2.5em;
+    border-radius: 100em;
+    border: 2px solid #5AB2FF;
+    background-color: white;
+    transition: box-shadow 0.3s ease;
+}
+
+.profileimg:hover {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.10);
+}
+
+/* 제목 영역 */
+.titlesection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4em;
+}
+
+/* 블로그 제목 */
+.blogtitle {
+    font-size: 1.2em;
+    font-weight: 700; /* Bold 효과 */
+}
+
+/* 블로그 부제목 */
+.subtitle {
+    font-size: 0.8em;
+}
+
+/* 소셜 로고 */
+.github {
+    width: 2.5em;
+    cursor: pointer;
+    opacity: 75%;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    /* 콤마로 부드러운 효과 여러개 가능 */
+}
+
+.github:hover {
+    opacity: 100%;
+    transform: translateY(-4px);
+}
+
+/* 레이아웃 관련 */
+main {
+    display: flex;
+    margin-top: 5em;
+    padding: 2em;
+    gap: 2em;
+    box-sizing: border-box;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    background-color: #FFFFFF;
+    scroll-margin-top: 6em; /* 스크롤 이동 시 위에 여백 있게 */
+}
+
+h3 {
+    margin: 0; /* h3 사용 시 생기는 위아래 여백 제거 */
+}
+
+/* 메뉴 */
+nav {
+    width: 15em;
+    position: sticky;
+    top: 6em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    height: fit-content;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    background-color: #A0DEFF;
+}
+
+/* 메뉴 목록 */
+nav a {
+    width: 100%;
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: 1em;
+    text-align: center;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* href 설정 시 생기는 밑줄 제거 */
+    color: inherit; /* href 설정 시 생기는 색 변화 제거 */
+}
+
+nav a:first-child {
+    border-radius: 1em 1em 0.5em 0.5em;
+}
+
+nav a:last-child {
+    border-radius: 0.5em 0.5em 1em 1em;
+}
+
+nav a:hover {
+    background-color: #FFF9D0;
+    cursor: pointer;
+}
+
+/* 본문 영역 */
+.container {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+/* 포토덤프 영역 */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 열 4개 + 너비 균등 설정 */
+    grid-auto-rows: 15em; /* 행 생성 시 높이 15em 고정 */
+    gap: 1em;
+}
+
+.grid div {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 1em;
+}
+
+
+.long {
+    grid-column: span 2; /* .grid에서 나눴던 행 2개 가로로 합침 */
+}
+
+.big {
+    grid-column: span 3; /* .grid에서 나눴던 행 3개 가로로 합침 */
+    grid-row: span 2;/* .grid에서 나눴던 열 2개 가로로 합침 */
+}
+
+.small, .small2, .long, .big {
+    width: 100%;
+}
+
+.grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.grid img:hover {
+    transform: scale(1.05);
+}
+
+/* 사진첩 영역 */
+.scrollwrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+.photos {
+    width: max-content;
+    display: flex;
+    gap: 1em;
+    animation: marquee 40s linear infinite;
+    animation-play-state: running; /* 자동 스크롤 돌아감 */
+}
+
+.photos:hover {
+    animation-play-state: paused; /* 자동 스크롤 멈춤 */
+}
+
+.photowrap {
+    width: 14em;
+    height: 14em;
+    display: flex;
+    flex: 0 0 auto; /* 크기 유지 */
+    object-fit: cover;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.photowrap img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.photowrap img:hover {
+    transform: scale(1.05);
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-50% - 0.5em));
+    }
+}
+
+/* 관심사 영역 */
+.cardsection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.card {
+    width: 14em;
+    overflow: hidden;
+    border-radius: 1em;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.20);
+}
+
+.card img {
+    width: 100%;
+    height: 14em;
+    object-fit: cover;
+}
+
+.cardinfo {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    gap: 1em;
+    box-sizing: border-box;
+    font-weight: 600;
+}
+
+.btnwrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 1em;
+    border-radius: 20em;
+    box-sizing: border-box;
+    color: white;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.likebtn {
+    background-color: pink;
+}
+
+.likebtn:hover {
+    background-color: rgb(255, 167, 182);
+}
+
+.unlikebtn {
+    background-color: skyblue;
+}
+
+.unlikebtn:hover {
+    background-color: rgb(98, 199, 239);
+}
+
+/* to 웹왔니 영역 */
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    gap: 1em;
+    border-radius: 1em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+    font-weight: 500;
+}
+
+.content div::before { /* 가상 요소 */
+    content: "✉️";
+    margin-right: 0.5em;
+}
+
+.content div::after { /* 가상 요소 */
+    content: "💌";
+    margin-left: 0.5em;
+}
+
+/* 푸터 영역 */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    padding: 1em;
+    gap: 3em;
+    box-sizing: border-box;
+    background-color: #A0DEFF;
+    z-index: 1000;
+}
+
+footer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+footer img{
+    width: 1.2em;
+}
+
+.footertext {
+    font-size: 0.9em;
+    font-weight: 500;
+}
