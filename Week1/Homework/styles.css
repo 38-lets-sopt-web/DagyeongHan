@@ -141,11 +141,11 @@ nav a {
     color: inherit; /* href 설정 시 생기는 색 변화 제거 */
 }
 
-nav a:first-child {
+nav li:first-child a {
     border-radius: 1em 1em 0.5em 0.5em;
 }
 
-nav a:last-child {
+nav li:last-child a {
     border-radius: 0.5em 0.5em 1em 1em;
 }
 
