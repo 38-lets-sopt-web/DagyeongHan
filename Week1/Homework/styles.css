@@ -169,6 +169,9 @@ nav a:hover {
     grid-template-columns: repeat(4, 1fr); /* 열 4개 + 너비 균등 설정 */
     grid-auto-rows: 15em; /* 행 생성 시 높이 15em 고정 */
     gap: 1em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .grid div {
