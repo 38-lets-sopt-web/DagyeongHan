@@ -1,0 +1,54 @@
+html {
+    scroll-behavior: smooth; /* 스크롤 부드럽게 */
+}
+
+:root {
+    --header-height: 5em;
+    --header-offset: calc(var(--header-height) + 1em);
+}
+
+body {
+    margin: 0; /* 바깥 여백 없앰 */
+    width: 100%;
+    height: auto;
+    background-color: #CAF4FF;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    background-color: #FFFFFF;
+    scroll-margin-top: var(--header-offset); /* 스크롤 이동 시 위에 여백 있게 */
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+h3 {
+    margin: 0; /* h3 사용 시 생기는 위아래 여백 제거 */
+}
+
+p {
+    margin: 0;
+    font-size: 0.8em;
+}
+
+button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 1em;
+    border-radius: 20em;
+    box-sizing: border-box;
+    color: white;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}

@@ -1,0 +1,31 @@
+/* 푸터 영역 */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    padding: 1em;
+    gap: 3em;
+    box-sizing: border-box;
+    background-color: #A0DEFF;
+    z-index: 1000;
+}
+
+footer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+footer img {
+    width: 1.2em;
+}
+
+.footertext {
+    font-size: 0.9em;
+    font-weight: 500;
+}

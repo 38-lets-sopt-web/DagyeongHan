@@ -1,0 +1,44 @@
+/* 포토덤프 영역 */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 열 4개 + 너비 균등 설정 */
+    grid-auto-rows: 15em; /* 행 생성 시 높이 15em 고정 */
+    gap: 1em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.grid li {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 1em;
+}
+
+.long {
+    grid-column: span 2; /* .grid에서 나눴던 행 2개 가로로 합침 */
+}
+
+.big {
+    grid-column: span 3; /* .grid에서 나눴던 행 3개 가로로 합침 */
+    grid-row: span 2; /* .grid에서 나눴던 열 2개 가로로 합침 */
+}
+
+.small,
+.small2,
+.long,
+.big {
+    width: 100%;
+}
+
+.grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.grid img:hover {
+    transform: scale(1.05);
+}
