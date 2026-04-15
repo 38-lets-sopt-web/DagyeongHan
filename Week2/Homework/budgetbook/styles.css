@@ -107,6 +107,7 @@ input {
 }
 
 .dropdown-menu {
+  display: none;
   position: absolute;
   top: calc(100% + 0.4em);
   left: 0;
@@ -159,6 +160,11 @@ input {
 .non-label-dropdown .dropdown-btn,
 .non-label-dropdown .dropdown-menu {
   width: 100%;
+}
+
+.dropdown.open .dropdown-menu,
+.non-label-dropdown.open .dropdown-menu {
+  display: block;
 }
 
 .table-btn-wrap {
