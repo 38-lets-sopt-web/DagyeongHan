@@ -1,0 +1,27 @@
+﻿body {
+  margin: 0;
+  background-color: #E7F2EF;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding: 1em;
+  box-sizing: border-box;
+  background-color: #091413;
+  color: #fff;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.3em;
+}
+
+p {
+  margin: 0;
+  font-size: 0.8em;
+}
