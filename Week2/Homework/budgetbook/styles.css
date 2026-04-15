@@ -180,3 +180,21 @@ input {
   cursor: pointer;
   background-color: #F5C9B0;
 }
+
+table {
+  border-collapse: collapse;
+  font-size: 0.8em;
+}
+
+th {
+  border-bottom: 1px solid #ccc;
+  background-color: #e9e9e9;
+}
+
+td {
+  text-align: center;
+}
+
+table input {
+  width: 1em;
+}
