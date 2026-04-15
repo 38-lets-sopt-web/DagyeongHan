@@ -237,13 +237,13 @@ nav a:hover {
 
 /* 관심사 영역 */
 .cardsection {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 1em;
 }
 
 .card {
-    width: 14em;
+    width: 100%;
     overflow: hidden;
     border-radius: 1em;
     background-color: white;
@@ -269,6 +269,24 @@ nav a:hover {
     gap: 1em;
     box-sizing: border-box;
     font-weight: 600;
+}
+
+@media (max-width: 1200px) {
+    .cardsection {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 960px) {
+    .cardsection {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 720px) {
+    .cardsection {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 .btnwrap {
