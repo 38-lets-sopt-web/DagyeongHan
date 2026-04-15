@@ -2,6 +2,11 @@ html {
     scroll-behavior: smooth; /* 스크롤 부드럽게 */
 }
 
+:root {
+    --header-height: 5em;
+    --header-offset: calc(var(--header-height) + 1em);
+}
+
 body {
     margin: 0; /* 바깥 여백 없앰 */
     width: 100%;
@@ -74,7 +79,7 @@ header {
 /* 레이아웃 관련 */
 main {
     display: flex;
-    margin-top: 5em;
+    margin-top: var(--header-height);
     padding: 2em;
     gap: 2em;
     box-sizing: border-box;
@@ -87,7 +92,7 @@ section {
     padding: 1em;
     border-radius: 1em;
     background-color: #FFFFFF;
-    scroll-margin-top: 6em; /* 스크롤 이동 시 위에 여백 있게 */
+    scroll-margin-top: var(--header-offset); /* 스크롤 이동 시 위에 여백 있게 */
 }
 
 h3 {
@@ -98,7 +103,7 @@ h3 {
 nav {
     width: 15em;
     position: sticky;
-    top: 6em;
+    top: var(--header-offset);
     display: flex;
     flex-direction: column;
     justify-content: center;
