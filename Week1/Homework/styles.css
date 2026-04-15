@@ -52,13 +52,14 @@ header {
 }
 
 /* 블로그 제목 */
-.blogtitle {
+h1 {
+    margin: 0;
     font-size: 1.2em;
-    font-weight: 700; /* Bold 효과 */
 }
 
 /* 블로그 부제목 */
-.subtitle {
+p {
+    margin: 0;
     font-size: 0.8em;
 }
 
