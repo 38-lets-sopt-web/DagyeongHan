@@ -75,7 +75,7 @@ h3 {
 }
 
 .input div, .dropdown div {
-  font-size: 0.85em;
+  font-size: 0.8em;
   font-weight: 700;
 }
 
@@ -86,7 +86,6 @@ input {
   border: 1px solid #cfd8e3;
   border-radius: 10px;
   box-sizing: border-box;
-  font-size: 0.85em;
 }
 
 .dropdown-btn {
@@ -126,7 +125,6 @@ input {
 
 .dropdown-menu li {
   padding: 0.5em;
-  font-size: 0.8em;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -197,4 +195,98 @@ td {
 
 table input {
   width: 1em;
+}
+
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 25rem;
+  padding: 2em;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+label {
+  font-weight: 500;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.form-row {
+  display: flex;
+  gap: 0.5em;
+}
+
+.form-row > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.form-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.form-dropdown .dropdown-btn,
+.form-dropdown .dropdown-menu {
+  width: 100%;
+}
+
+.form-dropdown .dropdown-menu {
+  display: none;
+}
+
+.form-dropdown.open .dropdown-menu {
+  display: block;
+}
+
+.modal-add-btn {
+  width: fit-content;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: #F5C9B0;
+}
+
+.dropdown-btn,
+input,
+.dropdown-menu li {
+  font-size: 0.8em;
+}
+
+input[type="date"] {
+  font-size: 1em;
+  cursor: pointer;
 }

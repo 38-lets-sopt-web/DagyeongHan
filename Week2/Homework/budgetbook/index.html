@@ -115,6 +115,84 @@
       </table>
     </section>
 
+    <div class="modal-backdrop">
+      <div class="modal">
+
+        <h3>내역 추가</h3>
+
+        <form>
+          <div class="form-column">
+            <label for="title">제목</label>
+            <input placeholder="제목을 입력하세요"/>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label>유형</label>
+              <div class="form-dropdown">
+                <button class="dropdown-btn">
+                  선택
+                  <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
+                </button>
+                <ul class="dropdown-menu">
+                  <li>수입 (+)</li>
+                  <li>지출 (-)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <label>금액 (숫자만)</label>
+              <input placeholder="금액을 입력하세요" />
+            </div>
+          </div>
+
+          <div class="form-column">
+            <label>날짜</label>
+            <input type="date">
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label>카테고리</label>
+              <div class="form-dropdown">
+                <button class="dropdown-btn">
+                  선택
+                  <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
+                </button>
+                <ul class="dropdown-menu">
+                  <li>식비</li>
+                  <li>월급</li>
+                  <li>문화</li>
+                  <li>교통</li>
+                  <li>생활</li>
+                  <li>기타</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <label>결제 수단</label>
+              <div class="form-dropdown">
+                <button class="dropdown-btn">
+                  선택
+                  <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
+                </button>
+                <ul class="dropdown-menu">
+                  <li>신용카드</li>
+                  <li>체크카드</li>
+                  <li>현금</li>
+                  <li>기타</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+        <button class="modal-add-btn">추가</button>
+      </div>
+    </div>
   </main>
   <script type="module" src="index.js"></script>
 </body>
