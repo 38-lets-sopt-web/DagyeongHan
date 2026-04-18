@@ -88,3 +88,14 @@ expenseList.innerHTML = expenseData.map((item) => {
     </tr>
   `;
 }).join("");
+
+// 전체 선택 기능
+const selectAll = document.querySelector("input[name='select-all']");
+
+selectAll.addEventListener("click", () => {
+  const checkboxes = document.querySelectorAll("input[name='select']");
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = selectAll.checked;
+  });
+});
