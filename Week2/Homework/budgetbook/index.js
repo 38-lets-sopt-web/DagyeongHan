@@ -1,7 +1,9 @@
 import "./dummy.js";
 
+// 헤더 아이콘 요소 선택
 const headerIcon = document.querySelector("header div");
 
+// 헤더 아이콘 클릭 시 새로고침
 headerIcon.addEventListener("click", () => {
   location.reload(true);
 })
