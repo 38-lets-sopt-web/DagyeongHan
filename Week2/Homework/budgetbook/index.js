@@ -100,6 +100,7 @@ selectAll.addEventListener("click", () => {
   });
 });
 
+// 삭제 버튼 요소 선택
 const deleteBtn = document.querySelector('.delete-btn');
 
 // 선택 삭제 기능
@@ -116,3 +117,20 @@ deleteBtn.addEventListener("click", () => {
   localStorage.setItem("expenseData", JSON.stringify(updatedExpenseList));
   location.reload();
 });
+
+// 합계 요소 선택
+const totalAmount = document.querySelector(".total-amount");
+
+// 합계 계산 기능
+const total = expenseData.reduce((sum, item) => {
+  return sum + item.amount;
+}, 0);
+
+// 합계 금액 색상
+if (total > 0) {
+  totalAmount.textContent = `+${total}`;
+  totalAmount.className = "total-amount amount-plus";
+} else {
+  totalAmount.textContent = total;
+  totalAmount.className = "total-amount amount-minus";
+}
