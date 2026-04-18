@@ -1,5 +1,11 @@
 import "./dummy.js";
 
+const headerIcon = document.querySelector("header div");
+
+headerIcon.addEventListener("click", () => {
+  location.reload(true);
+})
+
 // 드롭다운 관련 요소 한번에 선택
 const dropdowns = document.querySelectorAll(".dropdown, .non-label-dropdown, .form-dropdown");
 
