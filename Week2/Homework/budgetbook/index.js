@@ -43,6 +43,21 @@ document.addEventListener("click", () => {
   });
 });
 
+// 추가 버튼 클릭 시 모달 열림
+const addButton = document.querySelector(".add-btn");
+const modalBackdrop = document.querySelector(".modal-backdrop");
+
+addButton.addEventListener("click", () => {
+  modalBackdrop.classList.add('open');
+})
+
+// 모달 백드롭 클릭 시 모달 닫힘
+modalBackdrop.addEventListener("click", (event) => {
+  if (event.target === modalBackdrop) {
+    modalBackdrop.classList.remove("open");
+  }
+});
+
 // 더미데이터 불러와서 로컬 스토리지 저장
 const expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
 
