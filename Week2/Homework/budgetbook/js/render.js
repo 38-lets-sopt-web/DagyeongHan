@@ -1,5 +1,6 @@
 import { customAmountStyle } from "./utils.js";
 
+// 데이터 렌더링 함수
 export function renderData(expenseList, data) {
   expenseList.innerHTML = data.map((item) => {
     const { amountClass, amountValue } = customAmountStyle(item.amount);

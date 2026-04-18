@@ -12,8 +12,10 @@ import {
 import { renderData } from "./js/render.js";
 import { formatAmount, customAmountStyle } from "./js/utils.js";
 
+// 로컬 스토리지 데이터 가져오기
 const expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
 
+// 초기 데이터 렌더링
 renderData(expenseList, expenseData);
 
 // 헤더 아이콘 클릭 시 새로고침
