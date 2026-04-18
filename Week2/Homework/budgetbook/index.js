@@ -9,16 +9,17 @@ import {
   deleteBtn, 
   totalAmount 
 } from "./js/elements.js";
+import { renderData } from "./js/render.js";
+import { formatAmount, customAmountStyle } from "./js/utils.js";
+
+const expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
+
+renderData(expenseList, expenseData);
 
 // 헤더 아이콘 클릭 시 새로고침
 headerIcon.addEventListener("click", () => {
   location.reload(true);
 })
-
-// 숫자 포맷팅 함수
-function formatAmount(amount) {
-  return amount.toLocaleString();
-}
 
 // 드롭다운 기능
 dropdowns.forEach((dropdown) => {
@@ -72,34 +73,6 @@ modalBackdrop.addEventListener("click", (event) => {
   }
 });
 
-// 더미데이터 불러와서 로컬 스토리지 저장
-const expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
-
-// 표에 더미데이터 렌더링
-expenseList.innerHTML = expenseData.map((item) => {
-  let amountClass = "";
-  let amountValue = "";
-
-  if (item.amount > 0) {
-    amountClass = "amount-plus";
-    amountValue = `+${formatAmount(item.amount)}`;
-  } else {
-    amountClass = "amount-minus";
-    amountValue = formatAmount(item.amount);
-  }
-
-  return `
-    <tr>
-      <td><input type="checkbox" name="select" value="${item.id}" /></td>
-      <td>${item.title}</td>
-      <td class="${amountClass}">${amountValue}</td>
-      <td>${item.date}</td>
-      <td>${item.category}</td>
-      <td>${item.payment}</td>
-    </tr>
-  `;
-}).join("");
-
 // 전체 선택 기능
 selectAllCheckbox.addEventListener("click", () => {
   const checkboxes = document.querySelectorAll("input[name='select']");
@@ -130,10 +103,6 @@ const total = expenseData.reduce((sum, item) => {
 }, 0);
 
 // 합계 금액 색상
-if (total > 0) {
-  totalAmount.textContent = `+${formatAmount(total)}`;
-  totalAmount.className = "total-amount amount-plus";
-} else {
-  totalAmount.textContent = total;
-  totalAmount.className = "total-amount amount-minus";
-}
+const { amountClass, amountValue } = customAmountStyle(total);
+totalAmount.textContent = amountValue;
+totalAmount.className = `total-amount ${amountClass}`;
