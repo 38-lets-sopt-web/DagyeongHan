@@ -5,6 +5,9 @@ export const headerIcon = document.querySelector("header div");
 // 드롭다운 관련 요소 한번에 선택
 export const dropdowns = document.querySelectorAll(".dropdown, .non-label-dropdown, .form-dropdown");
 
+// 표 드롭다운 요소 선택
+export const sortDropdown = document.querySelector(".non-label-dropdown");
+
 // 추가 버튼 요소 선택
 export const addButton = document.querySelector(".add-btn");
 
