@@ -99,3 +99,20 @@ selectAll.addEventListener("click", () => {
     checkbox.checked = selectAll.checked;
   });
 });
+
+const deleteBtn = document.querySelector('.delete-btn');
+
+// 선택 삭제 기능
+deleteBtn.addEventListener("click", () => {
+  const checkedItems = document.querySelectorAll("input[name='select']:checked"); // 체크된 항목
+  const checkedIds = Array.from(checkedItems).map((item) => item.value); // 체크된 항목 id
+
+  // 선택된 id만 제외하고 표시
+  const updatedExpenseList = expenseData.filter((item) => {
+    return !checkedIds.includes(item.id);
+  });
+
+  // 로컬 스토리지 반영
+  localStorage.setItem("expenseData", JSON.stringify(updatedExpenseList));
+  location.reload();
+});
