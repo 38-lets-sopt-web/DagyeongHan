@@ -290,3 +290,17 @@ input[type="date"] {
   font-size: 1em;
   cursor: pointer;
 }
+
+.expense-list td {
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.amount-plus {
+  color: #e53935;
+  font-weight: 600;
+}
+
+.amount-minus {
+  color: #1e88e5;
+  font-weight: 600;
+}
