@@ -1,15 +1,19 @@
 import "./dummy.js";
-
-// 헤더 아이콘 요소 선택
-const headerIcon = document.querySelector("header div");
+import { 
+  addButton, 
+  dropdowns, 
+  headerIcon, 
+  modalBackdrop, 
+  expenseList, 
+  selectAllCheckbox, 
+  deleteBtn, 
+  totalAmount 
+} from "./js/elements.js";
 
 // 헤더 아이콘 클릭 시 새로고침
 headerIcon.addEventListener("click", () => {
   location.reload(true);
 })
-
-// 드롭다운 관련 요소 한번에 선택
-const dropdowns = document.querySelectorAll(".dropdown, .non-label-dropdown, .form-dropdown");
 
 // 숫자 포맷팅 함수
 function formatAmount(amount) {
@@ -57,9 +61,6 @@ document.addEventListener("click", () => {
 });
 
 // 추가 버튼 클릭 시 모달 열림
-const addButton = document.querySelector(".add-btn");
-const modalBackdrop = document.querySelector(".modal-backdrop");
-
 addButton.addEventListener("click", () => {
   modalBackdrop.classList.add('open');
 })
@@ -73,9 +74,6 @@ modalBackdrop.addEventListener("click", (event) => {
 
 // 더미데이터 불러와서 로컬 스토리지 저장
 const expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
-
-// 표 가져오기
-const expenseList = document.querySelector('.expense-list');
 
 // 표에 더미데이터 렌더링
 expenseList.innerHTML = expenseData.map((item) => {
@@ -103,18 +101,13 @@ expenseList.innerHTML = expenseData.map((item) => {
 }).join("");
 
 // 전체 선택 기능
-const selectAll = document.querySelector("input[name='select-all']");
-
-selectAll.addEventListener("click", () => {
+selectAllCheckbox.addEventListener("click", () => {
   const checkboxes = document.querySelectorAll("input[name='select']");
 
   checkboxes.forEach((checkbox) => {
-    checkbox.checked = selectAll.checked;
+    checkbox.checked = selectAllCheckbox.checked;
   });
 });
-
-// 삭제 버튼 요소 선택
-const deleteBtn = document.querySelector('.delete-btn');
 
 // 선택 삭제 기능
 deleteBtn.addEventListener("click", () => {
@@ -130,9 +123,6 @@ deleteBtn.addEventListener("click", () => {
   localStorage.setItem("expenseData", JSON.stringify(updatedExpenseList));
   location.reload();
 });
-
-// 합계 요소 선택
-const totalAmount = document.querySelector(".total-amount");
 
 // 합계 계산 기능
 const total = expenseData.reduce((sum, item) => {
