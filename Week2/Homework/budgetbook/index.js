@@ -3,6 +3,11 @@ import "./dummy.js";
 // 드롭다운 관련 요소 한번에 선택
 const dropdowns = document.querySelectorAll(".dropdown, .non-label-dropdown, .form-dropdown");
 
+// 숫자 포맷팅 함수
+function formatAmount(amount) {
+  return amount.toLocaleString();
+}
+
 // 드롭다운 기능
 dropdowns.forEach((dropdown) => {
   const button = dropdown.querySelector(".dropdown-btn");
@@ -71,10 +76,10 @@ expenseList.innerHTML = expenseData.map((item) => {
 
   if (item.amount > 0) {
     amountClass = "amount-plus";
-    amountValue = `+${item.amount}`;
+    amountValue = `+${formatAmount(item.amount)}`;
   } else {
     amountClass = "amount-minus";
-    amountValue = item.amount;
+    amountValue = formatAmount(item.amount);
   }
 
   return `
@@ -128,7 +133,7 @@ const total = expenseData.reduce((sum, item) => {
 
 // 합계 금액 색상
 if (total > 0) {
-  totalAmount.textContent = `+${total}`;
+  totalAmount.textContent = `+${formatAmount(total)}`;
   totalAmount.className = "total-amount amount-plus";
 } else {
   totalAmount.textContent = total;
