@@ -91,11 +91,13 @@ deleteBtn.addEventListener("click", () => {
 
   // 선택된 id만 제외하고 표시
   const updatedExpenseList = expenseData.filter((item) => {
-    return !checkedIds.includes(item.id);
+    return !checkedIds.includes(String(item.id)); // 타입 비교 에러 방지
   });
 
   // 로컬 스토리지 반영
   localStorage.setItem("expenseData", JSON.stringify(updatedExpenseList));
+
+  // 새로고침
   location.reload();
 });
 
