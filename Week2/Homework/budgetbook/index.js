@@ -10,7 +10,7 @@ import {
   totalAmount 
 } from "./js/elements.js";
 import { renderData } from "./js/render.js";
-import { formatAmount, customAmountStyle } from "./js/utils.js";
+import { customAmountStyle } from "./js/utils.js";
 
 // 로컬 스토리지 데이터 가져오기
 const expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
@@ -20,7 +20,7 @@ renderData(expenseList, expenseData);
 
 // 헤더 아이콘 클릭 시 새로고침
 headerIcon.addEventListener("click", () => {
-  location.reload(true);
+  location.reload();
 })
 
 // 드롭다운 기능
