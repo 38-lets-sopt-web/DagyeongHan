@@ -1,0 +1,47 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.5em;
+}
+
+.dropdown,
+.input {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
+  gap: 1em;
+}
+
+.dropdown {
+  position: relative;
+  grid-column: span 2;
+}
+
+.input {
+  grid-column: 1 / -1;
+}
+
+.input div,
+.dropdown div {
+  font-size: 0.8em;
+  font-weight: 700;
+}
+
+.apply-btn,
+.reset-btn {
+  grid-column: span 3;
+  width: 100%;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0.75rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-weight: 700;
+  background-color: #f5c9b0;
+}
+
+.dropdown.open .dropdown-menu,
+.non-label-dropdown.open .dropdown-menu,
+.form-dropdown.open .dropdown-menu {
+  display: block;
+}
