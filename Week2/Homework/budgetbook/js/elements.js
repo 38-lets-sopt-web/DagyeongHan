@@ -25,3 +25,15 @@ export const deleteBtn = document.querySelector('.delete-btn');
 
 // 합계 요소 선택
 export const totalAmount = document.querySelector(".total-amount");
+
+// 제목 input 요소 선택
+export const titleInput = document.querySelector(".input input");
+
+// 적용 버튼 요소 선택
+export const applyBtn = document.querySelector(".apply-btn");
+
+// 초기화 버튼 요소 선택
+export const resetBtn = document.querySelector(".reset-btn");
+
+// 검색 필터 드롭다운 요소 모두 선택
+export const filterDropdowns = document.querySelectorAll("main section .dropdown");
