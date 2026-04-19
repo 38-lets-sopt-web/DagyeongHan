@@ -133,14 +133,14 @@
         <form>
           <div class="form-column">
             <label for="title">제목</label>
-            <input placeholder="제목을 입력하세요"/>
+            <input class="modal-title" placeholder="제목을 입력하세요"/>
           </div>
 
           <div class="form-row">
             <div>
               <label>유형</label>
               <div class="form-dropdown">
-                <button class="dropdown-btn">
+                <button type="button" class="dropdown-btn">
                   선택
                   <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
                 </button>
@@ -153,20 +153,20 @@
 
             <div>
               <label>금액 (숫자만)</label>
-              <input placeholder="금액을 입력하세요" />
+              <input class=".modal-amount" placeholder="금액을 입력하세요" />
             </div>
           </div>
 
           <div class="form-column">
             <label>날짜</label>
-            <input type="date">
+            <input class="modal-date" type="date">
           </div>
 
           <div class="form-row">
             <div>
               <label>카테고리</label>
               <div class="form-dropdown">
-                <button class="dropdown-btn">
+                <button type="button" class="dropdown-btn">
                   선택
                   <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
                 </button>
@@ -184,7 +184,7 @@
             <div>
               <label>결제 수단</label>
               <div class="form-dropdown">
-                <button class="dropdown-btn">
+                <button type="button" class="dropdown-btn">
                   선택
                   <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
                 </button>
@@ -200,7 +200,7 @@
           </div>
         </form>
 
-        <button class="modal-add-btn">추가</button>
+        <button type="submit" class="modal-add-btn">추가</button>
       </div>
     </div>
   </main>
