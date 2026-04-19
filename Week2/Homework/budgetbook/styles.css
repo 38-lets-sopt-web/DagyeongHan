@@ -290,8 +290,12 @@ input,
   font-size: 0.8em;
 }
 
-input[type="date"] {
+.modal-date {
   font-size: 1em;
+  cursor: pointer;
+}
+
+.modal-date::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
