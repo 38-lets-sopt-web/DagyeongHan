@@ -37,3 +37,18 @@ export const resetBtn = document.querySelector(".reset-btn");
 
 // 검색 필터 드롭다운 요소 모두 선택
 export const filterDropdowns = document.querySelectorAll("main section .dropdown");
+
+// 모달 폼 요소 선택
+export const modalForm = document.querySelector(".modal-form");
+
+// 모달 제목 입력 요소 선택
+export const modalTitleInput = document.querySelector(".modal-title");
+
+// 모달 날짜 선택 요소 선택
+export const modalDateInput = document.querySelector(".modal-date");
+
+// 모달 금액 입력 요소 선택
+export const modalAmountInput = document.querySelector(".modal-amount");
+
+// 모달 드롭다운 요소 전체 선택
+export const modalDropdowns = document.querySelectorAll(".modal .form-dropdown");

@@ -12,7 +12,12 @@ import {
   applyBtn,
   titleInput,
   filterDropdowns,
-  resetBtn
+  resetBtn,
+  modalTitleInput,
+  modalDateInput,
+  modalAmountInput,
+  modalDropdowns,
+  modalForm
 } from "./js/elements.js";
 import { renderData } from "./js/render.js";
 import { customAmountStyle } from "./js/utils.js";
@@ -174,3 +179,54 @@ const total = expenseData.reduce((sum, item) => {
 const { amountClass, amountValue } = customAmountStyle(total);
 totalAmount.textContent = amountValue;
 totalAmount.className = `total-amount ${amountClass}`;
+
+modalForm.addEventListener("submit", (e) => {
+
+  e.preventDefault();
+
+  // 모달 내 입력값, 선택값 선언
+  const modalTitleValue = modalTitleInput.value.trim();
+  const modalAmountValue = Number(modalAmountInput.value.trim());
+  const modalDateValue = modalDateInput.value.trim();
+  const modalTypeValue = modalDropdowns[0].querySelector(".dropdown-btn").childNodes[0].textContent.trim();
+  const modalCategoryValue = modalDropdowns[1].querySelector(".dropdown-btn").childNodes[0].textContent.trim();
+  const modalPaymentValue = modalDropdowns[2].querySelector(".dropdown-btn").childNodes[0].textContent.trim();
+
+  // 금액 값 초기화
+  let amount = modalAmountValue;
+
+  // 금액 지출, 수입 구분
+  if (modalTypeValue === "지출 (-)") {
+    amount = -modalAmountValue;
+  }
+
+  // 추가할 데이터 행 정의
+  const newExpense = {
+    id: Date.now(), // 고유 id로 선언
+    title: modalTitleValue,
+    amount: amount,
+    date: modalDateValue,
+    category: modalCategoryValue,
+    payment: modalPaymentValue,
+  }
+
+  // 기존 데이터 배열에 추가
+  expenseData.push(newExpense);
+  // 로컬 스토리지에 반영
+  localStorage.setItem("expenseData", JSON.stringify(expenseData));
+  // 데이터 렌더링
+  renderData(expenseList, expenseData);
+
+  // 입력값 초기화
+  modalTitleInput.value = "";
+  modalAmountInput.value = "";
+  modalDateInput.value = "";
+
+  // 드롭다운 초기화
+  modalDropdowns[0].querySelector(".dropdown-btn").childNodes[0].textContent = "선택";
+  modalDropdowns[1].querySelector(".dropdown-btn").childNodes[0].textContent = "선택";
+  modalDropdowns[2].querySelector(".dropdown-btn").childNodes[0].textContent = "선택";
+
+  // 모달 닫기
+  modalBackdrop.classList.remove("open");
+})
