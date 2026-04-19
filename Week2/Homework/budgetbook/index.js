@@ -24,6 +24,7 @@ import { renderData } from "./js/render.js";
 import { customAmountStyle } from "./js/utils.js";
 import { applyFilter } from "./js/filter.js";
 import { applyDateSort } from "./js/dateSort.js";
+import { handleSelect } from "./js/select.js";
 
 // 로컬 스토리지 데이터 가져오기
 const expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
@@ -58,6 +59,13 @@ applyDateSort({
   renderData,
 });
 
+// 체크박스 선택 삭제 기능 연결
+handleSelect({
+  selectAllCheckbox,
+  deleteBtn,
+  expenseData,
+});
+
 // 추가 버튼 클릭 시 모달 열림
 addButton.addEventListener("click", () => {
   modalBackdrop.classList.add('open');
@@ -68,32 +76,6 @@ modalBackdrop.addEventListener("click", (event) => {
   if (event.target === modalBackdrop) {
     modalBackdrop.classList.remove("open");
   }
-});
-
-// 전체 선택 기능
-selectAllCheckbox.addEventListener("click", () => {
-  const checkboxes = document.querySelectorAll("input[name='select']");
-
-  checkboxes.forEach((checkbox) => {
-    checkbox.checked = selectAllCheckbox.checked;
-  });
-});
-
-// 선택 삭제 기능
-deleteBtn.addEventListener("click", () => {
-  const checkedItems = document.querySelectorAll("input[name='select']:checked"); // 체크된 항목
-  const checkedIds = Array.from(checkedItems).map((item) => item.value); // 체크된 항목 id
-
-  // 선택된 id만 제외하고 표시
-  const updatedExpenseList = expenseData.filter((item) => {
-    return !checkedIds.includes(String(item.id)); // 타입 비교 에러 방지
-  });
-
-  // 로컬 스토리지 반영
-  localStorage.setItem("expenseData", JSON.stringify(updatedExpenseList));
-
-  // 새로고침
-  location.reload();
 });
 
 // 합계 계산 기능
