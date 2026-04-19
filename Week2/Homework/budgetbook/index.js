@@ -180,8 +180,9 @@ const { amountClass, amountValue } = customAmountStyle(total);
 totalAmount.textContent = amountValue;
 totalAmount.className = `total-amount ${amountClass}`;
 
+// 폼 제출(내역 추가 기능)
 modalForm.addEventListener("submit", (e) => {
-
+  // 브라우저 자동 새로고침 막음
   e.preventDefault();
 
   // 모달 내 입력값, 선택값 선언
@@ -191,6 +192,19 @@ modalForm.addEventListener("submit", (e) => {
   const modalTypeValue = modalDropdowns[0].querySelector(".dropdown-btn").childNodes[0].textContent.trim();
   const modalCategoryValue = modalDropdowns[1].querySelector(".dropdown-btn").childNodes[0].textContent.trim();
   const modalPaymentValue = modalDropdowns[2].querySelector(".dropdown-btn").childNodes[0].textContent.trim();
+
+  // 값 입력 누락 방지
+  if (
+    modalTitleValue === "" ||
+    !modalAmountValue ||
+    modalDateValue === "" ||
+    modalTypeValue === "선택" ||
+    modalCategoryValue === "선택" ||
+    modalPaymentValue === "선택"
+  ) {
+    alert("모든 값을 입력해주세요.");
+    return;
+  }
 
   // 금액 값 초기화
   let amount = modalAmountValue;
