@@ -23,6 +23,7 @@ import { dropdownToggle } from "./js/dropdown.js";
 import { renderData } from "./js/render.js";
 import { customAmountStyle } from "./js/utils.js";
 import { applyFilter } from "./js/filter.js";
+import { applyDateSort } from "./js/dateSort.js";
 
 // 로컬 스토리지 데이터 가져오기
 const expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
@@ -49,23 +50,12 @@ applyFilter({
   renderData,
 });
 
-// 표 드롭다운 메뉴 요소 선택
-const sortItems = sortDropdown.querySelectorAll(".dropdown-menu li");
-
-// 정렬 기능
-sortItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    const selectedValue = item.textContent.trim();
-    const sortedData = [...expenseData]; // rest 문법 - 배열 복사
-
-    if (selectedValue === "날짜 내림차순") {
-      sortedData.sort((a, b) => new Date(b.date) - new Date(a.date)); // sort 함수
-    } else if (selectedValue === "날짜 오름차순") {
-      sortedData.sort((a, b) => new Date(a.date) - new Date(b.date));
-    }
-
-    renderData(expenseList, sortedData);
-  });
+// 날짜 정렬 기능 연결
+applyDateSort({
+  sortDropdown,
+  expenseData,
+  expenseList,
+  renderData,
 });
 
 // 추가 버튼 클릭 시 모달 열림
