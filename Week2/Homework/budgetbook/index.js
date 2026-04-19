@@ -244,3 +244,8 @@ modalForm.addEventListener("submit", (e) => {
   // 모달 닫기
   modalBackdrop.classList.remove("open");
 })
+
+// 날짜 선택 input 아무데나 눌러도 날짜 선택 열리게
+modalDateInput.addEventListener("click", () => {
+  modalDateInput.showPicker();
+});
