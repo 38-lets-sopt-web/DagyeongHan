@@ -1,3 +1,5 @@
+/* 표 관련 스타일 */
+
 .table-header {
   display: flex;
   justify-content: space-between;

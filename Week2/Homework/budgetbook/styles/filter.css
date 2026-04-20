@@ -1,3 +1,5 @@
+/* 검색 필터 관련 스타일 */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));

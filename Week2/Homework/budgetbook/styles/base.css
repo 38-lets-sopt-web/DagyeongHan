@@ -1,3 +1,5 @@
+/* 공통 스타일 */
+
 body {
   display: flex;
   flex-direction: column;
