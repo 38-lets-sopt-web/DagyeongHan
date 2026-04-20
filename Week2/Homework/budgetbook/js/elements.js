@@ -3,7 +3,7 @@
 export const headerIcon = document.querySelector("header div");
 
 // 드롭다운 관련 요소 한번에 선택
-export const dropdowns = document.querySelectorAll(".dropdown, .non-label-dropdown, .form-dropdown");
+export const dropdowns = document.querySelectorAll(".dropdown, .non-label-dropdown, .add-dropdown");
 
 // 표 드롭다운 요소 선택
 export const sortDropdown = document.querySelector(".non-label-dropdown");
@@ -37,18 +37,30 @@ export const resetBtn = document.querySelector(".reset-btn");
 
 // 검색 필터 드롭다운 요소 모두 선택
 export const filterDropdowns = document.querySelectorAll("main section .dropdown");
+// 내역 추가 모달 요소 선택
+export const addModalContent = document.querySelector(".modal-content-add");
+// 내역 추가 모달 제목 입력 요소 선택
+export const addTitleInput = document.querySelector(".add-title-input");
+// 내역 추가 모달 날짜 선택 요소 선택
+export const addDateInput = document.querySelector(".add-date-input");
+// 내역 추가 모달 금액 입력 요소 선택
+export const addAmountInput = document.querySelector(".add-amount");
+// 내역 추가 모달 드롭다운 요소 전체 선택
+export const addDropdowns = document.querySelectorAll(".modal .add-dropdown");
 
-// 모달 폼 요소 선택
-export const modalForm = document.querySelector(".modal-form");
-
-// 모달 제목 입력 요소 선택
-export const modalTitleInput = document.querySelector(".modal-title");
-
-// 모달 날짜 선택 요소 선택
-export const modalDateInput = document.querySelector(".modal-date");
-
-// 모달 금액 입력 요소 선택
-export const modalAmountInput = document.querySelector(".modal-amount");
-
-// 모달 드롭다운 요소 전체 선택
-export const modalDropdowns = document.querySelectorAll(".modal .form-dropdown");
+// 항목 상세 모달 요소 선택
+export const detailModalContent = document.querySelector(".modal-content-detail");
+// 공통 모달 헤더 제목 요소 선택
+export const modalTitle = document.querySelector(".modal-title");
+// 공통 모달 닫기 버튼 요소 선택
+export const modalCloseBtn = document.querySelector(".modal-close-btn");
+// 상세 모달 제목 값 요소 선택
+export const detailTitle = document.querySelector(".detail-title");
+// 상세 모달 금액 값 요소 선택
+export const detailAmount = document.querySelector(".detail-amount");
+// 상세 모달 날짜 값 요소 선택
+export const detailDate = document.querySelector(".detail-date");
+// 상세 모달 카테고리 값 요소 선택
+export const detailCategory = document.querySelector(".detail-category");
+// 상세 모달 결제수단 값 요소 선택
+export const detailPayment = document.querySelector(".detail-payment");

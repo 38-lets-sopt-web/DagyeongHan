@@ -8,7 +8,7 @@ export function renderData(expenseList, data) {
     return `
       <tr>
         <td><input type="checkbox" name="select" value="${item.id}" /></td>
-        <td>${item.title}</td>
+        <td class="expense-title" data-id="${item.id}">${item.title}</td>
         <td class="${amountClass}">${amountValue}</td>
         <td>${item.date}</td>
         <td>${item.category}</td>

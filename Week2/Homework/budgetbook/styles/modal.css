@@ -1,3 +1,4 @@
+/* 공통 모달 스타일 */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -15,16 +16,17 @@
 }
 
 .modal {
+  width: 25rem;
   display: flex;
   flex-direction: column;
   gap: 1em;
-  width: 25rem;
-  padding: 2em;
+  padding: 1.5em;
   box-sizing: border-box;
   border-radius: 12px;
   background-color: #fff;
 }
 
+/* 내역 추가 모달 스타일 */
 form {
   display: flex;
   flex-direction: column;
@@ -35,31 +37,31 @@ label {
   font-weight: 500;
 }
 
-.form-column {
+.add-column {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
 
-.form-row {
+.add-row {
   display: flex;
   gap: 0.5em;
 }
 
-.form-row > div {
+.add-row > div {
   display: flex;
   flex: 1;
   flex-direction: column;
   gap: 0.5em;
 }
 
-.form-dropdown {
+.add-dropdown {
   position: relative;
   width: 100%;
 }
 
-.form-dropdown .dropdown-btn,
-.form-dropdown .dropdown-menu {
+.add-dropdown .dropdown-btn,
+.add-dropdown .dropdown-menu {
   width: 100%;
 }
 
@@ -73,11 +75,48 @@ label {
   background-color: #f5c9b0;
 }
 
-.modal-date {
+.add-date-input {
   font-size: 1em;
   cursor: pointer;
 }
 
-.modal-date::-webkit-calendar-picker-indicator {
+.add-date-input::-webkit-calendar-picker-indicator {
   cursor: pointer;
+}
+
+/* 항목 상세 모달 스타일 */
+.modal-content-detail {
+  width: 100%;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-close-btn {
+  width: 1.2em;
+  cursor: pointer;
+}
+
+.detail-list {
+  width: 100%;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 6em 1fr;
+  align-items: center;
+  padding: 0.5em 0;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.detail-label {
+  font-weight: 600;
+  font-size: 0.9em;
+  color: #43464b;
+}
+
+.detail-value {
+  font-size: 0.9em;
 }

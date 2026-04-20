@@ -55,3 +55,11 @@ tfoot td {
   background-color: #f6f6f6;
   font-weight: 600;
 }
+
+.expense-title {
+  cursor: pointer;
+}
+
+.expense-title:hover {
+  text-decoration: underline;
+}

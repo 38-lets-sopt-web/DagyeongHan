@@ -42,6 +42,6 @@
 
 .dropdown.open .dropdown-menu,
 .non-label-dropdown.open .dropdown-menu,
-.form-dropdown.open .dropdown-menu {
+.add-dropdown.open .dropdown-menu {
   display: block;
 }

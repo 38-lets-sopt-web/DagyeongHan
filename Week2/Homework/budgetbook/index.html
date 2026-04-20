@@ -128,18 +128,22 @@
     <div class="modal-backdrop">
       <div class="modal">
 
-        <h3>내역 추가</h3>
+        <div class="modal-header">
+          <h3 class="modal-title"></h3>
+          <img class="modal-close-btn" src="./asset/ic-delete.svg" alt="닫기 아이콘"/>
+        </div>
 
-        <form class="modal-form">
-          <div class="form-column">
+        <form class="modal-content-add">
+
+          <div class="add-column">
             <label for="title">제목</label>
-            <input class="modal-title" placeholder="제목을 입력하세요"/>
+            <input class="add-title-input" placeholder="제목을 입력하세요"/>
           </div>
 
-          <div class="form-row">
+          <div class="add-row">
             <div>
               <label>유형</label>
-              <div class="form-dropdown">
+              <div class="add-dropdown">
                 <button type="button" class="dropdown-btn">
                   선택
                   <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
@@ -153,19 +157,19 @@
 
             <div>
               <label>금액 (숫자만)</label>
-              <input class="modal-amount" placeholder="금액을 입력하세요" />
+              <input class="add-amount" placeholder="금액을 입력하세요" />
             </div>
           </div>
 
-          <div class="form-column">
+          <div class="add-column">
             <label>날짜</label>
-            <input class="modal-date" type="date">
+            <input class="add-date-input" type="date">
           </div>
 
-          <div class="form-row">
+          <div class="add-row">
             <div>
               <label>카테고리</label>
-              <div class="form-dropdown">
+              <div class="add-dropdown">
                 <button type="button" class="dropdown-btn">
                   선택
                   <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
@@ -183,7 +187,7 @@
 
             <div>
               <label>결제 수단</label>
-              <div class="form-dropdown">
+              <div class="add-dropdown">
                 <button type="button" class="dropdown-btn">
                   선택
                   <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
@@ -201,8 +205,41 @@
 
           <button type="submit" class="modal-add-btn">추가</button>
         </form>
+
+        <div class="modal-content-detail">
+
+          <div class="detail-list">
+            <div class="detail-row">
+              <span class="detail-label">제목:</span>
+              <span class="detail-value detail-title"></span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">금액:</span>
+              <span class="detail-value detail-amount"></span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">날짜:</span>
+              <span class="detail-value detail-date"></span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">카테고리:</span>
+              <span class="detail-value detail-category"></span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">결제수단:</span>
+              <span class="detail-value detail-payment"></span>
+            </div>
+          </div>
+          
+        </div>
+
       </div>
     </div>
+
   </main>
   <script type="module" src="index.js"></script>
 </body>
