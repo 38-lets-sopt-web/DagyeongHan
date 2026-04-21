@@ -7,8 +7,6 @@ export function addExpense({
   addDateInput,
   addDropdowns,
   expenseData,
-  expenseList,
-  renderData,
 }) {
   // 모달 내 입력값, 선택값 선언
   const addTitleValue = addTitleInput.value.trim();
@@ -53,8 +51,6 @@ export function addExpense({
   expenseData.push(newExpense);
   // 로컬 스토리지에 반영
   localStorage.setItem("expenseData", JSON.stringify(expenseData));
-  // 데이터 렌더링
-  renderData(expenseList, expenseData);
 
   // 입력값 초기화
   addTitleInput.value = "";
