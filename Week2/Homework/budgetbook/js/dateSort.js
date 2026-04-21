@@ -26,9 +26,9 @@ export function applyDateSort({
       const selectedValue = item.textContent.trim();
 
       if (selectedValue === "날짜 내림차순") {
-        setSortOrder(expenseData, "desc")
+        setSortOrder("desc")
       } else if (selectedValue === "날짜 오름차순") {
-        setSortOrder(expenseData, "asc");
+        setSortOrder("asc");
       }
 
       // 최신 상태 업데이트
