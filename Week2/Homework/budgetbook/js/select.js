@@ -3,7 +3,21 @@ export function handleSelect({
   deleteBtn,
   expenseData,
   updateView,
+  expenseList,
 }) {
+  // 체크박스 상태 업데이트
+  const updateSelectAll = () => {
+    const checkboxes = document.querySelectorAll("input[name='select']");
+    const checkedCheckboxes = document.querySelectorAll("input[name='select']:checked");
+
+    if (checkboxes.length === 0) {
+      selectAllCheckbox.checked = false;
+      return;
+    }
+
+    selectAllCheckbox.checked = checkboxes.length === checkedCheckboxes.length;
+  };
+
   // 전체 선택 기능
   selectAllCheckbox.addEventListener("click", () => {
     const checkboxes = document.querySelectorAll("input[name='select']");
@@ -11,6 +25,13 @@ export function handleSelect({
     checkboxes.forEach((checkbox) => {
       checkbox.checked = selectAllCheckbox.checked;
     });
+  });
+
+ // 개별 체크박스 변경 시 전체 체크박스 상태 변경
+  expenseList.addEventListener("change", (event) => {
+    if (event.target.matches("input[name='select']")) {
+      updateSelectAll();
+    }
   });
 
   // 선택 삭제 기능
