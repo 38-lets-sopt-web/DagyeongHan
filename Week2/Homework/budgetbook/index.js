@@ -85,7 +85,7 @@ applyDateSort({
 });
 
 // 체크박스 선택 삭제 기능 연결
-handleSelect({ selectAllCheckbox, deleteBtn, expenseData });
+handleSelect({ selectAllCheckbox, deleteBtn, expenseData, updateView });
 
 // 추가 버튼 클릭 시 내역 추가 모달 열림
 addButton.addEventListener("click", () => {
