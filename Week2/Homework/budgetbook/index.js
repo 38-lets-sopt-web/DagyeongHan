@@ -29,8 +29,8 @@ import {
 } from "./js/elements.js";
 import { dropdownToggle } from "./js/dropdown.js";
 import { renderData } from "./js/render.js";
-import { applyFilter } from "./js/filter.js";
-import { applyDateSort } from "./js/dateSort.js";
+import { applyFilter, getFilteredData } from "./js/filter.js";
+import { applyDateSort, sortByDate } from "./js/dateSort.js";
 import { handleSelect } from "./js/select.js";
 import { addExpense } from "./js/addData.js";
 import { viewDetail } from "./js/viewDetail.js";
@@ -40,8 +40,24 @@ import { closeModal, openAddModal } from "./js/modal.js";
 // 로컬 스토리지 데이터 가져오기
 const expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
 
-// 초기 데이터 렌더링
-renderData(expenseList, expenseData);
+// 초기 정렬 상태 (내림차순)
+let currentSortOrder = "desc";
+
+// 최신 상태 업데이트
+function updateView() {
+  // 필터링 된 데이터 가져오기
+  const filteredData = getFilteredData({
+    expenseData,
+    titleInput,
+    filterDropdowns,
+  });
+
+  const sortedData = sortByDate(filteredData, currentSortOrder); // 날짜 정렬
+  renderData(expenseList, sortedData); // 다시 렌더링
+}
+
+// 초기 렌더링
+updateView();
 
 // 헤더 아이콘 클릭 시 새로고침
 headerIcon.addEventListener("click", () => {
@@ -55,15 +71,17 @@ dropdownToggle(dropdowns);
 applyFilter({
   applyBtn,
   resetBtn,
-  titleInput,
-  filterDropdowns,
-  expenseData,
-  expenseList,
-  renderData,
+  updateView,
 });
 
 // 날짜 정렬 기능 연결
-applyDateSort({ sortDropdown, expenseData, expenseList, renderData });
+applyDateSort({
+  sortDropdown,
+  setSortOrder: (order) => {
+    currentSortOrder = order;
+  },
+  updateView,
+});
 
 // 체크박스 선택 삭제 기능 연결
 handleSelect({ selectAllCheckbox, deleteBtn, expenseData });
