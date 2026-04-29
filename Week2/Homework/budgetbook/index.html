@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>다경이의 가계부</title>
     <link rel="stylesheet" href="/Week2/Homework/budgetbook/styles.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
           <input placeholder="내역을 입력해주세요"/>
         </div>
 
-        <div class="dropdown">
+        <div class="dropdown" data-filter="type">
           <div>유형</div>
           <button class="dropdown-btn">
             전체
@@ -37,7 +37,7 @@
           </ul>
         </div>
 
-        <div class="dropdown">
+        <div class="dropdown" data-filter="category">
           <div>카테고리</div>
           <button class="dropdown-btn">
             전체
@@ -54,7 +54,7 @@
           </ul>
         </div>
 
-        <div class="dropdown">
+        <div class="dropdown" data-filter="payment">
           <div>결제수단</div>
           <button class="dropdown-btn">
             전체
@@ -92,8 +92,8 @@
 
         <!-- 삭제, 추가 버튼 영역 -->
         <div class="table-btn-wrap">
-          <button class="delete-btn">선택 삭제</button>
-          <button class="add-btn">추가</button>
+          <button type="button" class="delete-btn">선택 삭제</button>
+          <button type="button" class="add-btn">추가</button>
         </div>
       </div>
       
@@ -119,126 +119,129 @@
       </table>
     </section>
 
-    <!-- 모달 영역 -->
-    <div class="modal-backdrop">
-      <div class="modal">
+  </main>
 
-        <!-- 모달 공통 헤더 -->
-        <div class="modal-header">
-          <h3 class="modal-title"></h3>
-          <img class="modal-close-btn" src="./asset/ic-delete.svg" alt="닫기 아이콘"/>
+  <!-- 모달 영역 -->
+  <div class="modal-backdrop">
+    <div class="modal">
+
+      <!-- 모달 공통 헤더 -->
+      <div class="modal-header">
+        <h3 class="modal-title"></h3>
+        <button type="button" class="modal-close-btn" aria-label="모달 닫기">
+          <img src="./asset/ic-delete.svg" alt="">
+        </button>
+      </div>
+
+      <!-- 내역 추가 모달 콘텐츠 영역 -->
+      <form class="modal-content-add">
+
+        <div class="add-column">
+          <label for="add-title">제목</label>
+          <input id="add-title" class="add-title-input" placeholder="제목을 입력하세요"/>
         </div>
 
-        <!-- 내역 추가 모달 콘텐츠 영역 -->
-        <form class="modal-content-add">
-
-          <div class="add-column">
-            <label for="title">제목</label>
-            <input class="add-title-input" placeholder="제목을 입력하세요"/>
-          </div>
-
-          <div class="add-row">
-            <div>
-              <label>유형</label>
-              <div class="add-dropdown">
-                <button type="button" class="dropdown-btn">
-                  선택
-                  <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
-                </button>
-                <ul class="dropdown-menu">
-                  <li>수입 (+)</li>
-                  <li>지출 (-)</li>
-                </ul>
-              </div>
-            </div>
-
-            <div>
-              <label>금액 (숫자만)</label>
-              <input class="add-amount" placeholder="금액을 입력하세요" />
+        <div class="add-row">
+          <div>
+            <label for="add-type">유형</label>
+            <div class="add-dropdown" data-expense-field="type">
+              <button id="add-type" type="button" class="dropdown-btn">
+                선택
+                <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
+              </button>
+              <ul class="dropdown-menu">
+                <li>수입 (+)</li>
+                <li>지출 (-)</li>
+              </ul>
             </div>
           </div>
 
-          <div class="add-column">
-            <label>날짜</label>
-            <input class="add-date-input" type="date">
+          <div>
+            <label for="add-amount">금액 (숫자만)</label>
+            <input id="add-amount" class="add-amount" placeholder="금액을 입력하세요" />
+          </div>
+        </div>
+
+        <div class="add-column">
+          <label for="add-date">날짜</label>
+          <input id="add-date" class="add-date-input" type="date">
+        </div>
+
+        <div class="add-row">
+          <div>
+            <label for="add-category">카테고리</label>
+            <div class="add-dropdown" data-expense-field="category">
+              <button id="add-category" type="button" class="dropdown-btn">
+                선택
+                <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
+              </button>
+              <ul class="dropdown-menu">
+                <li>식비</li>
+                <li>월급</li>
+                <li>문화</li>
+                <li>교통</li>
+                <li>생활</li>
+                <li>기타</li>
+              </ul>
+            </div>
           </div>
 
-          <div class="add-row">
-            <div>
-              <label>카테고리</label>
-              <div class="add-dropdown">
-                <button type="button" class="dropdown-btn">
-                  선택
-                  <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
-                </button>
-                <ul class="dropdown-menu">
-                  <li>식비</li>
-                  <li>월급</li>
-                  <li>문화</li>
-                  <li>교통</li>
-                  <li>생활</li>
-                  <li>기타</li>
-                </ul>
-              </div>
-            </div>
-
-            <div>
-              <label>결제 수단</label>
-              <div class="add-dropdown">
-                <button type="button" class="dropdown-btn">
-                  선택
-                  <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
-                </button>
-                <ul class="dropdown-menu">
-                  <li>신용카드</li>
-                  <li>체크카드</li>
-                  <li>현금</li>
-                  <li>기타</li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-
-          <button type="submit" class="modal-add-btn">추가</button>
-        </form>
-
-        <!-- 항목 상세 모달 콘텐츠 영역 -->
-        <div class="modal-content-detail">
-
-          <div class="detail-list">
-            <div class="detail-row">
-              <span class="detail-label">제목:</span>
-              <span class="detail-value detail-title"></span>
-            </div>
-
-            <div class="detail-row">
-              <span class="detail-label">금액:</span>
-              <span class="detail-value detail-amount"></span>
-            </div>
-
-            <div class="detail-row">
-              <span class="detail-label">날짜:</span>
-              <span class="detail-value detail-date"></span>
-            </div>
-
-            <div class="detail-row">
-              <span class="detail-label">카테고리:</span>
-              <span class="detail-value detail-category"></span>
-            </div>
-
-            <div class="detail-row">
-              <span class="detail-label">결제수단:</span>
-              <span class="detail-value detail-payment"></span>
+          <div>
+            <label for="add-payment">결제 수단</label>
+            <div class="add-dropdown" data-expense-field="payment">
+              <button id="add-payment" type="button" class="dropdown-btn">
+                선택
+                <img src="./asset/ic-chevron-down.svg" alt="아래쪽 화살표 아이콘">
+              </button>
+              <ul class="dropdown-menu">
+                <li>신용카드</li>
+                <li>체크카드</li>
+                <li>현금</li>
+                <li>기타</li>
+              </ul>
             </div>
           </div>
-          
+
+        </div>
+
+        <button type="submit" class="modal-add-btn">추가</button>
+      </form>
+
+      <!-- 항목 상세 모달 콘텐츠 영역 -->
+      <div class="modal-content-detail">
+
+        <div class="detail-list">
+          <div class="detail-row">
+            <span class="detail-label">제목:</span>
+            <span class="detail-value detail-title"></span>
+          </div>
+
+          <div class="detail-row">
+            <span class="detail-label">금액:</span>
+            <span class="detail-value detail-amount"></span>
+          </div>
+
+          <div class="detail-row">
+            <span class="detail-label">날짜:</span>
+            <span class="detail-value detail-date"></span>
+          </div>
+
+          <div class="detail-row">
+            <span class="detail-label">카테고리:</span>
+            <span class="detail-value detail-category"></span>
+          </div>
+
+          <div class="detail-row">
+            <span class="detail-label">결제수단:</span>
+            <span class="detail-value detail-payment"></span>
+          </div>
         </div>
 
       </div>
-    </div>
 
-  </main>
+    </div>
+  </div>
+
   <script type="module" src="index.js"></script>
 </body>
 </html>

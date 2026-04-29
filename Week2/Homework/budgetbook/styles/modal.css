@@ -95,8 +95,19 @@ label {
 }
 
 .modal-close-btn {
-  width: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8em;
+  height: 1.8em;
+  padding: 0;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
+}
+
+.modal-close-btn img {
+  width: 1.2em;
 }
 
 .detail-list {

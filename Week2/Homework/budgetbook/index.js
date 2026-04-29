@@ -43,13 +43,57 @@ const expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
 // 초기 정렬 상태 (내림차순)
 let currentSortOrder = "desc";
 
+function getDropdownValue(dropdown) {
+  return dropdown.querySelector(".dropdown-btn").textContent.trim();
+}
+
+function getFilterValues() {
+  const filters = {
+    title: titleInput.value.trim().toLowerCase(),
+  };
+
+  filterDropdowns.forEach((dropdown) => {
+    filters[dropdown.dataset.filter] = getDropdownValue(dropdown);
+  });
+
+  return filters;
+}
+
+function resetDropdown(dropdown, value = "선택") {
+  const button = dropdown.querySelector(".dropdown-btn");
+  const icon = button.querySelector("img");
+
+  button.textContent = value;
+  button.appendChild(icon);
+}
+
+function getAddExpenseForm() {
+  const expenseForm = {
+    title: addTitleInput.value.trim(),
+    amount: Number(addAmountInput.value.trim()),
+    date: addDateInput.value.trim(),
+  };
+
+  addDropdowns.forEach((dropdown) => {
+    expenseForm[dropdown.dataset.expenseField] = getDropdownValue(dropdown);
+  });
+
+  return expenseForm;
+}
+
+function resetAddExpenseForm() {
+  addTitleInput.value = "";
+  addAmountInput.value = "";
+  addDateInput.value = "";
+  addDropdowns.forEach((dropdown) => resetDropdown(dropdown));
+}
+
 // 최신 상태 업데이트
 function updateView() {
   // 필터링 된 데이터 가져오기
   const filteredData = getFilteredData({
     expenseData,
-    titleInput,
-    filterDropdowns,
+    filters: getFilterValues(),
   });
 
   const sortedData = sortByDate(filteredData, currentSortOrder); // 날짜 정렬
@@ -72,6 +116,8 @@ dropdownToggle(dropdowns);
 applyFilter({
   applyBtn,
   resetBtn,
+  titleInput,
+  filterDropdowns,
   updateView,
 });
 
@@ -135,15 +181,13 @@ addModalContent.addEventListener("submit", (e) => {
 
   // 내역 추가
   const isAdded = addExpense({
-    addTitleInput,
-    addAmountInput,
-    addDateInput,
-    addDropdowns,
     expenseData,
+    expenseForm: getAddExpenseForm(),
   });
 
   // 추가 성공 시 업데이트 후 렌더링
   if (isAdded) {
+    resetAddExpenseForm();
     updateView();
     // 모달 닫기
     closeModal({ modalBackdrop, addModalContent, detailModalContent });
