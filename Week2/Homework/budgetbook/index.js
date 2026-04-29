@@ -26,16 +26,16 @@ import {
   detailPayment,
   modalCloseBtn,
   modalTitle,
-} from "./js/elements.js";
-import { dropdownToggle } from "./js/dropdown.js";
-import { renderData } from "./js/render.js";
-import { applyFilter, getFilteredData } from "./js/filter.js";
-import { applyDateSort, sortByDate } from "./js/dateSort.js";
-import { handleSelect } from "./js/select.js";
-import { addExpense } from "./js/addData.js";
-import { viewDetail } from "./js/viewDetail.js";
-import { renderTotalAmount } from "./js/total.js";
-import { closeModal, openAddModal } from "./js/modal.js";
+} from "./js/core/elements.js";
+import { dropdownToggle } from "./js/event/dropdown.js";
+import { renderData } from "./js/core/render.js";
+import { applyFilter, getFilteredData } from "./js/form/filter.js";
+import { applyDateSort, sortByDate } from "./js/event/dateSort.js";
+import { handleSelect } from "./js/event/select.js";
+import { addExpense } from "./js/form/addData.js";
+import { viewDetail } from "./js/event/viewDetail.js";
+import { renderTotalAmount } from "./js/core/total.js";
+import { closeModal, openAddModal } from "./js/event/modal.js";
 
 // 로컬 스토리지 데이터 가져오기
 const expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
