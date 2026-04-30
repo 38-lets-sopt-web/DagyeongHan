@@ -4,11 +4,12 @@ import {
   TARGET_STATUS,
   TARGET_TYPE,
 } from '../constants/game';
+import { saveRankingRecord } from '../utils/rankingStorage';
 import useGameScore from './useGameScore';
 import useGameTimer from './useGameTimer';
 import useTargetManager from './useTargetManager';
 
-export default function useWhackAMoleGame() {
+export default function useWhackAMoleGame({ level }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [message, setMessage] = useState('시작 버튼을 눌러주세요.');
   const gameEndedRef = useRef(false);
@@ -32,7 +33,7 @@ export default function useWhackAMoleGame() {
     targetRef,
   } = useTargetManager();
 
-  const finishGame = useCallback((finalScore) => {
+  const finishGame = useCallback((finalScore, { shouldSave = false } = {}) => {
     if (gameEndedRef.current) return;
 
     gameEndedRef.current = true;
@@ -40,12 +41,20 @@ export default function useWhackAMoleGame() {
     clearTarget();
     setIsPlaying(false);
     setMessage('게임 종료');
+
+    if (shouldSave && finalScore > 0) {
+      saveRankingRecord({
+        level: `Level ${level}`,
+        score: finalScore,
+      });
+    }
+
     alert(`최종 점수는 ${finalScore}점입니다.`);
-  }, [clearTarget, clearTargetTimers]);
+  }, [clearTarget, clearTargetTimers, level]);
 
   const { resetTime, timeLeft } = useGameTimer({
     isPlaying,
-    onTimeUp: () => finishGame(scoreRef.current),
+    onTimeUp: () => finishGame(scoreRef.current, { shouldSave: true }),
   });
 
   const handleStart = () => {

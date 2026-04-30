@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { useState } from 'react';
 import { css } from '@emotion/react';
 import GameBoard from '../components/game/GameBoard';
 import GameControls from '../components/game/GameControls';
@@ -11,6 +12,8 @@ import { BOARD_SIZE } from '../constants/game';
 import useWhackAMoleGame from '../hooks/useWhackAMoleGame';
 
 export default function Game() {
+
+  const [level, setLevel] = useState('2');
   
   const {
     failCount,
@@ -23,7 +26,7 @@ export default function Game() {
     successCount,
     target,
     timeLeft,
-  } = useWhackAMoleGame();
+  } = useWhackAMoleGame({ level });
 
   return (
     <div css={gameLayoutStyle}>
@@ -51,7 +54,7 @@ export default function Game() {
       {/* 게임 보드 */}
       <section css={gameAreaStyle}>
         <div css={gameTopStyle}>
-          <LevelSelect />
+          <LevelSelect value={level} onChange={setLevel} />
           <GameControls onStart={handleStart} onStop={handleStop} isPlaying={isPlaying} />
         </div>
 

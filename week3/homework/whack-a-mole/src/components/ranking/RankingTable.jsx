@@ -23,19 +23,23 @@ export default function RankingTable({ rankings }) {
         </tr>
       </thead>
       <tbody>
-        {rankings.map((ranking) => (
-          <tr key={ranking.id} css={bodyRowStyle}>
-            {RANKING_COLUMNS.map((column) => (
-              <td key={column.key}>{formatRankingValue(ranking, column.key)}</td>
-            ))}
+        {rankings.length === 0 ? (
+          <tr css={bodyRowStyle}>
+            <td colSpan={RANKING_COLUMNS.length}>저장된 기록이 없습니다.</td>
           </tr>
-        ))}
+        ) : (
+          rankings.map((ranking) => (
+            <tr key={ranking.id} css={bodyRowStyle}>
+              {RANKING_COLUMNS.map((column) => (
+                <td key={column.key}>{formatRankingValue(ranking, column.key)}</td>
+              ))}
+            </tr>
+          ))
+        )}
       </tbody>
     </table>
   );
 }
-
-
 
 const tableStyle = css`
   width: 100%;

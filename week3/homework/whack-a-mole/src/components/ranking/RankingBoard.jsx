@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { DEFAULT_RANKINGS } from '../../constants/ranking';
 import RankingTable from './RankingTable';
 
-export default function RankingBoard({ rankings = DEFAULT_RANKINGS, onReset }) {
+export default function RankingBoard({ rankings, onReset }) {
   return (
     <section css={boardStyle}>
       <div css={headerStyle}>
