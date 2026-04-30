@@ -1,25 +1,31 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export default function Tabs({ onTabChange }) {
+export default function Tabs({ activeTab, onTabChange }) {
   return (
-        <nav css={buttonWrapperStyle}>
-            <button 
-              type="button" 
-              onClick={() => onTabChange('game')} 
-              css={[buttonStyle, gameButtonStyle]}
-            >
-              게임
-            </button>
-            
-            <button 
-              type="button"
-              onClick={() => onTabChange('ranking')} 
-              css={[buttonStyle, rankButtonStyle]}
-            >
-              랭킹
-            </button>
-        </nav>
+    <nav css={buttonWrapperStyle}>
+      <button 
+        type="button" 
+        onClick={() => onTabChange('game')} 
+        css={[
+          buttonStyle,
+          activeTab === 'game' ? activeButtonStyle : inactiveButtonStyle,
+        ]}
+      >
+        게임
+      </button>
+
+      <button 
+        type="button"
+        onClick={() => onTabChange('ranking')} 
+        css={[
+          buttonStyle,
+          activeTab === 'ranking' ? activeButtonStyle : inactiveButtonStyle,
+        ]}
+      >
+        랭킹
+      </button>
+    </nav>
   )
 }
 
@@ -37,12 +43,12 @@ const buttonStyle = css`
   cursor: pointer;
 `;
 
-const gameButtonStyle = css`
+const activeButtonStyle = css`
   background: #FFB2B2;
   color: #fff;
 `;
 
-const rankButtonStyle = css`
+const inactiveButtonStyle = css`
   border: 1px solid #FFB2B2;
   background: #fff;
   color: #FFB2B2;
