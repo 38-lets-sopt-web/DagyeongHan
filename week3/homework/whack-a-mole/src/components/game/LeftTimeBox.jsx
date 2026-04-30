@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export default function LeftTimeBox() {
+export default function LeftTimeBox({ timeLeft }) {
   return (
     <div css={rootContainer}>
       <span css={labelStyle}>남은 시간</span>
-      <div css={timeStyle}>20.0</div>
+      <div css={timeStyle}>{timeLeft.toFixed(1)}</div>
     </div>
   )
 }

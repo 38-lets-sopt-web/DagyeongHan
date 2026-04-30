@@ -1,13 +1,23 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export default function GameControls({ onStart, onStop }) {
+export default function GameControls({ onStart, onStop, isPlaying }) {
   return (
     <div css={controlsStyle}>
-      <button type="button" css={[buttonStyle, startButtonStyle]} onClick={onStart}>
+      <button
+        type="button"
+        css={[buttonStyle, startButtonStyle]}
+        onClick={onStart}
+        disabled={isPlaying}
+      >
         시작
       </button>
-      <button type="button" css={[buttonStyle, stopButtonStyle]} onClick={onStop}>
+      <button
+        type="button"
+        css={[buttonStyle, stopButtonStyle]}
+        onClick={onStop}
+        disabled={!isPlaying}
+      >
         중단
       </button>
     </div>
@@ -26,6 +36,11 @@ const buttonStyle = css`
   color: #fff;
   font-weight: 700;
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `;
 
 const startButtonStyle = css`

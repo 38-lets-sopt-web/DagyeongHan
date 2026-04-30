@@ -1,40 +1,61 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import TotalPointBox from '../components/game/TotalPointBox';
-import LeftTimeBox from '../components/game/LeftTimeBox';
 import GameBoard from '../components/game/GameBoard';
-import ResultBox from '../components/game/ResultBox';
-import MessageBox from '../components/game/MessageBox';
-import LevelSelect from '../components/game/LevelSelect';
 import GameControls from '../components/game/GameControls';
+import LeftTimeBox from '../components/game/LeftTimeBox';
+import LevelSelect from '../components/game/LevelSelect';
+import MessageBox from '../components/game/MessageBox';
+import ResultBox from '../components/game/ResultBox';
+import TotalPointBox from '../components/game/TotalPointBox';
+import { BOARD_SIZE } from '../constants/game';
+import useWhackAMoleGame from '../hooks/useWhackAMoleGame';
 
 export default function Game() {
+  
+  const {
+    failCount,
+    handleHoleClick,
+    handleStart,
+    handleStop,
+    isPlaying,
+    message,
+    score,
+    successCount,
+    target,
+    timeLeft,
+  } = useWhackAMoleGame();
+
   return (
     <div css={gameLayoutStyle}>
+      {/* 남은 시간 */}
       <section css={[cardStyle, timeAreaStyle]}>
-        <LeftTimeBox />
+        <LeftTimeBox timeLeft={timeLeft} />
       </section>
 
+      {/* 총 점수 */}
       <section css={[cardStyle, scoreAreaStyle]}>
-        <TotalPointBox />
+        <TotalPointBox score={score} />
       </section>
 
+      {/* 결과 */}
       <section css={resultAreaStyle}>
-        <ResultBox label="성공" count={0} type="success" />
-        <ResultBox label="실패" count={0} type="fail" />
+        <ResultBox label="성공" count={successCount} type="success" />
+        <ResultBox label="실패" count={failCount} type="fail" />
       </section>
 
+      {/* 안내 메세지 */}
       <section css={[cardStyle, messageAreaStyle]}>
-        <MessageBox />
+        <MessageBox message={message} />
       </section>
 
+      {/* 게임 보드 */}
       <section css={gameAreaStyle}>
         <div css={gameTopStyle}>
           <LevelSelect />
-          <GameControls />
+          <GameControls onStart={handleStart} onStop={handleStop} isPlaying={isPlaying} />
         </div>
 
-        <GameBoard />
+        <GameBoard boardSize={BOARD_SIZE} target={target} onHoleClick={handleHoleClick} />
       </section>
     </div>
   );

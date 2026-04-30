@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export default function TotalPointBox() {
+export default function TotalPointBox({ score }) {
   return (
     <div css={rootContainer}>
       <span css={labelStyle}>총 점수</span>
-      <div css={timeStyle}>0</div>
+      <div css={scoreStyle}>{score}</div>
     </div>
   )
 }
@@ -22,7 +22,7 @@ const labelStyle = css`
   font-weight: 500;
 `;
 
-const timeStyle = css`
+const scoreStyle = css`
   font-size: 2em;
   font-weight: 700;
 `;

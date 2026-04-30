@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export default function MessageBox() {
+export default function MessageBox({ message }) {
   return (
     <div css={messageBoxStyle}>
-      <span css={labelStyle}>안내 메세지</span>
-      <div css={messageStyle}>두더지를 잡았다!</div>
+      <span css={labelStyle}>안내 메시지</span>
+      <div css={messageStyle}>{message}</div>
     </div>
   );
 }
