@@ -1,0 +1,53 @@
+/* 메뉴 */
+nav {
+    width: 15em;
+    position: sticky;
+    top: var(--header-offset);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    height: fit-content;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    background-color: #A0DEFF;
+}
+
+nav ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 메뉴 목록 */
+nav a {
+    width: 100%;
+    display: block;
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: 1em;
+    text-align: center;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* href 설정 시 생기는 밑줄 제거 */
+    color: inherit; /* href 설정 시 생기는 색 변화 제거 */
+}
+
+nav li:first-child a {
+    border-radius: 1em 1em 0.5em 0.5em;
+}
+
+nav li:last-child a {
+    border-radius: 0.5em 0.5em 1em 1em;
+}
+
+nav a:hover {
+    background-color: #FFF9D0;
+    cursor: pointer;
+}

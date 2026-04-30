@@ -1,0 +1,20 @@
+/* to 웹왔니 영역 */
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    gap: 1em;
+    border-radius: 1em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+    font-weight: 500;
+}
+
+.content div::before { /* 가상 요소 */
+    content: "✉️";
+    margin-right: 0.5em;
+}
+
+.content div::after { /* 가상 요소 */
+    content: "💌";
+    margin-left: 0.5em;
+}

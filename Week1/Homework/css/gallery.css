@@ -1,0 +1,49 @@
+/* 사진첩 영역 */
+.scrollwrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+.photos {
+    width: max-content;
+    display: flex;
+    gap: 1em;
+    animation: marquee 40s linear infinite;
+    animation-play-state: running; /* 자동 스크롤 돌아감 */
+}
+
+.photos:hover {
+    animation-play-state: paused; /* 자동 스크롤 멈춤 */
+}
+
+.photowrap {
+    width: 14em;
+    height: 14em;
+    display: flex;
+    flex: 0 0 auto; /* 크기 유지 */
+    object-fit: cover;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.photowrap img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.photowrap img:hover {
+    transform: scale(1.05);
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-50% - 0.5em));
+    }
+}
