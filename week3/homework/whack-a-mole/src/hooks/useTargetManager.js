@@ -30,9 +30,9 @@ export default function useTargetManager() {
     setTarget(null);
   }, []);
 
-  const showTarget = useCallback(() => {
+  const showTarget = useCallback((boardSize) => {
     clearTargetVisibleTimer();
-    setTarget(createTarget());
+    setTarget(createTarget(boardSize));
 
     targetVisibleTimerRef.current = setTimeout(() => {
       setTarget((prevTarget) => {

@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from 'react';
 import { css } from '@emotion/react';
 import GameBoard from '../components/game/GameBoard';
 import GameControls from '../components/game/GameControls';
@@ -8,25 +7,25 @@ import LevelSelect from '../components/game/LevelSelect';
 import MessageBox from '../components/game/MessageBox';
 import ResultBox from '../components/game/ResultBox';
 import TotalPointBox from '../components/game/TotalPointBox';
-import { BOARD_SIZE } from '../constants/game';
 import useWhackAMoleGame from '../hooks/useWhackAMoleGame';
 
 export default function Game() {
-
-  const [level, setLevel] = useState('2');
   
   const {
+    boardSize,
     failCount,
     handleHoleClick,
+    handleLevelChange,
     handleStart,
     handleStop,
     isPlaying,
+    level,
     message,
     score,
     successCount,
     target,
     timeLeft,
-  } = useWhackAMoleGame({ level });
+  } = useWhackAMoleGame();
 
   return (
     <div css={gameLayoutStyle}>
@@ -54,11 +53,11 @@ export default function Game() {
       {/* 게임 보드 */}
       <section css={gameAreaStyle}>
         <div css={gameTopStyle}>
-          <LevelSelect value={level} onChange={setLevel} />
+          <LevelSelect value={level} onChange={handleLevelChange} disabled={isPlaying} />
           <GameControls onStart={handleStart} onStop={handleStop} isPlaying={isPlaying} />
         </div>
 
-        <GameBoard boardSize={BOARD_SIZE} target={target} onHoleClick={handleHoleClick} />
+        <GameBoard boardSize={boardSize} target={target} onHoleClick={handleHoleClick} />
       </section>
     </div>
   );
@@ -67,6 +66,7 @@ export default function Game() {
 const gameLayoutStyle = css`
   display: grid;
   grid-template-columns: 15em 1fr;
+  grid-template-rows: repeat(4, 1fr);
   grid-template-areas:
     "time game"
     "score game"
@@ -98,8 +98,6 @@ const messageAreaStyle = css`
 const gameAreaStyle = css`
   min-height: 32em;
   grid-area: game;
-  grid-template-columns: 15em 1fr;
-  grid-template-rows: repeat(4, 1fr);
   display: flex;
   flex-direction: column;
   gap: 1em;

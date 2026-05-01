@@ -1,15 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
+import { LEVEL_OPTIONS } from '../../constants/game';
 import ChevronDownIcon from '../../assets/ic-chevron-down.svg?react';
 
-const LEVEL_OPTIONS = [
-  { value: '1', label: 'Level 1' },
-  { value: '2', label: 'Level 2' },
-  { value: '3', label: 'Level 3' },
-];
-
-export default function LevelSelect({ value, onChange }) {
+export default function LevelSelect({ value, onChange, disabled = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(value ?? '2');
   const dropdownRef = useRef(null);
@@ -19,6 +14,8 @@ export default function LevelSelect({ value, onChange }) {
     LEVEL_OPTIONS.find((option) => option.value === currentValue) ?? LEVEL_OPTIONS[1];
 
   const handleSelect = (nextValue) => {
+    if (disabled) return;
+
     setSelectedValue(nextValue);
     onChange?.(nextValue);
     setIsOpen(false);
@@ -44,6 +41,7 @@ export default function LevelSelect({ value, onChange }) {
         type="button"
         css={triggerStyle(isOpen)}
         onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
+        disabled={disabled}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
@@ -92,6 +90,11 @@ const triggerStyle = (isOpen) => css`
   font-weight: 700;
   cursor: pointer;
   box-shadow: ${isOpen ? '0 0 0 3px rgba(255, 178, 178, 0.35)' : 'none'};
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `;
 
 const arrowStyle = (isOpen) => css`

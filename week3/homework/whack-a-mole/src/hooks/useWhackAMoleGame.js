@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
+  DEFAULT_LEVEL,
+  getLevelSetting,
   SPAWN_INTERVAL_MS,
   TARGET_STATUS,
   TARGET_TYPE,
@@ -9,10 +11,12 @@ import useGameScore from './useGameScore';
 import useGameTimer from './useGameTimer';
 import useTargetManager from './useTargetManager';
 
-export default function useWhackAMoleGame({ level }) {
+export default function useWhackAMoleGame() {
+  const [level, setLevel] = useState(DEFAULT_LEVEL);
   const [isPlaying, setIsPlaying] = useState(false);
   const [message, setMessage] = useState('시작 버튼을 눌러주세요.');
   const gameEndedRef = useRef(false);
+  const levelSetting = getLevelSetting(level);
 
   const {
     decreaseScore,
@@ -33,7 +37,15 @@ export default function useWhackAMoleGame({ level }) {
     targetRef,
   } = useTargetManager();
 
-  const finishGame = useCallback((finalScore, { shouldSave = false } = {}) => {
+  const resetGame = useCallback(() => {
+    clearTargetTimers();
+    clearTarget();
+    resetScore();
+    setIsPlaying(false);
+    setMessage('시작 버튼을 눌러주세요.');
+  }, [clearTarget, clearTargetTimers, resetScore]);
+
+  const finishGame = useCallback((finalScore) => {
     if (gameEndedRef.current) return;
 
     gameEndedRef.current = true;
@@ -42,19 +54,24 @@ export default function useWhackAMoleGame({ level }) {
     setIsPlaying(false);
     setMessage('게임 종료');
 
-    if (shouldSave && finalScore > 0) {
+    if (finalScore > 0) {
       saveRankingRecord({
-        level: `Level ${level}`,
+        level: levelSetting.label,
         score: finalScore,
       });
     }
 
     alert(`최종 점수는 ${finalScore}점입니다.`);
-  }, [clearTarget, clearTargetTimers, level]);
+  }, [clearTarget, clearTargetTimers, levelSetting.label]);
+
+  const handleTimeUp = useCallback(() => {
+    finishGame(scoreRef.current);
+  }, [finishGame, scoreRef]);
 
   const { resetTime, timeLeft } = useGameTimer({
+    duration: levelSetting.duration,
     isPlaying,
-    onTimeUp: () => finishGame(scoreRef.current, { shouldSave: true }),
+    onTimeUp: handleTimeUp,
   });
 
   const handleStart = () => {
@@ -64,13 +81,25 @@ export default function useWhackAMoleGame({ level }) {
     resetTime();
     setIsPlaying(true);
     setMessage('두더지를 잡아보아요!');
-    showTarget();
+    showTarget(levelSetting.boardSize);
   };
 
   const handleStop = () => {
     if (!isPlaying) return;
 
-    finishGame(scoreRef.current);
+    gameEndedRef.current = true;
+    resetGame();
+    resetTime();
+  };
+
+  const handleLevelChange = (nextLevel) => {
+    if (isPlaying) return;
+
+    const nextLevelSetting = getLevelSetting(nextLevel);
+
+    setLevel(nextLevel);
+    resetGame();
+    resetTime(nextLevelSetting.duration);
   };
 
   const handleHoleClick = (index) => {
@@ -95,21 +124,24 @@ export default function useWhackAMoleGame({ level }) {
 
     const spawnId = setInterval(() => {
       if (!targetRef.current) {
-        showTarget();
+        showTarget(levelSetting.boardSize);
       }
     }, SPAWN_INTERVAL_MS);
 
     return () => {
       clearInterval(spawnId);
     };
-  }, [isPlaying, showTarget, targetRef]);
+  }, [isPlaying, levelSetting.boardSize, showTarget, targetRef]);
 
   return {
+    boardSize: levelSetting.boardSize,
     failCount,
     handleHoleClick,
+    handleLevelChange,
     handleStart,
     handleStop,
     isPlaying,
+    level,
     message,
     score,
     successCount,

@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
-import { GAME_DURATION_SECONDS } from '../constants/game';
+import { useCallback, useEffect, useState } from 'react';
 
-export default function useGameTimer({ isPlaying, onTimeUp }) {
-  const [timeLeft, setTimeLeft] = useState(GAME_DURATION_SECONDS);
+export default function useGameTimer({ duration, isPlaying, onTimeUp }) {
+  const [timeLeft, setTimeLeft] = useState(duration);
 
-  const resetTime = () => {
-    setTimeLeft(GAME_DURATION_SECONDS);
-  };
+  const resetTime = useCallback((nextDuration = duration) => {
+    setTimeLeft(nextDuration);
+  }, [duration]);
 
   useEffect(() => {
     if (!isPlaying) return;

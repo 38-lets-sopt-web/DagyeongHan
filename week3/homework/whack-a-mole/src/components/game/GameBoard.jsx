@@ -13,7 +13,7 @@ export default function GameBoard({ boardSize = 2, target, onHoleClick }) {
           <button
             key={index}
             type="button"
-            css={holeStyle(currentTarget?.type)}
+            css={holeStyle(currentTarget?.type, boardSize)}
             onClick={() => onHoleClick(index)}
           >
             {currentTarget?.type === 'mole' && (
@@ -34,7 +34,7 @@ export default function GameBoard({ boardSize = 2, target, onHoleClick }) {
 }
 
 const boardStyle = (boardSize) => css`
-  margin: 0 auto;
+  margin: auto;
   padding: 1em;
   border-radius: 12px;
   background: #FDC3A1;
@@ -45,8 +45,8 @@ const boardStyle = (boardSize) => css`
   gap: 1em;
 `;
 
-const holeStyle = (type) => css`
-  width: 12em;
+const holeStyle = (type, boardSize) => css`
+  width: calc(26em / ${boardSize});
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
