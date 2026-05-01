@@ -44,12 +44,12 @@ const buttonStyle = css`
 `;
 
 const activeButtonStyle = css`
-  background: #FFB2B2;
+  background: #FB9B8F;
   color: #fff;
 `;
 
 const inactiveButtonStyle = css`
-  border: 1px solid #FFB2B2;
+  border: 1px solid #FB9B8F;
   background: #fff;
-  color: #FFB2B2;
+  color: #FB9B8F;
 `;
