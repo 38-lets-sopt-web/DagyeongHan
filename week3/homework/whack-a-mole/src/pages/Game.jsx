@@ -96,7 +96,10 @@ const messageAreaStyle = css`
 `;
 
 const gameAreaStyle = css`
+  min-height: 32em;
   grid-area: game;
+  grid-template-columns: 15em 1fr;
+  grid-template-rows: repeat(4, 1fr);
   display: flex;
   flex-direction: column;
   gap: 1em;
