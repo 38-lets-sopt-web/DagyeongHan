@@ -18,6 +18,7 @@ export default function useWhackAMoleGame() {
   const [message, setMessage] = useState('시작 버튼을 눌러주세요.'); // 안내 메세지
   const gameEndedRef = useRef(false); // 게임 종료 처리 중복 방지 ref
   const levelSetting = getLevelSetting(level);  // 현재 난이도에 해당하는 게임 세팅
+  const [finishScore, setFinishScore] = useState(null); // 종료 시 점수 상태
 
   const {
     decreaseScore,
@@ -78,7 +79,8 @@ export default function useWhackAMoleGame() {
       });
     }
 
-    alert(`최종 점수는 ${finalScore}점입니다.`);
+    // 최종 점수 세팅
+    setFinishScore(finalScore);
   }, [clearTarget, clearTargetTimers, level, levelSetting.label]);
   
   // 게임 중지
@@ -150,6 +152,13 @@ export default function useWhackAMoleGame() {
     };
   }, [isPlaying, levelSetting.boardSize, showTarget, targetRef]);
 
+  // 모달 자동 닫기 및 게임 리셋
+  const closeFinishModal = useCallback(() => {
+    setFinishScore(null);
+    resetGame();
+    resetTime();
+  }, [resetGame, resetTime]);
+
   // 게임 상태 및 이벤트 함수 반환
   return {
     boardSize: levelSetting.boardSize,
@@ -165,5 +174,7 @@ export default function useWhackAMoleGame() {
     successCount,
     target,
     timeLeft,
+    finishScore,
+    closeFinishModal,
   };
 }

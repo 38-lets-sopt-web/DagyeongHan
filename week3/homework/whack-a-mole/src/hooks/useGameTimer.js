@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+﻿import { useCallback, useEffect, useState } from 'react';
 
 // 게임 타이머 관리
 export default function useGameTimer({ duration, isPlaying, onTimeUp }) {

@@ -8,6 +8,7 @@ import MessageBox from '../components/game/MessageBox';
 import ResultBox from '../components/game/ResultBox';
 import TotalPointBox from '../components/game/TotalPointBox';
 import useWhackAMoleGame from '../hooks/useWhackAMoleGame';
+import GameFinishModal from '../components/game/GameFinishModal';
 
 export default function Game() {
   
@@ -25,6 +26,8 @@ export default function Game() {
     successCount,
     target,
     timeLeft,
+    finishScore,
+    closeFinishModal,
   } = useWhackAMoleGame();
 
   return (
@@ -59,6 +62,15 @@ export default function Game() {
 
         <GameBoard boardSize={boardSize} target={target} onHoleClick={handleHoleClick} />
       </section>
+
+      {/* 게임 종료 모달 */}
+      {finishScore !== null && (
+        <GameFinishModal
+          score={finishScore}
+          level={level}
+          onClose={closeFinishModal}
+        />
+      )}
     </div>
   );
 }
