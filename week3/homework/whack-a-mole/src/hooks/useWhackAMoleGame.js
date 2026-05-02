@@ -72,13 +72,14 @@ export default function useWhackAMoleGame() {
     // 게임 성공 시 랭킹 저장
     if (finalScore > 0) {
       saveRankingRecord({
-        level: levelSetting.label,
+        level,
+        levelLabel: levelSetting.label,
         score: finalScore,
       });
     }
 
     alert(`최종 점수는 ${finalScore}점입니다.`);
-  }, [clearTarget, clearTargetTimers, levelSetting.label]);
+  }, [clearTarget, clearTargetTimers, level, levelSetting.label]);
   
   // 게임 중지
   const handleStop = () => {
