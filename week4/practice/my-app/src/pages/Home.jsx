@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import UserCard from "../components/UserCard";
+import { Link } from "react-router";
 
 export default function Home () {
 
@@ -27,7 +28,9 @@ export default function Home () {
       <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "1rem" }}>
 
         {userList.map((user) => (
-          <UserCard key={user.id} user={user} />
+          <Link key={user.id} to={`/member/${user.id}`} style={{textDecoration: 'none'}}>
+            <UserCard key={user.id} user={user} />
+          </Link>
         ))}
       </div>
     </div>

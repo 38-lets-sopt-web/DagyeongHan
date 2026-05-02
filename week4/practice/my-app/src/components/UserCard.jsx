@@ -1,9 +1,11 @@
+
+
 export default function UserCard({user}) {
   
-  const {  name, part } = user;
+  const { name, part } = user;
 
   return (
-    <div
+    <div 
       style={{
         display: "block",
         padding: "1rem",
