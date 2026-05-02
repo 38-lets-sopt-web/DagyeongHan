@@ -1,3 +1,4 @@
+// 표 항목 데이터
 export const RANKING_COLUMNS = [
   { key: 'rank', label: '순위' },
   { key: 'level', label: '레벨' },
