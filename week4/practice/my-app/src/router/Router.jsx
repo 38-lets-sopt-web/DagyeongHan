@@ -1,7 +1,7 @@
 // Router.jsx
 
 import { createBrowserRouter } from "react-router";
-import UserDetail from "../pages/UserDetail";
+import MemberDetail from "../pages/MemberDetail";
 import Home from "../pages/Home";
 
 const router = createBrowserRouter([
@@ -11,7 +11,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/user/:name",
-    Component: UserDetail,
+    Component: MemberDetail,
   },
 ]);
 

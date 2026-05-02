@@ -2,7 +2,7 @@
 
 import { useParams, Link } from "react-router";
 
-const UserDetail = () => {
+const MemberDetail = () => {
   const { name } = useParams();
 
   return (
@@ -14,4 +14,4 @@ const UserDetail = () => {
   );
 };
 
-export default UserDetail;
+export default MemberDetail;
