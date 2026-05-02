@@ -1,0 +1,133 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import GameBoard from '../components/game/GameBoard';
+import GameControls from '../components/game/GameControls';
+import LeftTimeBox from '../components/game/LeftTimeBox';
+import LevelSelect from '../components/game/LevelSelect';
+import MessageBox from '../components/game/MessageBox';
+import ResultBox from '../components/game/ResultBox';
+import TotalPointBox from '../components/game/TotalPointBox';
+import useWhackAMoleGame from '../hooks/useWhackAMoleGame';
+import GameFinishModal from '../components/game/GameFinishModal';
+
+export default function Game() {
+  
+  const {
+    boardSize,
+    failCount,
+    handleHoleClick,
+    handleLevelChange,
+    handleStart,
+    handleStop,
+    isPlaying,
+    level,
+    message,
+    score,
+    successCount,
+    target,
+    timeLeft,
+    finishScore,
+    closeFinishModal,
+  } = useWhackAMoleGame();
+
+  return (
+    <div css={gameLayoutStyle}>
+      {/* 남은 시간 */}
+      <section css={[cardStyle, timeAreaStyle]}>
+        <LeftTimeBox timeLeft={timeLeft} />
+      </section>
+
+      {/* 총 점수 */}
+      <section css={[cardStyle, scoreAreaStyle]}>
+        <TotalPointBox score={score} />
+      </section>
+
+      {/* 결과 */}
+      <section css={resultAreaStyle}>
+        <ResultBox label="성공" count={successCount} type="success" />
+        <ResultBox label="실패" count={failCount} type="fail" />
+      </section>
+
+      {/* 안내 메세지 */}
+      <section css={[cardStyle, messageAreaStyle]}>
+        <MessageBox message={message} />
+      </section>
+
+      {/* 게임 보드 */}
+      <section css={gameAreaStyle}>
+        <div css={gameTopStyle}>
+          <LevelSelect value={level} onChange={handleLevelChange} disabled={isPlaying} />
+          <GameControls onStart={handleStart} onStop={handleStop} isPlaying={isPlaying} />
+        </div>
+
+        <GameBoard boardSize={boardSize} target={target} onHoleClick={handleHoleClick} />
+      </section>
+
+      {/* 게임 종료 모달 */}
+      {finishScore !== null && (
+        <GameFinishModal
+          score={finishScore}
+          level={level}
+          onClose={closeFinishModal}
+        />
+      )}
+    </div>
+  );
+}
+
+const gameLayoutStyle = css`
+  display: grid;
+  grid-template-columns: 15em 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas:
+    "time game"
+    "score game"
+    "result game"
+    "message game";
+  gap: 1em;
+  align-items: stretch;
+`;
+
+const timeAreaStyle = css`
+  grid-area: time;
+`;
+
+const scoreAreaStyle = css`
+  grid-area: score;
+`;
+
+const resultAreaStyle = css`
+  grid-area: result;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+`;
+
+const messageAreaStyle = css`
+  grid-area: message;
+`;
+
+const gameAreaStyle = css`
+  min-height: 32em;
+  grid-area: game;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  border-radius: 12px;
+  background: #FFF7CD;
+`;
+
+const cardStyle = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  border-radius: 12px;
+  background: #FFF7CD;
+`;
+
+const gameTopStyle = css`
+  display: flex;
+  justify-content: space-between;
+`;
