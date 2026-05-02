@@ -11,6 +11,10 @@ export default function useRankingRecords() {
 
   // 랭킹 기록 초기화
   const resetRankings = () => {
+    const confirmed = window.confirm('랭킹을 초기화하시겠습니까?'); // 초기화 여부 묻기
+
+    if (!confirmed) return; // 취소 클릭 시 초기화 안함
+
     clearRankingRecords();
     setRankings([]);
   };
