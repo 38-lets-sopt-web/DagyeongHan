@@ -10,6 +10,7 @@ const Home = () => {
        
         <Link to='/member/이채영'>웹팟장이채영</Link>
         <Link to='/member/양승혜'>미팀장양승혜</Link>
+        <Link to='/posts'>게시글 목록</Link>
       </div>
     </div>
   );

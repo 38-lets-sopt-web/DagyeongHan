@@ -3,6 +3,7 @@
 import { createBrowserRouter } from "react-router";
 import MemberDetail from "../pages/MemberDetail";
 import Home from "../pages/Home";
+import Posts from "../pages/Posts";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
   {
     path: "/member/:name",
     Component: MemberDetail,
+  },
+    {
+    path: "/posts",
+    Component: Posts,
   },
 ]);
 
