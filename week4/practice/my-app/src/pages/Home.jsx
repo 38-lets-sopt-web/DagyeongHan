@@ -1,19 +1,35 @@
 // Home.jsx
+import axios from "axios";
+import { useEffect, useState } from "react";
+import UserCard from "../components/UserCard";
 
-import { Link } from "react-router";
+export default function Home () {
 
-const Home = () => {
+  const [userList, setUserList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
+        console.log('data: ', res.data.data.users);
+        setUserList(res.data.data.users);
+      } catch (err) {
+        console.error('유저 리스트를 불러오는 데 실패했습니다. ', err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div style={{ padding: "2rem" }}>
       <h1>홈</h1>
       <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "1rem" }}>
-       
-        <Link to='/member/이채영'>웹팟장이채영</Link>
-        <Link to='/member/양승혜'>미팀장양승혜</Link>
-        <Link to='/posts'>게시글 목록</Link>
+
+        {userList.map((user) => (
+          <UserCard key={user.id} user={user} />
+        ))}
       </div>
     </div>
   );
 };
-
-export default Home;

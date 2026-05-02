@@ -3,12 +3,12 @@
 import { useParams, Link } from "react-router";
 
 const MemberDetail = () => {
-  const { name } = useParams();
+  const { id } = useParams();
 
   return (
     <div style={{ padding: "2rem" }}>
       <Link to="/">← 목록으로</Link>
-      <h1>{name}</h1>
+      <h1>{id}</h1>
       <p>상세정보 ...</p>
     </div>
   );
