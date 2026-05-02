@@ -41,7 +41,6 @@ const rootContainerStyle = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
 `;
 
 const layoutStyle = css`
