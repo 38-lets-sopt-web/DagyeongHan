@@ -1,45 +1,31 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import Input from "../components/Input";
 import { Link } from "react-router";
+import { useState } from "react";
+import Id from "../components/signup/Id";
+import Pw from "../components/signup/Pw";
+import UserInfo from "../components/signup/UserInfo";
 
 export default function SignUp() {
+
+  const [step, setStep] = useState(1);
+
   return (
     <div css={rootContainerStyle}>
       <h2 css={titleStyle}>회원가입</h2>
       <div css={layoutStyle}>
-        <label css={fieldStyle}>
-          <span css={labelStyle}>아이디</span>
-          <Input placeholder="사용할 아이디를 입력해주세요." />
-        </label>
-          <label css={fieldStyle}>
-          <span css={labelStyle}>비밀번호</span>
-          <Input type="password" placeholder="비밀번호를 입력해주세요." />
-        </label>
-        <label css={fieldStyle}>
-          <span css={labelStyle}>비밀번호 확인</span>
-          <Input type="password" placeholder="비밀번호를 한 번 더 입력해주세요." />
-        </label>
-        <label css={fieldStyle}>
-          <span css={labelStyle}>이름</span>
-          <Input placeholder="이름을 입력해주세요." />
-        </label>
-        <label css={fieldStyle}>
-          <span css={labelStyle}>이메일</span>
-          <Input placeholder="이메일을 입력해주세요." />
-        </label>
-        <label css={fieldStyle}>
-          <span css={labelStyle}>나이</span>
-          <Input placeholder="나이를 입력해주세요." />
-        </label>
-        <label css={fieldStyle}>
-          <span css={labelStyle}>파트</span>
-          <Input placeholder="파트명을 입력해주세요." />
-        </label>
+        {step === 1 && <Id />}
+        {step === 2 && <Pw />}
+        {step === 3 && <UserInfo />}
 
       </div>
         <label css={btnWrapStyle}>
-          <button css={loginBtnStyle}>회원가입</button>
+          <button
+            css={loginBtnStyle}
+            onClick={() => setStep(step + 1)} disabled={step === 3}
+          >
+            다음
+          </button>
           <div css={routeWrapStyle}>
             <div css={messageStyle}> 이미 계정이 있나요?</div>
             <Link to='/login' css={toLinkStyle}>로그인으로 돌아가기</Link>
@@ -70,18 +56,6 @@ const layoutStyle = css`
   justify-content: center;
   align-items: center;
   gap: 1em;
-`;
-
-const fieldStyle = css`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-`;
-
-const labelStyle = css`
-  font-size: 0.9em;
-  font-weight: 500;
 `;
 
 const btnWrapStyle = css`
