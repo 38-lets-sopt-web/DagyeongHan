@@ -10,4 +10,8 @@ body,
   margin: 0;
   background: #0F1012;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
