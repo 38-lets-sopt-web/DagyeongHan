@@ -7,7 +7,7 @@ export default function MyPage() {
   return (
     <div css={rootContainerStyle}>
       <Header/>
-      <main>
+      <main css={mainContainerStyle}>
         <Outlet />
       </main>
     </div>
@@ -15,11 +15,14 @@ export default function MyPage() {
 }
 
 const rootContainerStyle = css`
-  // width: min(30em, calc(100% - 2em));
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2em;
+`;
+
+const mainContainerStyle = css`
+  width: min(30em, calc(100% - 2em));
 `;
