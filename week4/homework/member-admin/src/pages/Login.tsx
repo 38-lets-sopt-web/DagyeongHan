@@ -8,7 +8,7 @@ export default function Login() {
     <div css={rootContainerStyle}>
 
       {/* 제목 */}
-      <h1>SOPT MEMBERS</h1>
+      <h1 css={titleStyle}>SOPT MEMBERS</h1>
 
       <div css={layoutStyle}>
 
@@ -24,32 +24,38 @@ export default function Login() {
           <Input type="password" placeholder="비밀번호를 입력해주세요." />
         </label>
 
+      </div>
+      
         {/* 버튼 */}
         <label css={btnWrapStyle}>
           <button css={loginBtnStyle}>로그인</button>
           <Link to='/signup' css={toSignUpStyle}>회원가입</Link>
         </label>
-
-      </div>
     </div>
   )
 }
 
 const rootContainerStyle = css`
+  width: min(30em, calc(100% - 2em));
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2em;
+`;
+
+const titleStyle = css`
+  margin: 0;
 `;
 
 const layoutStyle = css`
-  width: min(30em, calc(100% - 2em));
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2em;
+  gap: 1em;
 `;
 
 const fieldStyle = css`
