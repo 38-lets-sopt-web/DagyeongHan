@@ -7,7 +7,7 @@ export default function Header() {
     <div css={rootContainerStyle}>
       <div css={titleWrapStyle}>
         <h2 css={titleStyle}>SOPT MEMBERS</h2>
-        <span>안녕하세요, 한다경님!</span>
+        <span css={greetingTextStyle}>안녕하세요, 한다경님!</span>
       </div>
       <Tabs />
     </div>
@@ -35,4 +35,9 @@ const titleWrapStyle = css`
 
 const titleStyle = css`
   margin: 0;
+`;
+
+const greetingTextStyle = css`
+  font-weight: 500;
+  font-size: 0.875em;
 `;

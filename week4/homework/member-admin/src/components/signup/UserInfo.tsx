@@ -42,6 +42,6 @@ const fieldStyle = css`
 `;
 
 const labelStyle = css`
-  font-size: 0.9em;
+  font-size: 0.7em;
   font-weight: 500;
 `;

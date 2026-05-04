@@ -72,7 +72,7 @@ const loginBtnStyle = css`
   border: none;
   border-radius: 8px;
   font-weight: 700;
-  font-size: 1em;
+  font-size: 0.875em;
   background: #84e1fa;
   color: #0F1012;
   cursor: pointer;
@@ -87,13 +87,13 @@ const routeWrapStyle = css`
 const messageStyle = css`
   text-decoration: none;
   color: #ccc;
-  font-size: 0.8em;
+  font-size: 0.75em;
   font-weight: 500;
 `;
 
 const toLinkStyle = css`
   text-decoration: none;
   color: #00ceff;
-  font-size: 0.8em;
+  font-size: 0.75em;
   font-weight: 500;
 `;

@@ -24,5 +24,5 @@ const inputStyle = css`
   border: none;
   border-radius: 8px;
   font-weight: 500;
-  font-size: 1em;
+  font-size: 0.875em;
 `;

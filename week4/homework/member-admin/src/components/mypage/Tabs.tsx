@@ -35,18 +35,21 @@ const btnStyle = css`
   background: none;
   color: #fff;
   font-weight: 500;
+  font-size: 0.825em;
   cursor: pointer;
 `;
 
 const linkStyle = css`
-  color: #84e1fa;
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
+  font-size: 0.825em;
   padding: 0.5em 0.75em;
   border-radius: 0.5em;
 
   &.active {
-    background: #84e1fa;
-    color: #2e2e35;
+    font-weight: 700;
+    font-size: 0.825em;
+    color: #84e1fa;
   }
 `;
