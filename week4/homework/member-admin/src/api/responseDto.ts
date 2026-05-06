@@ -1,9 +1,9 @@
-export interface ApiResponse<T> {
+export interface ApiResponse<T = undefined> {
   success: boolean;
   status: number;
   message: string;
   code: string;
-  data: T;
+  data?: T;
 }
 
 export interface LoginResponseDto {
