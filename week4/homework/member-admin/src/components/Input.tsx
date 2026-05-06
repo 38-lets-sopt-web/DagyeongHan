@@ -1,26 +1,50 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { SearchIcon } from "@/assets/icons";
 
 interface InputProps {
   type?: string;
   placeholder: string;
+  hasSearchIcon?: boolean;
 }
 
-export default function Input({ type, placeholder }: InputProps) {
+export default function Input({ type, placeholder, hasSearchIcon = false }: InputProps) {
   return (
     <div css={inputContainerStyle}>
-      <input css={inputStyle} type={type} placeholder={placeholder} />
+      {hasSearchIcon && (
+        <button css={searchBtnStyle}>
+          <SearchIcon css={searchIconStyle} />
+        </button>
+      )}
+      <input css={inputStyle(hasSearchIcon)} type={type} placeholder={placeholder} />
     </div>
   );
 }
 
 const inputContainerStyle = css`
-  width: 100%;
+  width: 30em;
+  position: relative;
+  display: flex;
+  align-items: center;
 `;
 
-const inputStyle = css`
+const searchBtnStyle = css`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  border: none;
+  margin-left: 0.5em;
+  background: none;
+  cursor: pointer;
+`;
+
+const searchIconStyle = css`
+  color: #76767f;
+`;
+
+const inputStyle = (hasSearchIcon: boolean) => css`
   width: 100%;
-  padding: 0.5em 1em;
+  padding: 0.5em 1em 0.5em ${hasSearchIcon ? "2.75em" : "1em"};
   border: none;
   border-radius: 8px;
   font-weight: 500;
