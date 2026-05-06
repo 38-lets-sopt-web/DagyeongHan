@@ -22,6 +22,11 @@ const btnStyle = css`
   background: #84e1fa;
   color: #0F1012;
   cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:not(:disabled):hover {
+    background: #4ccff2;
+  }
 
   &:disabled {
     opacity: 0.5;
