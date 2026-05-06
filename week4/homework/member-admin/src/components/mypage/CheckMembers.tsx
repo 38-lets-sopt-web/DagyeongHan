@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { useState } from "react";
 import Input from "@/components/Input";
 import MemberCard from "@/components/mypage/MemberCard";
 import Button from "@/components/Button";
@@ -14,19 +15,38 @@ const memberInfo = [
 ];
 
 export default function CheckMembers() {
+  const [searchId, setSearchId] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
+
+  const handleSearch = () => {
+    if (!searchId.trim()) {
+      return;
+    }
+
+    setHasSearched(true);
+  };
+
   return (
     <div css={rootContainerStyle}>
       <h2 css={titleStyle}>회원 조회</h2>
 
       <section css={fieldStyle}>
         <span css={labelStyle}>회원 ID</span>
-        <Input placeholder="ID를 입력하세요" hasSearchIcon />
-        <Button buttonText="검색" disabled />
+        <Input
+          placeholder="ID를 입력하세요"
+          value={searchId}
+          hasSearchIcon
+          onChange={(event) => setSearchId(event.target.value)}
+        />
+        <Button buttonText="검색" disabled={!searchId.trim()} onClick={handleSearch} />
       </section>
 
       <section css={fieldStyle}>
         <h3 css={titleStyle}>검색 결과</h3>
-        <Table rows={memberInfo} />
+        <Table
+          rows={hasSearched ? memberInfo : []}
+          emptyMessage="원하는 ID를 검색해보세요! 🔎"
+        />
       </section>
 
       <section css={memberListStyle}>

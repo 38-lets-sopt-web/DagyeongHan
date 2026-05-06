@@ -8,21 +8,26 @@ interface TableRow {
 
 interface TableProps {
   rows: TableRow[];
+  emptyMessage?: string;
 }
 
-export default function Table({ rows }: TableProps) {
+export default function Table({ rows, emptyMessage }: TableProps) {
   return (
     <div css={cardStyle}>
-      <table css={tableStyle}>
-        <tbody>
-          {rows.map(({ label, value }, index) => (
-            <tr key={`${label}-${index}`}>
-              <th scope="row">{label}</th>
-              <td>{value}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {rows.length > 0 ? (
+        <table css={tableStyle}>
+          <tbody>
+            {rows.map(({ label, value }, index) => (
+              <tr key={`${label}-${index}`}>
+                <th scope="row">{label}</th>
+                <td>{value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p css={emptyMessageStyle}>{emptyMessage}</p>
+      )}
     </div>
   );
 }
@@ -54,4 +59,12 @@ const tableStyle = css`
     font-weight: 500;
     text-align: right;
   }
+`;
+
+const emptyMessageStyle = css`
+  margin: 0;
+  color: #ccc;
+  font-weight: 500;
+  font-size: 0.9375em;
+  text-align: center;
 `;

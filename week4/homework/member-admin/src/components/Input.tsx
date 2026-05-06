@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { SearchIcon } from "@/assets/icons";
+import type { InputHTMLAttributes } from "react";
 
-interface InputProps {
-  type?: string;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
   hasSearchIcon?: boolean;
 }
 
-export default function Input({ type, placeholder, hasSearchIcon = false }: InputProps) {
+export default function Input({ type, placeholder, hasSearchIcon = false, ...inputProps }: InputProps) {
   return (
     <div css={inputContainerStyle}>
       {hasSearchIcon && (
@@ -16,7 +16,7 @@ export default function Input({ type, placeholder, hasSearchIcon = false }: Inpu
           <SearchIcon css={searchIconStyle} />
         </button>
       )}
-      <input css={inputStyle(hasSearchIcon)} type={type} placeholder={placeholder} />
+      <input css={inputStyle(hasSearchIcon)} type={type} placeholder={placeholder} {...inputProps} />
     </div>
   );
 }
