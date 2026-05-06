@@ -1,24 +1,58 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useState } from "react";
-import { Link } from "react-router";
+import axios from "axios";
+import { Link, useNavigate } from "react-router";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import { postLoginAPI } from "@/api/auth";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const isLoginEnabled = id.trim() && password.trim();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const isLoginEnabled = Boolean(id.trim() && password.trim());
+
+  const handleLogin = async () => {
+    if (!isLoginEnabled || isSubmitting) {
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+
+      const response = await postLoginAPI({
+        loginId: id.trim(),
+        password: password.trim(),
+      });
+
+      console.log("로그인 성공:", response);
+
+      if (response.data) {
+        localStorage.setItem("userId", String(response.data.userId));
+      }
+
+      navigate("/mypage");
+    } catch (error) {
+      const errorMessage = axios.isAxiosError(error)
+        ? error.response?.data?.message ?? "로그인에 실패했습니다."
+        : "로그인에 실패했습니다.";
+
+      console.error("로그인 실패:", error);
+      alert(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div css={rootContainerStyle}>
-
-      {/* 제목 */}
+      {/* ?쒕ぉ */}
       <h1 css={titleStyle}>SOPT MEMBERS</h1>
 
       <div css={layoutStyle}>
-
-        {/* 아이디 입력 */}
+        {/* ?꾩씠???낅젰 */}
         <label css={fieldStyle}>
           <span css={labelStyle}>아이디</span>
           <Input
@@ -28,7 +62,7 @@ export default function Login() {
           />
         </label>
 
-        {/* 비밀번호 입력 */}
+        {/* 鍮꾨?踰덊샇 ?낅젰 */}
         <label css={fieldStyle}>
           <span css={labelStyle}>비밀번호</span>
           <Input
@@ -38,19 +72,19 @@ export default function Login() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
-
       </div>
 
-      {/* 버튼 */}
+      {/* 踰꾪듉 */}
       <label css={btnWrapStyle}>
-        <Link to="/mypage" css={linkStyle}>
-          <Button buttonText="로그인" disabled={!isLoginEnabled} />
-        </Link>
+        <Button
+          buttonText="로그인"
+          disabled={!isLoginEnabled || isSubmitting}
+          onClick={handleLogin}
+        />
         <Link to="/signup" css={toSignUpStyle}>
           회원가입
         </Link>
       </label>
-
     </div>
   );
 }
@@ -103,8 +137,4 @@ const toSignUpStyle = css`
   color: #00ceff;
   font-size: 0.75em;
   font-weight: 500;
-`;
-
-const linkStyle = css`
-  width: 100%;
 `;
