@@ -4,10 +4,10 @@ export interface LoginRequestDto {
 }
 
 export interface SignUpRequestDto {
-  loginId: string,
-  password: string,
-  name: string,
-  email: string,
-  age: number,
+  loginId: string;
+  password: string;
+  name: string;
+  email: string;
+  age: number;
   part: string;
 }
