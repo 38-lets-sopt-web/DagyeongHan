@@ -6,7 +6,7 @@ import { Outlet, useLocation } from "react-router";
 export default function MyPage() {
 
   const { pathname } = useLocation();
-  const isCheckMembers = pathname === "/mypage/checkmembers";
+  const isCheckMembers = pathname.startsWith("/mypage/checkmembers");
 
   return (
     <div css={rootContainerStyle}>

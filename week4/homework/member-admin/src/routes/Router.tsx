@@ -4,6 +4,7 @@ import SignUp from "@/pages/SignUp";
 import MyPage from "@/pages/MyPage";
 import CheckMembers from "@/components/mypage/CheckMembers";
 import CheckMyInfo from "@/components/mypage/CheckMyInfo";
+import MemberDetail from "@/components/mypage/MemberDetail";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "checkmembers",
         Component: CheckMembers,
+      },
+      {
+        path: "checkmembers/:memberId",
+        Component: MemberDetail,
       }
     ]
   },

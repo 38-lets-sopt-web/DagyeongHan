@@ -1,13 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-export default function MemberCard() {
+interface MemberCardProps {
+  name: string;
+  part: string;
+}
+
+export default function MemberCard({ name, part }: MemberCardProps) {
   return (
     <div css={CardWrapStyle}>
-      <span css={nameStyle}>이름</span>
-      <span css={partStyle}>파트</span>
+      <span css={nameStyle}>{name}</span>
+      <span css={partStyle}>{part}</span>
     </div>
-  )
+  );
 }
 
 const CardWrapStyle = css`
