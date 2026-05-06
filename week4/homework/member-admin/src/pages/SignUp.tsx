@@ -68,6 +68,8 @@ export default function SignUp() {
         part: part.trim(),
       });
 
+      console.log("회원가입 성공:", response);
+
       alert(`${name}님, ${response.message}`);
       window.location.href = loginPageHref;
     } catch (error) {
