@@ -2,10 +2,12 @@
 import { css } from "@emotion/react";
 import { Link } from "react-router";
 import { useState } from "react";
+import axios from "axios";
 import Id from "@/components/signup/Id";
 import Pw from "@/components/signup/Pw";
 import UserInfo from "@/components/signup/UserInfo";
 import Button from "@/components/Button";
+import { postSignUpAPI } from "@/api/auth";
 
 export default function SignUp() {
   const [step, setStep] = useState(1);
@@ -16,6 +18,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
   const [part, setPart] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const isIdStepValid = Boolean(id.trim());
   const isPwStepValid = Boolean(
@@ -23,7 +26,13 @@ export default function SignUp() {
       passwordConfirm.trim() &&
       password === passwordConfirm,
   );
-  const isUserInfoStepValid = Boolean(name.trim() && email.trim() && age.trim() && part.trim());
+  const isUserInfoStepValid = Boolean(
+    name.trim() &&
+      email.trim() &&
+      age.trim() &&
+      !Number.isNaN(Number(age)) &&
+      part.trim(),
+  );
   const isCurrentStepValid =
     (step === 1 && isIdStepValid) ||
     (step === 2 && isPwStepValid) ||
@@ -37,6 +46,40 @@ export default function SignUp() {
     }
 
     setStep((prevStep) => prevStep + 1);
+  };
+
+  const handleSignUp = async (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    const loginPageHref = event.currentTarget.href;
+
+    if (!isCurrentStepValid || isSubmitting) {
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+
+      const response = await postSignUpAPI({
+        loginId: id.trim(),
+        password: password.trim(),
+        name: name.trim(),
+        email: email.trim(),
+        age: Number(age),
+        part: part.trim(),
+      });
+
+      alert(`${name}님, ${response.message}`);
+      window.location.href = loginPageHref;
+    } catch (error) {
+      const errorMessage = axios.isAxiosError(error)
+        ? error.response?.data?.message ?? "회원가입에 실패했습니다."
+        : "회원가입에 실패했습니다.";
+
+      console.error("회원가입 실패:", error);
+      alert(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -69,16 +112,8 @@ export default function SignUp() {
 
       <label css={btnWrapStyle}>
         {isLastStep ? (
-          <Link
-            to="/login"
-            css={btnStyle}
-            onClick={(event) => {
-              if (!isCurrentStepValid) {
-                event.preventDefault();
-              }
-            }}
-          >
-            <Button buttonText={buttonText} disabled={!isCurrentStepValid} />
+          <Link to="/login" css={btnStyle} onClick={handleSignUp}>
+            <Button buttonText={buttonText} disabled={!isCurrentStepValid || isSubmitting} />
           </Link>
         ) : (
           <Button
