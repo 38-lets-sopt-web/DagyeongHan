@@ -43,7 +43,9 @@ export default function Login() {
 
       {/* 버튼 */}
       <label css={btnWrapStyle}>
-        <Button buttonText="로그인" disabled={!isLoginEnabled} />
+        <Link to="/mypage" css={linkStyle}>
+          <Button buttonText="로그인" disabled={!isLoginEnabled} />
+        </Link>
         <Link to="/signup" css={toSignUpStyle}>
           회원가입
         </Link>
@@ -101,4 +103,8 @@ const toSignUpStyle = css`
   color: #00ceff;
   font-size: 0.75em;
   font-weight: 500;
+`;
+
+const linkStyle = css`
+  width: 100%;
 `;
