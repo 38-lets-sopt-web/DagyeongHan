@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import Header from "../components/mypage/Header";
+import Header from "@/components/mypage/Header";
 import { Outlet } from "react-router";
 
 export default function MyPage() {

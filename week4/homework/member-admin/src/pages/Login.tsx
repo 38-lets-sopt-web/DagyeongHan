@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Link } from "react-router";
-import Input from "../components/Input";
+import Input from "@/components/Input";
 
 export default function Login() {
   return (

@@ -2,9 +2,9 @@
 import { css } from "@emotion/react";
 import { Link } from "react-router";
 import { useState } from "react";
-import Id from "../components/signup/Id";
-import Pw from "../components/signup/Pw";
-import UserInfo from "../components/signup/UserInfo";
+import Id from "@/components/signup/Id";
+import Pw from "@/components/signup/Pw";
+import UserInfo from "@/components/signup/UserInfo";
 
 export default function SignUp() {
 

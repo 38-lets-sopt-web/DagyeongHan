@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import Tabs from "./Tabs";
+import Tabs from "@/components/mypage/Tabs";
 
 export default function Header() {
   return (
