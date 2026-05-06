@@ -35,7 +35,6 @@ export default function CheckMembers() {
         <Input
           placeholder="ID를 입력하세요"
           value={searchId}
-          hasSearchIcon
           onChange={(event) => setSearchId(event.target.value)}
         />
         <Button buttonText="검색" disabled={!searchId.trim()} onClick={handleSearch} />
