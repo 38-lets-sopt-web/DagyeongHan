@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type { ButtonHTMLAttributes } from "react";
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonText: string;
 }
 
-export default function Button({ buttonText }: ButtonProps) {
+export default function Button({ buttonText, ...buttonProps }: ButtonProps) {
   return (
-    <button css={btnStyle}>{buttonText}</button>
+    <button css={btnStyle} {...buttonProps}>{buttonText}</button>
   )
 }
 
@@ -21,4 +22,9 @@ const btnStyle = css`
   background: #84e1fa;
   color: #0F1012;
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
 `;

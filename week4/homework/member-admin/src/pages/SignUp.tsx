@@ -5,34 +5,36 @@ import { useState } from "react";
 import Id from "@/components/signup/Id";
 import Pw from "@/components/signup/Pw";
 import UserInfo from "@/components/signup/UserInfo";
+import Button from "@/components/Button";
 
 export default function SignUp() {
-
   const [step, setStep] = useState(1);
 
   return (
     <div css={rootContainerStyle}>
       <h2 css={titleStyle}>회원가입</h2>
+
       <div css={layoutStyle}>
         {step === 1 && <Id />}
         {step === 2 && <Pw />}
         {step === 3 && <UserInfo />}
-
       </div>
-        <label css={btnWrapStyle}>
-          <button
-            css={loginBtnStyle}
-            onClick={() => setStep(step + 1)} disabled={step === 3}
-          >
-            다음
-          </button>
-          <div css={routeWrapStyle}>
-            <div css={messageStyle}> 이미 계정이 있나요?</div>
-            <Link to='/login' css={toLinkStyle}>로그인으로 돌아가기</Link>
-          </div>
-        </label>
+
+      <label css={btnWrapStyle}>
+        <Button
+          buttonText="다음"
+          onClick={() => setStep(step + 1)}
+          disabled={step === 3}
+        />
+        <div css={routeWrapStyle}>
+          <div css={messageStyle}>이미 계정이 있나요?</div>
+          <Link to="/login" css={toLinkStyle}>
+            로그인으로 돌아가기
+          </Link>
+        </div>
+      </label>
     </div>
-  )
+  );
 }
 
 const rootContainerStyle = css`
@@ -50,7 +52,7 @@ const titleStyle = css`
 `;
 
 const layoutStyle = css`
-  width:100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,18 +66,6 @@ const btnWrapStyle = css`
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
-`;
-
-const loginBtnStyle = css`
-  width: 100%;
-  padding: 0.5em 1em;
-  border: none;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.875em;
-  background: #84e1fa;
-  color: #0F1012;
-  cursor: pointer;
 `;
 
 const routeWrapStyle = css`

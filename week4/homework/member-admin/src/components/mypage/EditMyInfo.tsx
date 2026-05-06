@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Input from "@/components/Input";
+import Button from "@/components/Button";
 
 export default function EditMyInfo() {
   return (
@@ -27,7 +28,7 @@ export default function EditMyInfo() {
       </div>
       
       {/* 버튼 */}
-      <button css={loginBtnStyle}>정보 수정</button>
+      <Button buttonText="정보 수정" />
 
     </div>
   )
@@ -59,16 +60,4 @@ const fieldStyle = css`
 const labelStyle = css`
   font-size: 0.75em;
   font-weight: 500;
-`;
-
-const loginBtnStyle = css`
-  width: 100%;
-  padding: 0.5em 1em;
-  border: none;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 1em;
-  background: #84e1fa;
-  color: #0F1012;
-  cursor: pointer;
 `;

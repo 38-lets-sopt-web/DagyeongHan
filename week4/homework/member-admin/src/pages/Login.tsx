@@ -2,6 +2,7 @@
 import { css } from "@emotion/react";
 import { Link } from "react-router";
 import Input from "@/components/Input";
+import Button from "@/components/Button";
 
 export default function Login() {
   return (
@@ -28,7 +29,7 @@ export default function Login() {
       
         {/* 버튼 */}
         <label css={btnWrapStyle}>
-          <button css={loginBtnStyle}>로그인</button>
+          <Button buttonText="로그인" />
           <Link to='/signup' css={toSignUpStyle}>회원가입</Link>
         </label>
     </div>
@@ -76,18 +77,6 @@ const btnWrapStyle = css`
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
-`;
-
-const loginBtnStyle = css`
-  width: 100%;
-  padding: 0.5em 1em;
-  border: none;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.875em;
-  background: #84e1fa;
-  color: #0F1012;
-  cursor: pointer;
 `;
 
 const toSignUpStyle = css`
