@@ -18,7 +18,11 @@ export default function SignUp() {
   const [part, setPart] = useState("");
 
   const isIdStepValid = Boolean(id.trim());
-  const isPwStepValid = Boolean(password.trim() && passwordConfirm.trim());
+  const isPwStepValid = Boolean(
+    password.trim() &&
+      passwordConfirm.trim() &&
+      password === passwordConfirm,
+  );
   const isUserInfoStepValid = Boolean(name.trim() && email.trim() && age.trim() && part.trim());
   const isCurrentStepValid =
     (step === 1 && isIdStepValid) ||
