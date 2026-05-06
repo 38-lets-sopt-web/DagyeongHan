@@ -9,22 +9,63 @@ import Button from "@/components/Button";
 
 export default function SignUp() {
   const [step, setStep] = useState(1);
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState("");
+  const [part, setPart] = useState("");
+
+  const isIdStepValid = Boolean(id.trim());
+  const isPwStepValid = Boolean(password.trim() && passwordConfirm.trim());
+  const isUserInfoStepValid = Boolean(name.trim() && email.trim() && age.trim() && part.trim());
+  const isCurrentStepValid =
+    (step === 1 && isIdStepValid) ||
+    (step === 2 && isPwStepValid) ||
+    (step === 3 && isUserInfoStepValid);
+
+  const handleNextStep = () => {
+    if (!isCurrentStepValid || step === 3) {
+      return;
+    }
+
+    setStep((prevStep) => prevStep + 1);
+  };
 
   return (
     <div css={rootContainerStyle}>
       <h2 css={titleStyle}>회원가입</h2>
 
       <div css={layoutStyle}>
-        {step === 1 && <Id />}
-        {step === 2 && <Pw />}
-        {step === 3 && <UserInfo />}
+        {step === 1 && <Id id={id} onIdChange={setId} />}
+        {step === 2 && (
+          <Pw
+            password={password}
+            passwordConfirm={passwordConfirm}
+            onPasswordChange={setPassword}
+            onPasswordConfirmChange={setPasswordConfirm}
+          />
+        )}
+        {step === 3 && (
+          <UserInfo
+            name={name}
+            email={email}
+            age={age}
+            part={part}
+            onNameChange={setName}
+            onEmailChange={setEmail}
+            onAgeChange={setAge}
+            onPartChange={setPart}
+          />
+        )}
       </div>
 
       <label css={btnWrapStyle}>
         <Button
           buttonText="다음"
-          onClick={() => setStep(step + 1)}
-          disabled={step === 3}
+          onClick={handleNextStep}
+          disabled={!isCurrentStepValid}
         />
         <div css={routeWrapStyle}>
           <div css={messageStyle}>이미 계정이 있나요?</div>

@@ -2,15 +2,24 @@
 import { css } from "@emotion/react";
 import Input from "@/components/Input";
 
-export default function Id() {
+interface IdProps {
+  id: string;
+  onIdChange: (id: string) => void;
+}
+
+export default function Id({ id, onIdChange }: IdProps) {
   return (
     <div css={rootContainerStyle}>
       <label css={fieldStyle}>
         <span css={labelStyle}>아이디</span>
-        <Input placeholder="사용할 아이디를 입력해주세요." />
+        <Input
+          placeholder="사용할 아이디를 입력해주세요."
+          value={id}
+          onChange={(event) => onIdChange(event.target.value)}
+        />
       </label>
     </div>
-  )
+  );
 }
 
 const rootContainerStyle = css`
