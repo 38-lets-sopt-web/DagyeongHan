@@ -1,13 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Header from "@/components/mypage/Header";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 
 export default function MyPage() {
+
+  const { pathname } = useLocation();
+  const isCheckMembers = pathname === "/mypage/checkmembers";
+
   return (
     <div css={rootContainerStyle}>
       <Header/>
-      <main css={mainContainerStyle}>
+      <main css={mainContainerStyle(isCheckMembers)}>
         <Outlet />
       </main>
     </div>
@@ -23,6 +27,9 @@ const rootContainerStyle = css`
   gap: 2em;
 `;
 
-const mainContainerStyle = css`
-  width: min(30em, calc(100% - 2em));
+const mainContainerStyle = (isCheckMembers: boolean) => css`
+  min-width: ${isCheckMembers
+    ? "100%"
+    : "30em"};
+  padding: 2em 12em;
 `;
