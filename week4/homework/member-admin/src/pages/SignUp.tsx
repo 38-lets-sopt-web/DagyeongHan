@@ -24,9 +24,11 @@ export default function SignUp() {
     (step === 1 && isIdStepValid) ||
     (step === 2 && isPwStepValid) ||
     (step === 3 && isUserInfoStepValid);
+  const isLastStep = step === 3;
+  const buttonText = isLastStep ? "회원가입" : "다음";
 
   const handleNextStep = () => {
-    if (!isCurrentStepValid || step === 3) {
+    if (!isCurrentStepValid || isLastStep) {
       return;
     }
 
@@ -62,11 +64,25 @@ export default function SignUp() {
       </div>
 
       <label css={btnWrapStyle}>
-        <Button
-          buttonText="다음"
-          onClick={handleNextStep}
-          disabled={!isCurrentStepValid}
-        />
+        {isLastStep ? (
+          <Link
+            to="/login"
+            css={btnStyle}
+            onClick={(event) => {
+              if (!isCurrentStepValid) {
+                event.preventDefault();
+              }
+            }}
+          >
+            <Button buttonText={buttonText} disabled={!isCurrentStepValid} />
+          </Link>
+        ) : (
+          <Button
+            buttonText={buttonText}
+            onClick={handleNextStep}
+            disabled={!isCurrentStepValid}
+          />
+        )}
         <div css={routeWrapStyle}>
           <div css={messageStyle}>이미 계정이 있나요?</div>
           <Link to="/login" css={toLinkStyle}>
@@ -107,6 +123,11 @@ const btnWrapStyle = css`
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
+`;
+
+const btnStyle = css`
+  width: 100%;
+  text-decoration: none;
 `;
 
 const routeWrapStyle = css`
