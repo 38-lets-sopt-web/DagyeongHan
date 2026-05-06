@@ -1,10 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { useState } from "react";
 import { Link } from "react-router";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 
 export default function Login() {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const isLoginEnabled = id.trim() && password.trim();
+
   return (
     <div css={rootContainerStyle}>
 
@@ -16,21 +21,32 @@ export default function Login() {
         {/* 아이디 입력 */}
         <label css={fieldStyle}>
           <span css={labelStyle}>아이디</span>
-          <Input placeholder="아이디를 입력해주세요." />
+          <Input
+            placeholder="아이디를 입력해주세요."
+            value={id}
+            onChange={(event) => setId(event.target.value)}
+          />
         </label>
 
         {/* 비밀번호 입력 */}
         <label css={fieldStyle}>
           <span css={labelStyle}>비밀번호</span>
-          <Input type="password" placeholder="비밀번호를 입력해주세요." />
+          <Input
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
         </label>
 
       </div>
 
       {/* 버튼 */}
       <label css={btnWrapStyle}>
-        <Button buttonText="로그인" disabled />
-        <Link to="/signup" css={toSignUpStyle}>회원가입</Link>
+        <Button buttonText="로그인" disabled={!isLoginEnabled} />
+        <Link to="/signup" css={toSignUpStyle}>
+          회원가입
+        </Link>
       </label>
 
     </div>
