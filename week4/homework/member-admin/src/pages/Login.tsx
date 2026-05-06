@@ -26,14 +26,15 @@ export default function Login() {
         </label>
 
       </div>
-      
-        {/* 버튼 */}
-        <label css={btnWrapStyle}>
-          <Button buttonText="로그인" disabled />
-          <Link to='/signup' css={toSignUpStyle}>회원가입</Link>
-        </label>
+
+      {/* 버튼 */}
+      <label css={btnWrapStyle}>
+        <Button buttonText="로그인" disabled />
+        <Link to="/signup" css={toSignUpStyle}>회원가입</Link>
+      </label>
+
     </div>
-  )
+  );
 }
 
 const rootContainerStyle = css`
