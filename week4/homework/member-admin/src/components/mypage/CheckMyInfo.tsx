@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import MyInfoCard from "@/components/mypage/MyInfoCard";
-import EditMyInfo from "./EditMyInfo";
+import EditMyInfo from "@/components/mypage/EditMyInfo";
 
 export default function CheckMyInfo() {
   return (
