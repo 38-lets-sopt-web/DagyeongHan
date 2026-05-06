@@ -29,7 +29,7 @@ export default function Login() {
       
         {/* 버튼 */}
         <label css={btnWrapStyle}>
-          <Button buttonText="로그인" />
+          <Button buttonText="로그인" disabled />
           <Link to='/signup' css={toSignUpStyle}>회원가입</Link>
         </label>
     </div>
