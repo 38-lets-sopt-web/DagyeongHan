@@ -21,7 +21,7 @@ export default function CheckMembers() {
       <section css={fieldStyle}>
         <span css={labelStyle}>회원 ID</span>
         <Input placeholder="ID를 입력하세요" hasSearchIcon />
-        <Button buttonText="검색" />
+        <Button buttonText="검색" disabled />
       </section>
 
       <section css={fieldStyle}>
