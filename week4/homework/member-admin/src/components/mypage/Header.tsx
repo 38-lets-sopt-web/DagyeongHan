@@ -16,7 +16,7 @@ export default function Header() {
 
 const rootContainerStyle = css`
   position: sticky;
-  top: 0;e
+  top: 0;
   left: 0;
   width: 100%;
   display: flex;
@@ -24,6 +24,7 @@ const rootContainerStyle = css`
   align-items: center;
   padding: 1em 4em;
   background: #2e2e35;
+  z-index: 10;
 `;
 
 const titleWrapStyle = css`
