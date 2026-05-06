@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import Input from "@/components/Input";
 import MemberCard from "@/components/mypage/MemberCard";
 import Button from "@/components/Button";
+import Table from "@/components/Table";
 
 const memberInfo = [
   { label: "아이디", value: "example" },
@@ -25,18 +26,7 @@ export default function CheckMembers() {
 
       <section css={fieldStyle}>
         <h3 css={titleStyle}>검색 결과</h3>
-        <div css={tableCardStyle}>
-          <table css={tableStyle}>
-            <tbody>
-              {memberInfo.map(({ label, value }) => (
-                <tr key={label}>
-                  <th scope="row">{label}</th>
-                  <td>{value}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <Table rows={memberInfo} />
       </section>
 
       <section css={memberListStyle}>
@@ -81,35 +71,6 @@ const fieldStyle = css`
   display: flex;
   flex-direction: column;
   gap: 1em;
-`;
-
-const tableCardStyle = css`
-  width: 100%;
-  padding: 0.875em 1em;
-  background: #2e2e35;
-  border-radius: 8px;
-`;
-
-const tableStyle = css`
-  width: 100%;
-  border-collapse: collapse;
-
-  th,
-  td {
-    padding: 0.25em 0;
-    line-height: 1.5;
-  }
-
-  th {
-    font-weight: 700;
-    text-align: left;
-  }
-
-  td {
-    color: #ccc;
-    font-weight: 500;
-    text-align: right;
-  }
 `;
 
 const memberListStyle = css`
