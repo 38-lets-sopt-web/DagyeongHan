@@ -17,7 +17,7 @@ const btnStyle = css`
   border: none;
   border-radius: 8px;
   font-weight: 700;
-  font-size: 0.875em;
+  font-size: 1em;
   background: #84e1fa;
   color: #0F1012;
   cursor: pointer;
