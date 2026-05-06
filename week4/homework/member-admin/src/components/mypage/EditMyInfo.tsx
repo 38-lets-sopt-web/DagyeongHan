@@ -1,13 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useState } from "react";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 
-export default function EditMyInfo() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [age, setAge] = useState("");
+interface EditMyInfoProps {
+  name: string;
+  email: string;
+  age: string;
+  onNameChange: (name: string) => void;
+  onEmailChange: (email: string) => void;
+  onAgeChange: (age: string) => void;
+}
+
+export default function EditMyInfo({
+  name,
+  email,
+  age,
+  onNameChange,
+  onEmailChange,
+  onAgeChange,
+}: EditMyInfoProps) {
   const isEditEnabled = name.trim() && email.trim() && age.trim();
 
   return (
@@ -20,7 +32,7 @@ export default function EditMyInfo() {
           <Input
             placeholder="수정할 이름을 입력해주세요."
             value={name}
-            onChange={(event) => setName(event.target.value)}
+            onChange={(event) => onNameChange(event.target.value)}
           />
         </label>
 
@@ -30,7 +42,7 @@ export default function EditMyInfo() {
           <Input
             placeholder="수정할 이메일을 입력해주세요."
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) => onEmailChange(event.target.value)}
           />
         </label>
 
@@ -39,7 +51,7 @@ export default function EditMyInfo() {
           <Input
             placeholder="수정할 나이를 입력해주세요."
             value={age}
-            onChange={(event) => setAge(event.target.value)}
+            onChange={(event) => onAgeChange(event.target.value)}
           />
         </label>
 
