@@ -44,6 +44,7 @@ export default function UserInfo({
       <label css={fieldStyle}>
         <span css={labelStyle}>나이</span>
         <Input
+          type="number"
           placeholder="나이를 입력해주세요."
           value={age}
           onChange={(event) => onAgeChange(event.target.value)}
