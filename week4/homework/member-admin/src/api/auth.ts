@@ -1,4 +1,4 @@
-import api from "@/api/api";
+import api from "@/api/api.ts";
 import type { LoginRequestDto, SignUpRequestDto } from "@/api/requestDto";
 import type { ApiResponse, LoginResponseDto } from "@/api/responseDto";
 

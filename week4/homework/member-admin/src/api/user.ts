@@ -1,4 +1,4 @@
-import api from "@/api/api";
+import api from "@/api/api.ts";
 import type { UserUpdateRequestDto } from "@/api/requestDto";
 import type { ApiResponse, UserListResponseDto, UserResponseDto } from "@/api/responseDto";
 
