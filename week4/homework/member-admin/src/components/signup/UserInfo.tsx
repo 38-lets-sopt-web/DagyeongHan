@@ -7,6 +7,7 @@ interface UserInfoProps {
   email: string;
   age: string;
   part: string;
+  nameErrorMessage?: string;
   onNameChange: (name: string) => void;
   onEmailChange: (email: string) => void;
   onAgeChange: (age: string) => void;
@@ -18,6 +19,7 @@ export default function UserInfo({
   email,
   age,
   part,
+  nameErrorMessage,
   onNameChange,
   onEmailChange,
   onAgeChange,
@@ -32,6 +34,7 @@ export default function UserInfo({
           value={name}
           onChange={(event) => onNameChange(event.target.value)}
         />
+        {nameErrorMessage && <p css={errorMessageStyle}>{nameErrorMessage}</p>}
       </label>
       <label css={fieldStyle}>
         <span css={labelStyle}>이메일</span>
@@ -80,5 +83,12 @@ const fieldStyle = css`
 
 const labelStyle = css`
   font-size: 0.7em;
+  font-weight: 500;
+`;
+
+const errorMessageStyle = css`
+  margin: 0;
+  color: #ff6b6b;
+  font-size: 0.75em;
   font-weight: 500;
 `;

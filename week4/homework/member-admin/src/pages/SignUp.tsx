@@ -46,19 +46,20 @@ export default function SignUp() {
       ? "비밀번호는 영어, 숫자, 특수문자를 각각 1자 이상 포함해야 합니다."
       : "";
   const isPwStepValid = Boolean(
-      password.trim() &&
+    password.trim() &&
       passwordConfirm.trim() &&
       !hasPasswordWhitespace &&
       !isPasswordInvalidLength &&
       !isPasswordInvalidCombination &&
       password === passwordConfirm,
   );
+  const isNameTooLong = name.trim().length >= 10;
   const isUserInfoStepValid = Boolean(
     name.trim() &&
       email.trim() &&
       age.trim() &&
-      !Number.isNaN(Number(age)) &&
-      part.trim(),
+      part.trim() &&
+      !isNameTooLong,
   );
   const isCurrentStepValid =
     (step === 1 && isIdStepValid) ||
@@ -141,6 +142,7 @@ export default function SignUp() {
             email={email}
             age={age}
             part={part}
+            nameErrorMessage={isNameTooLong ? "이름은 10자 미만으로 입력해주세요." : ""}
             onNameChange={setName}
             onEmailChange={setEmail}
             onAgeChange={setAge}
