@@ -54,12 +54,15 @@ export default function SignUp() {
       password === passwordConfirm,
   );
   const isNameTooLong = name.trim().length >= 10;
+  const isEmailInvalidFormat = Boolean(email.trim()) &&
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   const isUserInfoStepValid = Boolean(
     name.trim() &&
       email.trim() &&
       age.trim() &&
       part.trim() &&
-      !isNameTooLong,
+      !isNameTooLong &&
+      !isEmailInvalidFormat,
   );
   const isCurrentStepValid =
     (step === 1 && isIdStepValid) ||
@@ -143,6 +146,7 @@ export default function SignUp() {
             age={age}
             part={part}
             nameErrorMessage={isNameTooLong ? "이름은 10자 미만으로 입력해주세요." : ""}
+            emailErrorMessage={isEmailInvalidFormat ? "올바른 이메일 형식으로 입력해주세요." : ""}
             onNameChange={setName}
             onEmailChange={setEmail}
             onAgeChange={setAge}

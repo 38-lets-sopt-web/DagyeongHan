@@ -9,6 +9,7 @@ interface UserInfoProps {
   age: string;
   part: string;
   nameErrorMessage?: string;
+  emailErrorMessage?: string;
   onNameChange: (name: string) => void;
   onEmailChange: (email: string) => void;
   onAgeChange: (age: string) => void;
@@ -21,6 +22,7 @@ export default function UserInfo({
   age,
   part,
   nameErrorMessage,
+  emailErrorMessage,
   onNameChange,
   onEmailChange,
   onAgeChange,
@@ -44,6 +46,7 @@ export default function UserInfo({
           value={email}
           onChange={(event) => onEmailChange(event.target.value)}
         />
+        <ErrorMessage message={emailErrorMessage} />
       </label>
       <label css={fieldStyle}>
         <span css={labelStyle}>나이</span>
