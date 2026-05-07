@@ -5,6 +5,7 @@ import Input from "@/components/Input";
 interface PwProps {
   password: string;
   passwordConfirm: string;
+  errorMessage?: string;
   onPasswordChange: (password: string) => void;
   onPasswordConfirmChange: (passwordConfirm: string) => void;
 }
@@ -12,6 +13,7 @@ interface PwProps {
 export default function Pw({
   password,
   passwordConfirm,
+  errorMessage,
   onPasswordChange,
   onPasswordConfirmChange,
 }: PwProps) {
@@ -34,6 +36,7 @@ export default function Pw({
           value={passwordConfirm}
           onChange={(event) => onPasswordConfirmChange(event.target.value)}
         />
+        {errorMessage && <p css={errorMessageStyle}>{errorMessage}</p>}
       </label>
     </div>
   );
@@ -56,6 +59,13 @@ const fieldStyle = css`
 `;
 
 const labelStyle = css`
+  font-size: 0.75em;
+  font-weight: 500;
+`;
+
+const errorMessageStyle = css`
+  margin: 0;
+  color: #ff6b6b;
   font-size: 0.75em;
   font-weight: 500;
 `;

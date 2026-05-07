@@ -22,6 +22,11 @@ export default function SignUp() {
 
   const isIdOverMaxLength = id.trim().length > 20;
   const isIdStepValid = Boolean(id.trim()) && !isIdOverMaxLength;
+  const isPasswordMismatch = Boolean(
+    password.trim() &&
+      passwordConfirm.trim() &&
+      password !== passwordConfirm,
+  );
   const isPwStepValid = Boolean(
     password.trim() &&
       passwordConfirm.trim() &&
@@ -101,6 +106,7 @@ export default function SignUp() {
           <Pw
             password={password}
             passwordConfirm={passwordConfirm}
+            errorMessage={isPasswordMismatch ? "비밀번호가 일치하지 않습니다." : ""}
             onPasswordChange={setPassword}
             onPasswordConfirmChange={setPasswordConfirm}
           />
