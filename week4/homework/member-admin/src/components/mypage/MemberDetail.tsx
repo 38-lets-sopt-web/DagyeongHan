@@ -41,9 +41,9 @@ export default function MemberDetail() {
       </div>
       <div css={fieldStyle}>
         {member ? (
-          <Table rows={getMemberTableRows(member)} />
+          <Table rows={getMemberTableRows(member)} height="12em" />
         ) : (
-          <Table rows={[]} emptyMessage="멤버 정보를 찾을 수 없습니다." />
+          <Table rows={[]} height="12em" emptyMessage="멤버 정보를 찾을 수 없습니다." />
         )}
       </div>
     </div>

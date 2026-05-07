@@ -69,6 +69,7 @@ export default function CheckMembers() {
         <h3 css={titleStyle}>검색 결과</h3>
         <Table
           rows={hasSearched && searchedUser ? getMemberTableRows(searchedUser) : []}
+          height="11.25em"
           emptyMessage={
             hasSearched
               ? "검색 결과가 없습니다."

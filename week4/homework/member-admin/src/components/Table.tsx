@@ -9,11 +9,12 @@ interface TableRow {
 interface TableProps {
   rows: TableRow[];
   emptyMessage?: string;
+  height?: string;
 }
 
-export default function Table({ rows, emptyMessage }: TableProps) {
+export default function Table({ rows, emptyMessage, height }: TableProps) {
   return (
-    <div css={cardStyle}>
+    <div css={cardStyle(height)}>
       {rows.length > 0 ? (
         <table css={tableStyle}>
           <tbody>
@@ -32,8 +33,11 @@ export default function Table({ rows, emptyMessage }: TableProps) {
   );
 }
 
-const cardStyle = css`
+const cardStyle = (height?: string) => css`
   width: 100%;
+  height: ${height};
+  display: flex;
+  align-items: center;
   padding: 0.875em 1em;
   background: #2e2e35;
   border-radius: 8px;
@@ -62,6 +66,7 @@ const tableStyle = css`
 `;
 
 const emptyMessageStyle = css`
+  width: 100%;
   margin: 0;
   color: #ccc;
   font-weight: 500;
