@@ -18,3 +18,13 @@ export interface UserResponseDto {
   age: number;
   part: string;
 }
+
+export interface UserListItemResponseDto {
+  id: number;
+  name: string;
+  part: string;
+}
+
+export interface UserListResponseDto {
+  users: UserListItemResponseDto[];
+}
