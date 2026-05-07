@@ -37,8 +37,8 @@ const nameStyle = css`
 const partStyle = css`
   background: #84e1fa;
   border-radius: 100px;
-  font-size: 0.75em;
-  font-weight: 600;
-  padding: 0.25em 0.5em;
+  font-size: 0.825em;
+  font-weight: 700;
+  padding: 0.375em 0.625em;
   color: #2e2e35;
 `;
