@@ -22,17 +22,35 @@ export default function SignUp() {
 
   const isIdOverMaxLength = id.trim().length > 20;
   const isIdStepValid = Boolean(id.trim()) && !isIdOverMaxLength;
+  const hasPasswordRequiredCharacters =
+    /[A-Za-z]/.test(password) &&
+    /\d/.test(password) &&
+    /[^A-Za-z0-9]/.test(password);
+  const hasPasswordWhitespace = /\s/.test(password);
   const isPasswordInvalidLength = Boolean(password.trim()) &&
     (password.trim().length < 8 || password.trim().length > 20);
+  const isPasswordInvalidCombination = Boolean(password.trim()) && !hasPasswordRequiredCharacters;
   const isPasswordMismatch = Boolean(
     password.trim() &&
       passwordConfirm.trim() &&
+      !hasPasswordWhitespace &&
+      !isPasswordInvalidLength &&
+      !isPasswordInvalidCombination &&
       password !== passwordConfirm,
   );
+  const passwordErrorMessage = isPasswordInvalidLength
+    ? "비밀번호는 8~20자 사이로 입력해주세요."
+    : hasPasswordWhitespace
+      ? "비밀번호에는 공백을 사용할 수 없습니다."
+    : isPasswordInvalidCombination
+      ? "비밀번호는 영어, 숫자, 특수문자를 각각 1자 이상 포함해야 합니다."
+      : "";
   const isPwStepValid = Boolean(
-    password.trim() &&
+      password.trim() &&
       passwordConfirm.trim() &&
+      !hasPasswordWhitespace &&
       !isPasswordInvalidLength &&
+      !isPasswordInvalidCombination &&
       password === passwordConfirm,
   );
   const isUserInfoStepValid = Boolean(
@@ -79,7 +97,7 @@ export default function SignUp() {
 
       console.log("회원가입 성공:", response);
 
-      alert(`${name}님, ${response.message}`);
+      alert(`${name}님 ${response.message}`);
       window.location.href = loginPageHref;
     } catch (error) {
       const errorMessage = axios.isAxiosError(error)
@@ -109,9 +127,7 @@ export default function SignUp() {
           <Pw
             password={password}
             passwordConfirm={passwordConfirm}
-            passwordErrorMessage={
-              isPasswordInvalidLength ? "비밀번호는 8~20자 사이로 입력해주세요." : ""
-            }
+            passwordErrorMessage={passwordErrorMessage}
             passwordConfirmErrorMessage={
               isPasswordMismatch ? "비밀번호가 일치하지 않습니다." : ""
             }
