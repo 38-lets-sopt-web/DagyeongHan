@@ -2,6 +2,7 @@
 import { css } from "@emotion/react";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import ErrorMessage from "@/components/ErrorMessage";
 
 interface EditMyInfoProps {
   name: string;
@@ -22,7 +23,9 @@ export default function EditMyInfo({
   onAgeChange,
   onSubmit,
 }: EditMyInfoProps) {
-  const isEditEnabled = name.trim() && email.trim() && age.trim();
+  const isEmailInvalidFormat = Boolean(email.trim()) &&
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const isEditEnabled = name.trim() && email.trim() && age.trim() && !isEmailInvalidFormat;
 
   return (
     <div css={rootContainerStyle}>
@@ -45,6 +48,9 @@ export default function EditMyInfo({
             placeholder="수정할 이메일을 입력해주세요."
             value={email}
             onChange={(event) => onEmailChange(event.target.value)}
+          />
+          <ErrorMessage
+            message={isEmailInvalidFormat ? "올바른 이메일 형식으로 입력해주세요." : ""}
           />
         </label>
 
