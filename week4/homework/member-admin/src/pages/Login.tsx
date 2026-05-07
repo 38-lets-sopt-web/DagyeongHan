@@ -16,12 +16,17 @@ export default function Login() {
     handleLogin,
   } = useLoginForm();
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    void handleLogin();
+  };
+
   return (
-    <div css={rootContainerStyle}>
+    <main css={rootContainerStyle}>
       {/* 제목 */}
       <h1 css={titleStyle}>SOPT MEMBERS</h1>
 
-      <div css={layoutStyle}>
+      <form css={layoutStyle} onSubmit={handleSubmit}>
         {/* 아이디 입력 */}
         <label css={fieldStyle}>
           <span css={labelStyle}>아이디</span>
@@ -42,10 +47,10 @@ export default function Login() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
-      </div>
+      </form>
 
       {/* 버튼 */}
-      <label css={btnWrapStyle}>
+      <section css={btnWrapStyle}>
         <Button
           buttonText="로그인"
           disabled={!isLoginEnabled || isSubmitting}
@@ -54,8 +59,8 @@ export default function Login() {
         <Link to="/signup" css={toSignUpStyle}>
           회원가입
         </Link>
-      </label>
-    </div>
+      </section>
+    </main>
   );
 }
 
