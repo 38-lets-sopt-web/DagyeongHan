@@ -1,8 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
 export default function Tabs() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("userId");
+    alert("로그아웃되었습니다.");
+    navigate("/login");
+  };
 
   return (
     <div css={tabBtnsWrap}>
@@ -20,7 +27,7 @@ export default function Tabs() {
         회원 조회
       </NavLink>
 
-      <button type="button" css={btnStyle}>로그아웃</button>
+      <button type="button" css={btnStyle} onClick={handleLogout}>로그아웃</button>
     </div>
   )
 }
