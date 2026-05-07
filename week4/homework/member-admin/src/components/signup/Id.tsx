@@ -11,7 +11,7 @@ interface IdProps {
 
 export default function Id({ id, errorMessage, onIdChange }: IdProps) {
   return (
-    <div css={rootContainerStyle}>
+    <fieldset css={rootContainerStyle}>
       <label css={fieldStyle}>
         <span css={labelStyle}>아이디</span>
         <Input
@@ -21,7 +21,7 @@ export default function Id({ id, errorMessage, onIdChange }: IdProps) {
         />
         <ErrorMessage message={errorMessage} />
       </label>
-    </div>
+    </fieldset>
   );
 }
 
@@ -32,6 +32,9 @@ const rootContainerStyle = css`
   justify-content: center;
   align-items: center;
   gap: 1em;
+  margin: 0;
+  padding: 0;
+  border: none;
 `;
 
 const fieldStyle = css`

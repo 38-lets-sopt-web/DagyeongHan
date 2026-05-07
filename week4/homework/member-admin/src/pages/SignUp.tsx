@@ -118,10 +118,10 @@ export default function SignUp() {
   };
 
   return (
-    <div css={rootContainerStyle}>
+    <main css={rootContainerStyle}>
       <h2 css={titleStyle}>회원가입</h2>
 
-      <div css={layoutStyle}>
+      <form css={layoutStyle} onSubmit={(event) => event.preventDefault()}>
         {step === 1 && (
           <Id
             id={id}
@@ -156,9 +156,9 @@ export default function SignUp() {
             onPartChange={setPart}
           />
         )}
-      </div>
+      </form>
 
-      <label css={btnWrapStyle}>
+      <section css={btnWrapStyle}>
         {isLastStep ? (
           <Link to="/login" css={btnStyle} onClick={handleSignUp}>
             <Button buttonText={buttonText} disabled={!isCurrentStepValid || isSubmitting} />
@@ -176,8 +176,8 @@ export default function SignUp() {
             로그인으로 돌아가기
           </Link>
         </div>
-      </label>
-    </div>
+      </section>
+    </main>
   );
 }
 

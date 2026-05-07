@@ -34,7 +34,7 @@ export default function UserInfo({
   onPartChange,
 }: UserInfoProps) {
   return (
-    <div css={rootContainerStyle}>
+    <fieldset css={rootContainerStyle}>
       <label css={fieldStyle}>
         <span css={labelStyle}>이름</span>
         <Input
@@ -71,7 +71,7 @@ export default function UserInfo({
           onChange={onPartChange}
         />
       </label>
-    </div>
+    </fieldset>
   );
 }
 
@@ -82,6 +82,9 @@ const rootContainerStyle = css`
   justify-content: center;
   align-items: center;
   gap: 1em;
+  margin: 0;
+  padding: 0;
+  border: none;
 `;
 
 const fieldStyle = css`
