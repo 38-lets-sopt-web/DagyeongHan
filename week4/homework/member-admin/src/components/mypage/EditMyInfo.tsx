@@ -10,6 +10,7 @@ interface EditMyInfoProps {
   onNameChange: (name: string) => void;
   onEmailChange: (email: string) => void;
   onAgeChange: (age: string) => void;
+  onSubmit: () => void;
 }
 
 export default function EditMyInfo({
@@ -19,6 +20,7 @@ export default function EditMyInfo({
   onNameChange,
   onEmailChange,
   onAgeChange,
+  onSubmit,
 }: EditMyInfoProps) {
   const isEditEnabled = name.trim() && email.trim() && age.trim();
 
@@ -49,6 +51,7 @@ export default function EditMyInfo({
         <label css={fieldStyle}>
           <span css={labelStyle}>나이</span>
           <Input
+            type="number"
             placeholder="수정할 나이를 입력해주세요."
             value={age}
             onChange={(event) => onAgeChange(event.target.value)}
@@ -58,7 +61,7 @@ export default function EditMyInfo({
       </div>
 
       {/* 버튼 */}
-      <Button buttonText="정보 수정" disabled={!isEditEnabled} />
+      <Button buttonText="정보 수정" disabled={!isEditEnabled} onClick={onSubmit} />
     </div>
   );
 }

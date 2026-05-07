@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import MyInfoCard from "@/components/mypage/MyInfoCard";
 import EditMyInfo from "@/components/mypage/EditMyInfo";
-import { getUserAPI } from "@/api/user";
+import { getUserAPI, patchUserAPI } from "@/api/user";
 import type { UserResponseDto } from "@/api/responseDto";
 
 export default function CheckMyInfo() {
@@ -39,6 +39,34 @@ export default function CheckMyInfo() {
     void fetchUser();
   }, []);
 
+  const handlePatchUser = async () => {
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      console.error("userId가 없습니다.");
+      return;
+    }
+
+    try {
+      const response = await patchUserAPI(Number(userId), {
+        name,
+        email,
+        age: Number(age),
+      });
+
+      console.log("개인 정보 수정 성공:", response);
+
+      if (response.data) {
+        setUser(response.data);
+      }
+
+      alert("개인 정보가 수정되었습니다.");
+    } catch (error) {
+      console.error("개인 정보 수정 실패:", error);
+      alert("개인 정보 수정에 실패했습니다.");
+    }
+  };
+
   return (
     <div css={rootContainerStyle}>
       <h2 css={titleStyle}>내 정보</h2>
@@ -50,6 +78,7 @@ export default function CheckMyInfo() {
         onNameChange={setName}
         onEmailChange={setEmail}
         onAgeChange={setAge}
+        onSubmit={handlePatchUser}
       />
     </div>
   );

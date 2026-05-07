@@ -11,3 +11,9 @@ export interface SignUpRequestDto {
   age: number;
   part: string;
 }
+
+export interface PatchUserRequestDto {
+  name: string;
+  email: string;
+  age: number;
+}
