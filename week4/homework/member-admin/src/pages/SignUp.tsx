@@ -20,7 +20,8 @@ export default function SignUp() {
   const [part, setPart] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const isIdStepValid = Boolean(id.trim());
+  const isIdOverMaxLength = id.trim().length > 20;
+  const isIdStepValid = Boolean(id.trim()) && !isIdOverMaxLength;
   const isPwStepValid = Boolean(
     password.trim() &&
       passwordConfirm.trim() &&
@@ -89,7 +90,13 @@ export default function SignUp() {
       <h2 css={titleStyle}>회원가입</h2>
 
       <div css={layoutStyle}>
-        {step === 1 && <Id id={id} onIdChange={setId} />}
+        {step === 1 && (
+          <Id
+            id={id}
+            errorMessage={isIdOverMaxLength ? "아이디는 20글자 이하로 입력해주세요." : ""}
+            onIdChange={setId}
+          />
+        )}
         {step === 2 && (
           <Pw
             password={password}

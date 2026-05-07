@@ -4,10 +4,11 @@ import Input from "@/components/Input";
 
 interface IdProps {
   id: string;
+  errorMessage?: string;
   onIdChange: (id: string) => void;
 }
 
-export default function Id({ id, onIdChange }: IdProps) {
+export default function Id({ id, errorMessage, onIdChange }: IdProps) {
   return (
     <div css={rootContainerStyle}>
       <label css={fieldStyle}>
@@ -17,6 +18,7 @@ export default function Id({ id, onIdChange }: IdProps) {
           value={id}
           onChange={(event) => onIdChange(event.target.value)}
         />
+        {errorMessage && <p css={errorMessageStyle}>{errorMessage}</p>}
       </label>
     </div>
   );
@@ -39,6 +41,13 @@ const fieldStyle = css`
 `;
 
 const labelStyle = css`
+  font-size: 0.75em;
+  font-weight: 500;
+`;
+
+const errorMessageStyle = css`
+  margin: 0;
+  color: #ff6b6b;
   font-size: 0.75em;
   font-weight: 500;
 `;
