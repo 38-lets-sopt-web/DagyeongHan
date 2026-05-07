@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import ErrorMessage from "@/components/ErrorMessage";
 import Input from "@/components/Input";
 
 interface UserInfoProps {
@@ -34,7 +35,7 @@ export default function UserInfo({
           value={name}
           onChange={(event) => onNameChange(event.target.value)}
         />
-        {nameErrorMessage && <p css={errorMessageStyle}>{nameErrorMessage}</p>}
+        <ErrorMessage message={nameErrorMessage} />
       </label>
       <label css={fieldStyle}>
         <span css={labelStyle}>이메일</span>
@@ -83,12 +84,5 @@ const fieldStyle = css`
 
 const labelStyle = css`
   font-size: 0.7em;
-  font-weight: 500;
-`;
-
-const errorMessageStyle = css`
-  margin: 0;
-  color: #ff6b6b;
-  font-size: 0.75em;
   font-weight: 500;
 `;

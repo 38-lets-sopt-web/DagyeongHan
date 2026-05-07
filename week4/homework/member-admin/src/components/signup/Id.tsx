@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import ErrorMessage from "@/components/ErrorMessage";
 import Input from "@/components/Input";
 
 interface IdProps {
@@ -18,7 +19,7 @@ export default function Id({ id, errorMessage, onIdChange }: IdProps) {
           value={id}
           onChange={(event) => onIdChange(event.target.value)}
         />
-        {errorMessage && <p css={errorMessageStyle}>{errorMessage}</p>}
+        <ErrorMessage message={errorMessage} />
       </label>
     </div>
   );
@@ -41,13 +42,6 @@ const fieldStyle = css`
 `;
 
 const labelStyle = css`
-  font-size: 0.75em;
-  font-weight: 500;
-`;
-
-const errorMessageStyle = css`
-  margin: 0;
-  color: #ff6b6b;
   font-size: 0.75em;
   font-weight: 500;
 `;

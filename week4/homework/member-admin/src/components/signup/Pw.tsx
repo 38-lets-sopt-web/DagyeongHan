@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import ErrorMessage from "@/components/ErrorMessage";
 import Input from "@/components/Input";
 
 interface PwProps {
@@ -29,7 +30,7 @@ export default function Pw({
           value={password}
           onChange={(event) => onPasswordChange(event.target.value)}
         />
-        {passwordErrorMessage && <p css={errorMessageStyle}>{passwordErrorMessage}</p>}
+        <ErrorMessage message={passwordErrorMessage} />
       </label>
       <label css={fieldStyle}>
         <span css={labelStyle}>비밀번호 확인</span>
@@ -39,9 +40,7 @@ export default function Pw({
           value={passwordConfirm}
           onChange={(event) => onPasswordConfirmChange(event.target.value)}
         />
-        {passwordConfirmErrorMessage && (
-          <p css={errorMessageStyle}>{passwordConfirmErrorMessage}</p>
-        )}
+        <ErrorMessage message={passwordConfirmErrorMessage} />
       </label>
     </div>
   );
@@ -64,13 +63,6 @@ const fieldStyle = css`
 `;
 
 const labelStyle = css`
-  font-size: 0.75em;
-  font-weight: 500;
-`;
-
-const errorMessageStyle = css`
-  margin: 0;
-  color: #ff6b6b;
   font-size: 0.75em;
   font-weight: 500;
 `;
