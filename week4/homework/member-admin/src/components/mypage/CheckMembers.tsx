@@ -8,14 +8,7 @@ import Button from "@/components/Button";
 import Table from "@/components/Table";
 import { getUserAPI, getUserListAPI } from "@/api/user";
 import type { UserListItemResponseDto, UserResponseDto } from "@/api/responseDto";
-
-const getUserTableRows = (user: UserResponseDto) => [
-  { label: "아이디", value: user.loginId },
-  { label: "이름", value: user.name },
-  { label: "나이", value: `${user.age}세` },
-  { label: "이메일", value: user.email },
-  { label: "파트", value: user.part },
-];
+import { getMemberTableRows } from "@/components/mypage/memberTableRows";
 
 export default function CheckMembers() {
   const [members, setMembers] = useState<UserListItemResponseDto[]>([]);
@@ -75,7 +68,7 @@ export default function CheckMembers() {
       <section css={fieldStyle}>
         <h3 css={titleStyle}>검색 결과</h3>
         <Table
-          rows={hasSearched && searchedUser ? getUserTableRows(searchedUser) : []}
+          rows={hasSearched && searchedUser ? getMemberTableRows(searchedUser) : []}
           emptyMessage={
             hasSearched
               ? "검색 결과가 없습니다."

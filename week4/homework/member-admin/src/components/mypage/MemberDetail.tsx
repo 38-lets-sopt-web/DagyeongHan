@@ -1,27 +1,35 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { Link, useLocation } from "react-router";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router";
 import Table from "@/components/Table";
-
-interface Member {
-  id: string;
-  name: string;
-  email: string;
-  age: string;
-  part: string;
-}
-
-const getMemberTableRows = (member: Member) => [
-  { label: "아이디", value: member.id },
-  { label: "이름", value: member.name },
-  { label: "이메일", value: member.email },
-  { label: "나이", value: member.age },
-  { label: "파트", value: member.part },
-];
+import { getUserAPI } from "@/api/user";
+import type { UserResponseDto } from "@/api/responseDto";
+import { getMemberTableRows } from "@/components/mypage/memberTableRows";
 
 export default function MemberDetail() {
-  const { state } = useLocation();
-  const member = (state as { member?: Member } | null)?.member;
+  const { memberId } = useParams();
+  const [member, setMember] = useState<UserResponseDto>();
+
+  useEffect(() => {
+    const fetchMember = async () => {
+      if (!memberId) {
+        return;
+      }
+
+      try {
+        const response = await getUserAPI(Number(memberId));
+
+        if (response.data) {
+          setMember(response.data);
+        }
+      } catch (error) {
+        console.error("유저 상세 조회 실패:", error);
+      }
+    };
+
+    void fetchMember();
+  }, [memberId]);
 
   return (
     <div css={rootContainerStyle}>
