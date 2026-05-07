@@ -5,7 +5,8 @@ import Input from "@/components/Input";
 interface PwProps {
   password: string;
   passwordConfirm: string;
-  errorMessage?: string;
+  passwordErrorMessage?: string;
+  passwordConfirmErrorMessage?: string;
   onPasswordChange: (password: string) => void;
   onPasswordConfirmChange: (passwordConfirm: string) => void;
 }
@@ -13,7 +14,8 @@ interface PwProps {
 export default function Pw({
   password,
   passwordConfirm,
-  errorMessage,
+  passwordErrorMessage,
+  passwordConfirmErrorMessage,
   onPasswordChange,
   onPasswordConfirmChange,
 }: PwProps) {
@@ -27,6 +29,7 @@ export default function Pw({
           value={password}
           onChange={(event) => onPasswordChange(event.target.value)}
         />
+        {passwordErrorMessage && <p css={errorMessageStyle}>{passwordErrorMessage}</p>}
       </label>
       <label css={fieldStyle}>
         <span css={labelStyle}>비밀번호 확인</span>
@@ -36,7 +39,9 @@ export default function Pw({
           value={passwordConfirm}
           onChange={(event) => onPasswordConfirmChange(event.target.value)}
         />
-        {errorMessage && <p css={errorMessageStyle}>{errorMessage}</p>}
+        {passwordConfirmErrorMessage && (
+          <p css={errorMessageStyle}>{passwordConfirmErrorMessage}</p>
+        )}
       </label>
     </div>
   );

@@ -22,6 +22,8 @@ export default function SignUp() {
 
   const isIdOverMaxLength = id.trim().length > 20;
   const isIdStepValid = Boolean(id.trim()) && !isIdOverMaxLength;
+  const isPasswordInvalidLength = Boolean(password.trim()) &&
+    (password.trim().length < 8 || password.trim().length > 20);
   const isPasswordMismatch = Boolean(
     password.trim() &&
       passwordConfirm.trim() &&
@@ -30,6 +32,7 @@ export default function SignUp() {
   const isPwStepValid = Boolean(
     password.trim() &&
       passwordConfirm.trim() &&
+      !isPasswordInvalidLength &&
       password === passwordConfirm,
   );
   const isUserInfoStepValid = Boolean(
@@ -106,7 +109,12 @@ export default function SignUp() {
           <Pw
             password={password}
             passwordConfirm={passwordConfirm}
-            errorMessage={isPasswordMismatch ? "비밀번호가 일치하지 않습니다." : ""}
+            passwordErrorMessage={
+              isPasswordInvalidLength ? "비밀번호는 8~20자 사이로 입력해주세요." : ""
+            }
+            passwordConfirmErrorMessage={
+              isPasswordMismatch ? "비밀번호가 일치하지 않습니다." : ""
+            }
             onPasswordChange={setPassword}
             onPasswordConfirmChange={setPasswordConfirm}
           />
