@@ -10,6 +10,7 @@ interface UserInfoProps {
   part: string;
   nameErrorMessage?: string;
   emailErrorMessage?: string;
+  ageErrorMessage?: string;
   onNameChange: (name: string) => void;
   onEmailChange: (email: string) => void;
   onAgeChange: (age: string) => void;
@@ -23,6 +24,7 @@ export default function UserInfo({
   part,
   nameErrorMessage,
   emailErrorMessage,
+  ageErrorMessage,
   onNameChange,
   onEmailChange,
   onAgeChange,
@@ -51,11 +53,11 @@ export default function UserInfo({
       <label css={fieldStyle}>
         <span css={labelStyle}>나이</span>
         <Input
-          type="number"
           placeholder="나이를 입력해주세요."
           value={age}
           onChange={(event) => onAgeChange(event.target.value)}
         />
+        <ErrorMessage message={ageErrorMessage} />
       </label>
       <label css={fieldStyle}>
         <span css={labelStyle}>파트</span>
