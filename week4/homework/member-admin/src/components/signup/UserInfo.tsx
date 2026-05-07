@@ -1,7 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import Dropdown from "@/components/Dropdown";
 import ErrorMessage from "@/components/ErrorMessage";
 import Input from "@/components/Input";
+
+const PART_OPTIONS = ["기획", "디자인", "안드로이드", "iOS", "웹", "서버"];
 
 interface UserInfoProps {
   name: string;
@@ -61,10 +64,11 @@ export default function UserInfo({
       </label>
       <label css={fieldStyle}>
         <span css={labelStyle}>파트</span>
-        <Input
-          placeholder="파트명을 입력해주세요."
+        <Dropdown
+          options={PART_OPTIONS}
           value={part}
-          onChange={(event) => onPartChange(event.target.value)}
+          placeholder="파트를 선택해주세요."
+          onChange={onPartChange}
         />
       </label>
     </div>
