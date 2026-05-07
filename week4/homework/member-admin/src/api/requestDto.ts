@@ -12,7 +12,7 @@ export interface SignUpRequestDto {
   part: string;
 }
 
-export interface PatchUserRequestDto {
+export interface UserUpdateRequestDto {
   name: string;
   email: string;
   age: number;

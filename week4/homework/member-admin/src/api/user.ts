@@ -1,5 +1,5 @@
 import api from "@/api/api";
-import type { PatchUserRequestDto } from "@/api/requestDto";
+import type { UserUpdateRequestDto } from "@/api/requestDto";
 import type { ApiResponse, UserResponseDto } from "@/api/responseDto";
 
 export const getUserAPI = async (userId: number) => {
@@ -7,7 +7,7 @@ export const getUserAPI = async (userId: number) => {
   return response.data;
 };
 
-export const patchUserAPI = async (userId: number, body: PatchUserRequestDto) => {
+export const patchUserAPI = async (userId: number, body: UserUpdateRequestDto) => {
   const response = await api.patch<ApiResponse<UserResponseDto>>(`/users/${userId}`, body);
   return response.data;
 };
