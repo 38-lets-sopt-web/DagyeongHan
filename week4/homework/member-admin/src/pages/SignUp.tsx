@@ -1,120 +1,46 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Link } from "react-router";
-import { useState } from "react";
-import axios from "axios";
 import Id from "@/components/signup/Id";
 import Pw from "@/components/signup/Pw";
 import UserInfo from "@/components/signup/UserInfo";
 import Button from "@/components/Button";
-import { postSignUpAPI } from "@/api/auth";
+import useSignUpForm from "@/hooks/useSignUpForm";
 
 export default function SignUp() {
-  const [step, setStep] = useState(1);
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [age, setAge] = useState("");
-  const [part, setPart] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const {
+    step,
+    id,
+    password,
+    passwordConfirm,
+    name,
+    email,
+    age,
+    part,
+    isSubmitting,
+    isCurrentStepValid,
+    isLastStep,
+    buttonText,
+    idErrorMessage,
+    passwordErrorMessage,
+    passwordConfirmErrorMessage,
+    nameErrorMessage,
+    emailErrorMessage,
+    ageErrorMessage,
+    setId,
+    setPassword,
+    setPasswordConfirm,
+    setName,
+    setEmail,
+    setAge,
+    setPart,
+    handleNextStep,
+    handleSignUp,
+  } = useSignUpForm();
 
-  const isIdOverMaxLength = id.trim().length > 20;
-  const isIdStepValid = Boolean(id.trim()) && !isIdOverMaxLength;
-  const hasPasswordRequiredCharacters =
-    /[A-Za-z]/.test(password) &&
-    /\d/.test(password) &&
-    /[^A-Za-z0-9]/.test(password);
-  const hasPasswordWhitespace = /\s/.test(password);
-  const isPasswordInvalidLength = Boolean(password.trim()) &&
-    (password.trim().length < 8 || password.trim().length > 20);
-  const isPasswordInvalidCombination = Boolean(password.trim()) && !hasPasswordRequiredCharacters;
-  const isPasswordMismatch = Boolean(
-    password.trim() &&
-      passwordConfirm.trim() &&
-      !hasPasswordWhitespace &&
-      !isPasswordInvalidLength &&
-      !isPasswordInvalidCombination &&
-      password !== passwordConfirm,
-  );
-  const passwordErrorMessage = isPasswordInvalidLength
-    ? "비밀번호는 8~20자 사이로 입력해주세요."
-    : hasPasswordWhitespace
-      ? "비밀번호에는 공백을 사용할 수 없습니다."
-    : isPasswordInvalidCombination
-      ? "비밀번호는 영어, 숫자, 특수문자를 각각 1자 이상 포함해야 합니다."
-      : "";
-  const isPwStepValid = Boolean(
-    password.trim() &&
-      passwordConfirm.trim() &&
-      !hasPasswordWhitespace &&
-      !isPasswordInvalidLength &&
-      !isPasswordInvalidCombination &&
-      password === passwordConfirm,
-  );
-  const isNameTooLong = name.trim().length >= 10;
-  const isEmailInvalidFormat = Boolean(email.trim()) &&
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-  const isAgeInvalidFormat = Boolean(age.trim()) && Number.isNaN(Number(age));
-  const isUserInfoStepValid = Boolean(
-    name.trim() &&
-      email.trim() &&
-      age.trim() &&
-      part.trim() &&
-      !isNameTooLong &&
-      !isEmailInvalidFormat &&
-      !isAgeInvalidFormat,
-  );
-  const isCurrentStepValid =
-    (step === 1 && isIdStepValid) ||
-    (step === 2 && isPwStepValid) ||
-    (step === 3 && isUserInfoStepValid);
-  const isLastStep = step === 3;
-  const buttonText = isLastStep ? "회원가입" : "다음";
-
-  const handleNextStep = () => {
-    if (!isCurrentStepValid || isLastStep) {
-      return;
-    }
-
-    setStep((prevStep) => prevStep + 1);
-  };
-
-  const handleSignUp = async (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleSignUpClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    const loginPageHref = event.currentTarget.href;
-
-    if (!isCurrentStepValid || isSubmitting) {
-      return;
-    }
-
-    try {
-      setIsSubmitting(true);
-
-      const response = await postSignUpAPI({
-        loginId: id.trim(),
-        password: password.trim(),
-        name: name.trim(),
-        email: email.trim(),
-        age: Number(age),
-        part: part.trim(),
-      });
-
-      console.log("회원가입 성공:", response);
-
-      alert(`${name}님 ${response.message}`);
-      window.location.href = loginPageHref;
-    } catch (error) {
-      const errorMessage = axios.isAxiosError(error)
-        ? error.response?.data?.message ?? "회원가입에 실패했습니다."
-        : "회원가입에 실패했습니다.";
-
-      console.error("회원가입 실패:", error);
-      alert(errorMessage);
-    } finally {
-      setIsSubmitting(false);
-    }
+    void handleSignUp(event.currentTarget.href);
   };
 
   return (
@@ -125,7 +51,7 @@ export default function SignUp() {
         {step === 1 && (
           <Id
             id={id}
-            errorMessage={isIdOverMaxLength ? "아이디는 20글자 이하로 입력해주세요." : ""}
+            errorMessage={idErrorMessage}
             onIdChange={setId}
           />
         )}
@@ -134,9 +60,7 @@ export default function SignUp() {
             password={password}
             passwordConfirm={passwordConfirm}
             passwordErrorMessage={passwordErrorMessage}
-            passwordConfirmErrorMessage={
-              isPasswordMismatch ? "비밀번호가 일치하지 않습니다." : ""
-            }
+            passwordConfirmErrorMessage={passwordConfirmErrorMessage}
             onPasswordChange={setPassword}
             onPasswordConfirmChange={setPasswordConfirm}
           />
@@ -147,9 +71,9 @@ export default function SignUp() {
             email={email}
             age={age}
             part={part}
-            nameErrorMessage={isNameTooLong ? "이름은 10자 미만으로 입력해주세요." : ""}
-            emailErrorMessage={isEmailInvalidFormat ? "올바른 이메일 형식으로 입력해주세요." : ""}
-            ageErrorMessage={isAgeInvalidFormat ? "나이는 숫자로 입력해주세요." : ""}
+            nameErrorMessage={nameErrorMessage}
+            emailErrorMessage={emailErrorMessage}
+            ageErrorMessage={ageErrorMessage}
             onNameChange={setName}
             onEmailChange={setEmail}
             onAgeChange={setAge}
@@ -160,7 +84,7 @@ export default function SignUp() {
 
       <section css={btnWrapStyle}>
         {isLastStep ? (
-          <Link to="/login" css={btnStyle} onClick={handleSignUp}>
+          <Link to="/login" css={btnStyle} onClick={handleSignUpClick}>
             <Button buttonText={buttonText} disabled={!isCurrentStepValid || isSubmitting} />
           </Link>
         ) : (
