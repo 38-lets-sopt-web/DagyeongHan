@@ -1,15 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink } from "react-router";
+import useLogout from "@/hooks/useLogout";
 
 export default function Tabs() {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem("userId");
-    alert("로그아웃되었습니다.");
-    navigate("/login");
-  };
+  const { handleLogout } = useLogout();
 
   return (
     <nav css={tabBtnsWrap}>

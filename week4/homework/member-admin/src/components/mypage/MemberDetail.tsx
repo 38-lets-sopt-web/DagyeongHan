@@ -1,35 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import Table from "@/components/Table";
-import { getUserAPI } from "@/api/user";
-import type { UserResponseDto } from "@/api/responseDto";
 import { getMemberTableRows } from "@/components/mypage/memberTableRows";
+import useMemberDetail from "@/hooks/useMemberDetail";
 
 export default function MemberDetail() {
   const { memberId } = useParams();
-  const [member, setMember] = useState<UserResponseDto>();
-
-  useEffect(() => {
-    const fetchMember = async () => {
-      if (!memberId) {
-        return;
-      }
-
-      try {
-        const response = await getUserAPI(Number(memberId));
-
-        if (response.data) {
-          setMember(response.data);
-        }
-      } catch (error) {
-        console.error("유저 상세 조회 실패:", error);
-      }
-    };
-
-    void fetchMember();
-  }, [memberId]);
+  const { member } = useMemberDetail(memberId);
 
   return (
     <article css={rootContainerStyle}>

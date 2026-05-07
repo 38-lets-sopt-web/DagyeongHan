@@ -1,54 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import Input from "@/components/Input";
 import MemberCard from "@/components/mypage/MemberCard";
 import Button from "@/components/Button";
 import Table from "@/components/Table";
-import { getUserAPI, getUserListAPI } from "@/api/user";
-import type { UserListItemResponseDto, UserResponseDto } from "@/api/responseDto";
 import { getMemberTableRows } from "@/components/mypage/memberTableRows";
+import useMembers from "@/hooks/useMembers";
 
 export default function CheckMembers() {
-  const [members, setMembers] = useState<UserListItemResponseDto[]>([]);
-  const [searchId, setSearchId] = useState("");
-  const [searchedUser, setSearchedUser] = useState<UserResponseDto>();
-  const [hasSearched, setHasSearched] = useState(false);
-
-  useEffect(() => {
-    const fetchMembers = async () => {
-      try {
-        const response = await getUserListAPI();
-
-        if (response.data) {
-          setMembers(response.data.users);
-        }
-      } catch (error) {
-        console.error("유저 목록 조회 실패:", error);
-      }
-    };
-
-    void fetchMembers();
-  }, []);
-
-  const handleSearch = async () => {
-    const userId = Number(searchId.trim());
-
-    if (!userId) {
-      return;
-    }
-
-    try {
-      const response = await getUserAPI(userId);
-      setSearchedUser(response.data);
-    } catch (error) {
-      console.error("유저 상세 조회 실패:", error);
-      setSearchedUser(undefined);
-    } finally {
-      setHasSearched(true);
-    }
-  };
+  const {
+    members,
+    searchId,
+    searchedUser,
+    hasSearched,
+    setSearchId,
+    handleSearch,
+  } = useMembers();
 
   return (
     <section css={rootContainerStyle}>
