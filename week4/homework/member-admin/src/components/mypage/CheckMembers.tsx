@@ -6,12 +6,21 @@ import Input from "@/components/Input";
 import MemberCard from "@/components/mypage/MemberCard";
 import Button from "@/components/Button";
 import Table from "@/components/Table";
-import { getUserListAPI } from "@/api/user";
-import type { UserListItemResponseDto } from "@/api/responseDto";
+import { getUserAPI, getUserListAPI } from "@/api/user";
+import type { UserListItemResponseDto, UserResponseDto } from "@/api/responseDto";
+
+const getUserTableRows = (user: UserResponseDto) => [
+  { label: "아이디", value: user.loginId },
+  { label: "이름", value: user.name },
+  { label: "나이", value: `${user.age}세` },
+  { label: "이메일", value: user.email },
+  { label: "파트", value: user.part },
+];
 
 export default function CheckMembers() {
   const [members, setMembers] = useState<UserListItemResponseDto[]>([]);
   const [searchId, setSearchId] = useState("");
+  const [searchedUser, setSearchedUser] = useState<UserResponseDto>();
   const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
@@ -30,12 +39,22 @@ export default function CheckMembers() {
     void fetchMembers();
   }, []);
 
-  const handleSearch = () => {
-    if (!searchId.trim()) {
+  const handleSearch = async () => {
+    const userId = Number(searchId.trim());
+
+    if (!userId) {
       return;
     }
 
-    setHasSearched(true);
+    try {
+      const response = await getUserAPI(userId);
+      setSearchedUser(response.data);
+    } catch (error) {
+      console.error("유저 상세 조회 실패:", error);
+      setSearchedUser(undefined);
+    } finally {
+      setHasSearched(true);
+    }
   };
 
   return (
@@ -45,6 +64,7 @@ export default function CheckMembers() {
       <section css={fieldStyle}>
         <span css={labelStyle}>회원 ID</span>
         <Input
+          type="number"
           placeholder="ID를 입력하세요"
           value={searchId}
           onChange={(event) => setSearchId(event.target.value)}
@@ -55,7 +75,7 @@ export default function CheckMembers() {
       <section css={fieldStyle}>
         <h3 css={titleStyle}>검색 결과</h3>
         <Table
-          rows={[]}
+          rows={hasSearched && searchedUser ? getUserTableRows(searchedUser) : []}
           emptyMessage={
             hasSearched
               ? "검색 결과가 없습니다."
