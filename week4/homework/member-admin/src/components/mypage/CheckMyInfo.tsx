@@ -68,7 +68,7 @@ export default function CheckMyInfo() {
   };
 
   return (
-    <div css={rootContainerStyle}>
+    <section css={rootContainerStyle}>
       <h2 css={titleStyle}>내 정보</h2>
       <MyInfoCard user={user} />
       <EditMyInfo
@@ -80,7 +80,7 @@ export default function CheckMyInfo() {
         onAgeChange={setAge}
         onSubmit={handlePatchUser}
       />
-    </div>
+    </section>
   );
 }
 

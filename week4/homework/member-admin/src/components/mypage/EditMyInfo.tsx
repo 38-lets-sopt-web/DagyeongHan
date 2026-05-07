@@ -28,8 +28,8 @@ export default function EditMyInfo({
   const isEditEnabled = name.trim() && email.trim() && age.trim() && !isEmailInvalidFormat;
 
   return (
-    <div css={rootContainerStyle}>
-      <div css={layoutStyle}>
+    <form css={rootContainerStyle}>
+      <fieldset css={layoutStyle}>
 
         {/* 아이디 입력 */}
         <label css={fieldStyle}>
@@ -64,11 +64,11 @@ export default function EditMyInfo({
           />
         </label>
 
-      </div>
+      </fieldset>
 
       {/* 버튼 */}
-      <Button buttonText="정보 수정" disabled={!isEditEnabled} onClick={onSubmit} />
-    </div>
+      <Button buttonText="정보 수정" type="button" disabled={!isEditEnabled} onClick={onSubmit} />
+    </form>
   );
 }
 
@@ -86,6 +86,9 @@ const layoutStyle = css`
   justify-content: center;
   align-items: center;
   gap: 1em;
+  margin: 0;
+  padding: 0;
+  border: none;
 `;
 
 const fieldStyle = css`

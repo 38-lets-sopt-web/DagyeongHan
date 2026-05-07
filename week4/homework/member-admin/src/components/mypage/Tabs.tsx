@@ -12,7 +12,7 @@ export default function Tabs() {
   };
 
   return (
-    <div css={tabBtnsWrap}>
+    <nav css={tabBtnsWrap}>
       <NavLink
         to="/mypage/userinfo"
         css={linkStyle}
@@ -28,7 +28,7 @@ export default function Tabs() {
       </NavLink>
 
       <button type="button" css={btnStyle} onClick={handleLogout}>로그아웃</button>
-    </div>
+    </nav>
   )
 }
 

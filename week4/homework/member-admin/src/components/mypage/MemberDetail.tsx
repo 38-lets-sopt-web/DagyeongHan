@@ -32,21 +32,21 @@ export default function MemberDetail() {
   }, [memberId]);
 
   return (
-    <div css={rootContainerStyle}>
+    <article css={rootContainerStyle}>
       <h2 css={titleStyle}>상세 정보</h2>
-      <div css={fieldStyle}>
+      <nav css={fieldStyle}>
         <Link to="/mypage/checkmembers" css={backLinkStyle}>
           ← 뒤로가기
         </Link>
-      </div>
-      <div css={fieldStyle}>
+      </nav>
+      <section css={fieldStyle}>
         {member ? (
           <Table rows={getMemberTableRows(member)} height="12em" />
         ) : (
           <Table rows={[]} height="12em" emptyMessage="멤버 정보를 찾을 수 없습니다." />
         )}
-      </div>
-    </div>
+      </section>
+    </article>
   );
 }
 

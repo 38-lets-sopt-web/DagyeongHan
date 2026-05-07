@@ -8,10 +8,10 @@ interface MemberCardProps {
 
 export default function MemberCard({ name, part }: MemberCardProps) {
   return (
-    <div css={CardWrapStyle}>
+    <article css={CardWrapStyle}>
       <span css={nameStyle}>{name}</span>
       <span css={partStyle}>{part}</span>
-    </div>
+    </article>
   );
 }
 

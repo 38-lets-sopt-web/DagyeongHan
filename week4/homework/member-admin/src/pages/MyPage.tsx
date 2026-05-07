@@ -9,12 +9,12 @@ export default function MyPage() {
   const isCheckMembers = pathname.startsWith("/mypage/checkmembers");
 
   return (
-    <div css={rootContainerStyle}>
+    <section css={rootContainerStyle}>
       <Header/>
       <main css={mainContainerStyle(isCheckMembers)}>
         <Outlet />
       </main>
-    </div>
+    </section>
   )
 }
 

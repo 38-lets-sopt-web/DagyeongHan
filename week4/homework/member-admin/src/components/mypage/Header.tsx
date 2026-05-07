@@ -4,13 +4,13 @@ import Tabs from "@/components/mypage/Tabs";
 
 export default function Header() {
   return (
-    <div css={rootContainerStyle}>
-      <div css={titleWrapStyle}>
+    <header css={rootContainerStyle}>
+      <section css={titleWrapStyle}>
         <h2 css={titleStyle}>SOPT MEMBERS</h2>
         <span css={greetingTextStyle}>안녕하세요, 한다경님!</span>
-      </div>
+      </section>
       <Tabs />
-    </div>
+    </header>
   )
 }
 

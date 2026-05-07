@@ -51,7 +51,7 @@ export default function CheckMembers() {
   };
 
   return (
-    <div css={rootContainerStyle}>
+    <section css={rootContainerStyle}>
       <h2 css={titleStyle}>회원 조회</h2>
 
       <section css={fieldStyle}>
@@ -80,19 +80,20 @@ export default function CheckMembers() {
 
       <section css={memberListStyle}>
         <h3 css={titleStyle}>전체 멤버 리스트</h3>
-        <div css={cardSectionStyle}>
+        <ul css={cardSectionStyle}>
           {members.map((member) => (
-            <Link
-              key={member.id}
-              to={`/mypage/checkmembers/${member.id}`}
-              css={cardLinkStyle}
-            >
-              <MemberCard name={member.name} part={member.part} />
-            </Link>
+            <li key={member.id}>
+              <Link
+                to={`/mypage/checkmembers/${member.id}`}
+                css={cardLinkStyle}
+              >
+                <MemberCard name={member.name} part={member.part} />
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
-    </div>
+    </section>
   );
 }
 
@@ -132,6 +133,9 @@ const cardSectionStyle = css`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
   gap: 1em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 `;
 
 const cardLinkStyle = css`
