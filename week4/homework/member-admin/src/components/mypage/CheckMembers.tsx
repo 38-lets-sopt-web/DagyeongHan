@@ -1,63 +1,34 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import Input from "@/components/Input";
 import MemberCard from "@/components/mypage/MemberCard";
 import Button from "@/components/Button";
 import Table from "@/components/Table";
-
-export interface Member {
-  id: string;
-  name: string;
-  email: string;
-  age: string;
-  part: string;
-}
-
-const members: Member[] = [
-  {
-    id: "example",
-    name: "이름",
-    email: "web@web.com",
-    age: "24",
-    part: "웹",
-  },
-  {
-    id: "member1",
-    name: "이름",
-    email: "member1@web.com",
-    age: "23",
-    part: "서버",
-  },
-  {
-    id: "member2",
-    name: "이름",
-    email: "member2@web.com",
-    age: "25",
-    part: "기획",
-  },
-  {
-    id: "member3",
-    name: "이름",
-    email: "member3@web.com",
-    age: "22",
-    part: "디자인",
-  },
-];
-
-const getMemberTableRows = (member: Member) => [
-  { label: "아이디", value: member.id },
-  { label: "이름", value: member.name },
-  { label: "이메일", value: member.email },
-  { label: "나이", value: member.age },
-  { label: "파트", value: member.part },
-];
+import { getUserListAPI } from "@/api/user";
+import type { UserListItemResponseDto } from "@/api/responseDto";
 
 export default function CheckMembers() {
+  const [members, setMembers] = useState<UserListItemResponseDto[]>([]);
   const [searchId, setSearchId] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
-  const searchedMember = members.find(({ id }) => id === searchId.trim());
+
+  useEffect(() => {
+    const fetchMembers = async () => {
+      try {
+        const response = await getUserListAPI();
+
+        if (response.data) {
+          setMembers(response.data.users);
+        }
+      } catch (error) {
+        console.error("유저 목록 조회 실패:", error);
+      }
+    };
+
+    void fetchMembers();
+  }, []);
 
   const handleSearch = () => {
     if (!searchId.trim()) {
@@ -84,7 +55,7 @@ export default function CheckMembers() {
       <section css={fieldStyle}>
         <h3 css={titleStyle}>검색 결과</h3>
         <Table
-          rows={hasSearched && searchedMember ? getMemberTableRows(searchedMember) : []}
+          rows={[]}
           emptyMessage={
             hasSearched
               ? "검색 결과가 없습니다."
@@ -100,7 +71,6 @@ export default function CheckMembers() {
             <Link
               key={member.id}
               to={`/mypage/checkmembers/${member.id}`}
-              state={{ member }}
               css={cardLinkStyle}
             >
               <MemberCard name={member.name} part={member.part} />

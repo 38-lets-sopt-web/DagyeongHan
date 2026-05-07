@@ -2,7 +2,14 @@
 import { css } from "@emotion/react";
 import { Link, useLocation } from "react-router";
 import Table from "@/components/Table";
-import type { Member } from "@/components/mypage/CheckMembers";
+
+interface Member {
+  id: string;
+  name: string;
+  email: string;
+  age: string;
+  part: string;
+}
 
 const getMemberTableRows = (member: Member) => [
   { label: "아이디", value: member.id },
