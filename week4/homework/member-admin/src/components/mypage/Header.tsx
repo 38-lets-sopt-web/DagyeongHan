@@ -3,16 +3,22 @@ import { css } from "@emotion/react";
 import type { Theme } from "@emotion/react";
 import Tabs from "@/components/mypage/Tabs";
 
-export default function Header() {
+interface HeaderProps {
+  userName?: string;
+}
+
+export default function Header({ userName }: HeaderProps) {
+  const greetingText = userName ? `안녕하세요, ${userName}님!` : "안녕하세요!";
+
   return (
     <header css={rootContainerStyle}>
       <section css={titleWrapStyle}>
         <h2 css={titleStyle}>SOPT MEMBERS</h2>
-        <span css={greetingTextStyle}>안녕하세요, 한다경님!</span>
+        <span css={greetingTextStyle}>{greetingText}</span>
       </section>
       <Tabs />
     </header>
-  )
+  );
 }
 
 const rootContainerStyle = (theme: Theme) => css`
@@ -32,7 +38,6 @@ const titleWrapStyle = css`
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  text-align-center;
 `;
 
 const titleStyle = css`

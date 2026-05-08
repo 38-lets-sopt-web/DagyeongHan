@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { useOutletContext } from "react-router";
 import MyInfoCard from "@/components/mypage/MyInfoCard";
 import EditMyInfo from "@/components/mypage/EditMyInfo";
-import useMyInfo from "@/hooks/useMyInfo";
+import type { MyInfoContext } from "@/hooks/useMyInfo";
 
 export default function CheckMyInfo() {
   const {
@@ -14,7 +15,7 @@ export default function CheckMyInfo() {
     setEmail,
     setAge,
     handlePatchUser,
-  } = useMyInfo();
+  } = useOutletContext<MyInfoContext>();
 
   return (
     <section css={rootContainerStyle}>

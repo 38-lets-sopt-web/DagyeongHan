@@ -54,6 +54,9 @@ export default function useMyInfo() {
 
       if (response.data) {
         setUser(response.data);
+        setName(response.data.name);
+        setEmail(response.data.email);
+        setAge(String(response.data.age));
       }
 
       alert("개인 정보가 수정되었습니다.");
@@ -74,3 +77,5 @@ export default function useMyInfo() {
     handlePatchUser,
   };
 }
+
+export type MyInfoContext = ReturnType<typeof useMyInfo>;
