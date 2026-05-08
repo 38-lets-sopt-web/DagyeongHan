@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type { Theme } from "@emotion/react";
 import type { ButtonHTMLAttributes } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -12,20 +13,20 @@ export default function Button({ buttonText, ...buttonProps }: ButtonProps) {
   )
 }
 
-const btnStyle = css`
+const btnStyle = (theme: Theme) => css`
   width: 100%;
   padding: 0.5em 1em;
   border: none;
-  border-radius: 8px;
+  border-radius: ${theme.radius.sm};
   font-weight: 700;
   font-size: 1em;
-  background: #84e1fa;
-  color: #0F1012;
+  background: ${theme.colors.primary};
+  color: ${theme.colors.foreground};
   cursor: pointer;
   transition: background 0.2s ease;
 
   &:not(:disabled):hover {
-    background: #4ccff2;
+    background: ${theme.colors.primaryHover};
   }
 
   &:disabled {

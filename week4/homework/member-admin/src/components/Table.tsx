@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type { Theme } from "@emotion/react";
 
 interface TableRow {
   label: string;
@@ -33,17 +34,17 @@ export default function Table({ rows, emptyMessage, height }: TableProps) {
   );
 }
 
-const cardStyle = (height?: string) => css`
+const cardStyle = (height?: string) => (theme: Theme) => css`
   width: 100%;
   height: ${height};
   display: flex;
   align-items: center;
   padding: 0.875em 1em;
-  background: #2e2e35;
-  border-radius: 8px;
+  background: ${theme.colors.surface};
+  border-radius: ${theme.radius.sm};
 `;
 
-const tableStyle = css`
+const tableStyle = (theme: Theme) => css`
   width: 100%;
   border-collapse: collapse;
 
@@ -59,16 +60,16 @@ const tableStyle = css`
   }
 
   td {
-    color: #ccc;
+    color: ${theme.colors.textMuted};
     font-weight: 500;
     text-align: right;
   }
 `;
 
-const emptyMessageStyle = css`
+const emptyMessageStyle = (theme: Theme) => css`
   width: 100%;
   margin: 0;
-  color: #ccc;
+  color: ${theme.colors.textMuted};
   font-weight: 500;
   font-size: 0.9375em;
   text-align: center;

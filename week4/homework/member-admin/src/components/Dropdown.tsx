@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type { Theme } from "@emotion/react";
 import { useState } from "react";
 import { ChevronDownIcon } from "@/assets/icons";
 
@@ -53,16 +54,16 @@ const dropdownStyle = css`
   width: 30em;
 `;
 
-const dropdownButtonStyle = (isPlaceholder: boolean) => css`
+const dropdownButtonStyle = (isPlaceholder: boolean) => (theme: Theme) => css`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5em 1em;
   border: none;
-  border-radius: 8px;
-  background: #fff;
-  color: ${isPlaceholder ? "#75798a" : ""};
+  border-radius: ${theme.radius.sm};
+  background: ${theme.colors.white};
+  color: ${isPlaceholder ? theme.colors.placeholder : theme.colors.foreground};
   font-weight: 500;
   font-size: 0.875em;
   cursor: pointer;
@@ -75,7 +76,7 @@ const chevronIconStyle = (isOpen: boolean) => css`
   transition: transform 0.2s ease;
 `;
 
-const dropdownMenuStyle = css`
+const dropdownMenuStyle = (theme: Theme) => css`
   position: absolute;
   top: calc(100% + 0.25em);
   left: 0;
@@ -84,23 +85,23 @@ const dropdownMenuStyle = css`
   margin: 0;
   padding: 0.25em 0;
   list-style: none;
-  border-radius: 8px;
-  background: #fff;
+  border-radius: ${theme.radius.sm};
+  background: ${theme.colors.white};
   overflow: hidden;
 `;
 
-const dropdownItemStyle = css`
+const dropdownItemStyle = (theme: Theme) => css`
   width: 100%;
   padding: 0.5em 1em;
   border: none;
   background: none;
-  color: #0f1012;
+  color: ${theme.colors.foreground};
   font-weight: 500;
   font-size: 0.875em;
   text-align: left;
   cursor: pointer;
 
   &:hover {
-    background: #e8f8fd;
+    background: ${theme.colors.dropdownHover};
   }
 `;

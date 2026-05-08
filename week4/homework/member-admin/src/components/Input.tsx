@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type { Theme } from "@emotion/react";
 import { useState } from "react";
 import type { InputHTMLAttributes } from "react";
 import { EyeIcon, EyeOffIcon } from "@/assets/icons";
@@ -43,16 +44,16 @@ const inputContainerStyle = css`
   align-items: center;
 `;
 
-const inputStyle = (hasRightIcon: boolean) => css`
+const inputStyle = (hasRightIcon: boolean) => (theme: Theme) => css`
   width: 100%;
   padding: 0.5em ${hasRightIcon ? "3em" : "1em"} 0.5em 1em;
   border: none;
-  border-radius: 8px;
+  border-radius: ${theme.radius.sm};
   font-weight: 500;
   font-size: 0.875em;
 `;
 
-const toggleButtonStyle = css`
+const toggleButtonStyle = (theme: Theme) => css`
   position: absolute;
   right: 0.75em;
   display: flex;
@@ -63,7 +64,7 @@ const toggleButtonStyle = css`
   padding: 0;
   border: none;
   background: none;
-  color: #76767f;
+  color: ${theme.colors.iconMuted};
   cursor: pointer;
 `;
 

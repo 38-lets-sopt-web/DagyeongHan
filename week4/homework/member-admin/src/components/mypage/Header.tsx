@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type { Theme } from "@emotion/react";
 import Tabs from "@/components/mypage/Tabs";
 
 export default function Header() {
@@ -14,7 +15,7 @@ export default function Header() {
   )
 }
 
-const rootContainerStyle = css`
+const rootContainerStyle = (theme: Theme) => css`
   position: sticky;
   top: 0;
   left: 0;
@@ -23,7 +24,7 @@ const rootContainerStyle = css`
   justify-content: space-between;
   align-items: center;
   padding: 1em 4em;
-  background: #2e2e35;
+  background: ${theme.colors.surface};
   z-index: 10;
 `;
 

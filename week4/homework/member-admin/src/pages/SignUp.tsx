@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type { Theme } from "@emotion/react";
 import { Link } from "react-router";
 import Id from "@/components/signup/Id";
 import Pw from "@/components/signup/Pw";
@@ -147,16 +148,16 @@ const routeWrapStyle = css`
   gap: 0.5em;
 `;
 
-const messageStyle = css`
+const messageStyle = (theme: Theme) => css`
   text-decoration: none;
-  color: #ccc;
+  color: ${theme.colors.textMuted};
   font-size: 0.75em;
   font-weight: 500;
 `;
 
-const toLinkStyle = css`
+const toLinkStyle = (theme: Theme) => css`
   text-decoration: none;
-  color: #00ceff;
+  color: ${theme.colors.link};
   font-size: 0.75em;
   font-weight: 500;
 `;

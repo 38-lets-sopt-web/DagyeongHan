@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type { Theme } from "@emotion/react";
 import { NavLink } from "react-router";
 import useLogout from "@/hooks/useLogout";
 
@@ -32,26 +33,26 @@ const tabBtnsWrap = css`
   gap: 1em;
 `;
 
-const btnStyle = css`
+const btnStyle = (theme: Theme) => css`
   border: none;
   background: none;
-  color: #fff;
+  color: ${theme.colors.text};
   font-weight: 500;
   font-size: 0.825em;
   cursor: pointer;
 `;
 
-const linkStyle = css`
-  color: #fff;
+const linkStyle = (theme: Theme) => css`
+  color: ${theme.colors.text};
   text-decoration: none;
   font-weight: 500;
   font-size: 0.825em;
   padding: 0.5em 0.75em;
-  border-radius: 0.5em;
+  border-radius: ${theme.radius.sm};
 
   &.active {
     font-weight: 700;
     font-size: 0.825em;
-    color: #84e1fa;
+    color: ${theme.colors.primary};
   }
 `;

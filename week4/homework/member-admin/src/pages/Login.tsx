@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type { Theme } from "@emotion/react";
 import { Link } from "react-router";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
@@ -107,9 +108,9 @@ const btnWrapStyle = css`
   gap: 0.5em;
 `;
 
-const toSignUpStyle = css`
+const toSignUpStyle = (theme: Theme) => css`
   text-decoration: none;
-  color: #00ceff;
+  color: ${theme.colors.link};
   font-size: 0.75em;
   font-weight: 500;
 `;

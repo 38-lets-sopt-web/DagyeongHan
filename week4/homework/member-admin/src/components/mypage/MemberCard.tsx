@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type { Theme } from "@emotion/react";
 
 interface MemberCardProps {
   name: string;
@@ -15,7 +16,7 @@ export default function MemberCard({ name, part }: MemberCardProps) {
   );
 }
 
-const CardWrapStyle = css`
+const CardWrapStyle = (theme: Theme) => css`
   width: 100%;
   min-width: 12em;
   height: 7em;
@@ -25,8 +26,8 @@ const CardWrapStyle = css`
   align-items: center;
   gap: 0.625em;
   padding: 1em;
-  background: #2e2e35;
-  border-radius: 8px;
+  background: ${theme.colors.surface};
+  border-radius: ${theme.radius.sm};
   cursor: pointer;
 `;
 
@@ -34,11 +35,11 @@ const nameStyle = css`
   font-weight: 600;
 `;
 
-const partStyle = css`
-  background: #84e1fa;
-  border-radius: 100px;
+const partStyle = (theme: Theme) => css`
+  background: ${theme.colors.primary};
+  border-radius: ${theme.radius.pill};
   font-size: 0.825em;
   font-weight: 700;
   padding: 0.375em 0.625em;
-  color: #2e2e35;
+  color: ${theme.colors.surface};
 `;

@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import type { Theme } from "@emotion/react";
 import { Link, useParams } from "react-router";
 import Table from "@/components/Table";
 import { getMemberTableRows } from "@/components/mypage/memberTableRows";
@@ -48,8 +49,8 @@ const titleStyle = css`
   margin: 0;
 `;
 
-const backLinkStyle = css`
-  color: #84e1fa;
+const backLinkStyle = (theme: Theme) => css`
+  color: ${theme.colors.primary};
   font-size: 0.825em;
   font-weight: 600;
   text-decoration: none;
