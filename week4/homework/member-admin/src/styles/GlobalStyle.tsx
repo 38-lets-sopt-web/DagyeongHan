@@ -1,9 +1,15 @@
 import { Global, css } from "@emotion/react";
+import type { Theme } from "@emotion/react";
 
 export default function GlobalStyle() {
   return (
     <Global
-      styles={css`
+      styles={globalStyle}
+    />
+  );
+}
+
+const globalStyle = (theme: Theme) => css`
         * {
           box-sizing: border-box;
         }
@@ -14,14 +20,11 @@ export default function GlobalStyle() {
           width: 100%;
           min-height: 100%;
           margin: 0;
-          background: #0f1012;
-          color: #fff;
+          background: ${theme.colors.background};
+          color: ${theme.colors.text};
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
         }
-      `}
-    />
-  );
-}
+      `;
