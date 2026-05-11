@@ -64,7 +64,7 @@ export default function Game() {
       </section>
 
       {/* 게임 종료 모달 */}
-      {finishScore !== null && (
+      {finishScore !== null && finishScore > 0 && (
         <GameFinishModal
           score={finishScore}
           level={level}
