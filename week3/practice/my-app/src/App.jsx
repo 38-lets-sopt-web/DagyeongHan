@@ -1,0 +1,30 @@
+import Card from "./components/Card";
+import Header from "./components/Header";
+import Search from "./components/Search";
+
+import { members } from "./member";
+import { useSearch } from "./hooks/useSearch";
+
+function App() {
+  // useState - search state 생성
+  const { search, filteredData, handleSearchChange, handleSearchClick } =
+    useSearch(members);
+
+  return (
+    <>
+      <Header />
+      <Search 
+        search={search} 
+        onSearchChange={handleSearchChange}
+        onSearchClick={handleSearchClick}
+      />
+      <section style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+        {filteredData.map((member) => (
+          <Card key={member.id} {...member} />
+        ))}
+      </section>
+    </>
+  );
+}
+
+export default App;
