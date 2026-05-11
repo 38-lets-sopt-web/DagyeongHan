@@ -4,20 +4,17 @@ import { css } from '@emotion/react';
 import { DEFAULT_LEVEL, LEVEL_OPTIONS } from '../../constants/game';
 import ChevronDownIcon from '../../assets/ic-chevron-down.svg?react';
 
-export default function LevelSelect({ value, onChange, disabled = false }) {
+export default function LevelSelect({ value = DEFAULT_LEVEL, onChange, disabled = false }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(value ?? DEFAULT_LEVEL);
   const dropdownRef = useRef(null);
 
-  const currentValue = value ?? selectedValue;
   const selectedOption =
-    LEVEL_OPTIONS.find((option) => option.value === currentValue) ??
+    LEVEL_OPTIONS.find((option) => option.value === value) ??
     LEVEL_OPTIONS.find((option) => option.value === DEFAULT_LEVEL);
 
   const handleSelect = (nextValue) => {
     if (disabled) return;
 
-    setSelectedValue(nextValue);
     onChange?.(nextValue);
     setIsOpen(false);
   };
@@ -56,10 +53,10 @@ export default function LevelSelect({ value, onChange, disabled = false }) {
             <li key={option.value}>
               <button
                 type="button"
-                css={optionStyle(option.value === currentValue)}
+                css={optionStyle(option.value === value)}
                 onClick={() => handleSelect(option.value)}
                 role="option"
-                aria-selected={option.value === currentValue}
+                aria-selected={option.value === value}
               >
                 {option.label}
               </button>
