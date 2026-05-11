@@ -47,18 +47,7 @@ export default function useWhackAMoleGame() {
     setIsPlaying(false);
     setMessage('시작 버튼을 눌러주세요.');
   }, [clearTarget, clearTargetTimers, resetScore]);
-
-  // 게임 시작 처리
-  const handleStart = () => {
-    gameEndedRef.current = false;
-    clearTargetTimers();
-    resetScore();
-    resetTime();
-    setIsPlaying(true);
-    setMessage('두더지를 잡아보아요!');
-    showTarget(levelSetting.boardSize);
-  };
-
+  
   // 게임 종료 처리
   const finishGame = useCallback((finalScore) => {
     // 종료 상태일 때 중복 실행 방지
@@ -82,15 +71,6 @@ export default function useWhackAMoleGame() {
     // 최종 점수 세팅
     setFinishScore(finalScore);
   }, [clearTarget, clearTargetTimers, level, levelSetting.label]);
-  
-  // 게임 중지
-  const handleStop = () => {
-    if (!isPlaying) return;
-
-    gameEndedRef.current = true;
-    resetGame();
-    resetTime();
-  };
 
   // 타이머 종료 시 해당 점수로 게임 종료
   const handleTimeUp = useCallback(() => {
@@ -104,8 +84,28 @@ export default function useWhackAMoleGame() {
     onTimeUp: handleTimeUp,
   });
 
+  // 게임 시작 처리
+  const handleStart = useCallback(() => {
+    gameEndedRef.current = false;
+    clearTargetTimers();
+    resetScore();
+    resetTime();
+    setIsPlaying(true);
+    setMessage('두더지를 잡아보아요!');
+    showTarget(levelSetting.boardSize);
+  }, [clearTargetTimers, levelSetting.boardSize, resetScore, resetTime, showTarget]);
+  
+  // 게임 중지
+  const handleStop = useCallback(() => {
+    if (!isPlaying) return;
+
+    gameEndedRef.current = true;
+    resetGame();
+    resetTime();
+  }, [isPlaying, resetGame, resetTime]);
+
   // 난이도 변경
-  const handleLevelChange = (nextLevel) => {
+  const handleLevelChange = useCallback((nextLevel) => {
     // 게임 진행 중에는 난이도 변경 불가
     if (isPlaying) return;
 
@@ -114,10 +114,10 @@ export default function useWhackAMoleGame() {
     setLevel(nextLevel);
     resetGame();
     resetTime(nextLevelSetting.duration);
-  };
+  }, [isPlaying, resetGame, resetTime]);
 
   // 구멍 클릭 처리
-  const handleHoleClick = (index) => {
+  const handleHoleClick = useCallback((index) => {
     // 게임 중이 아니거나 클릭한 칸에 타겟이 없으면 무시
     if (!isPlaying || target?.index !== index || target.status !== TARGET_STATUS.ACTIVE) return;
 
@@ -135,7 +135,17 @@ export default function useWhackAMoleGame() {
       clearTargetTimers(); // 타이머 정리
       clearTarget(); // 타겟 제거
     }
-  };
+  },
+    [
+      isPlaying,
+      target,
+      increaseScore,
+      showHitTarget,
+      decreaseScore,
+      clearTargetTimers,
+      clearTarget,
+    ]
+  );
 
    // 게임 중 타겟이 없으면 일정 간격마다 새 타겟 생성
   useEffect(() => {
