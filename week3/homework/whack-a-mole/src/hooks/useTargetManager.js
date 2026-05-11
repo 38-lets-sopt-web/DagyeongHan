@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  createTarget,
   HIT_VISIBLE_MS,
   TARGET_STATUS,
   TARGET_VISIBLE_MS,
 } from '../constants/game';
+import { createTarget } from '../utils/createTarget';
 
 // 두더지, 폭탄 상태 관리
 export default function useTargetManager() {
