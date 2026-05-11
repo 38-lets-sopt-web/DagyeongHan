@@ -1,3 +1,5 @@
+const RANKING_STORAGE_KEY = 'whack-a-mole-rankings';
+
 // 랭킹 정렬 함수
 const sortRankings = (rankings) => {
   rankings.sort((a, b) => {
@@ -13,7 +15,7 @@ const sortRankings = (rankings) => {
 
 // 랭킹 기록 불러오기
 export const getRankingRecords = () => {
-  const savedRankings = localStorage.getItem('whack-a-mole-rankings');
+  const savedRankings = localStorage.getItem(RANKING_STORAGE_KEY);
   const rankings = savedRankings ? JSON.parse(savedRankings) : [];
 
   // 점수 내림차순 정렬
@@ -47,10 +49,10 @@ export const saveRankingRecord = ({ level, levelLabel, score }) => {
   sortRankings(rankings);
 
   // 변경된 기록 localStorage에 저장
-  localStorage.setItem('whack-a-mole-rankings', JSON.stringify(rankings));
+  localStorage.setItem(RANKING_STORAGE_KEY, JSON.stringify(rankings));
 };
 
 // 랭킹 기록 초기화
 export const clearRankingRecords = () => {
-  localStorage.removeItem('whack-a-mole-rankings');
+  localStorage.removeItem(RANKING_STORAGE_KEY);
 };
