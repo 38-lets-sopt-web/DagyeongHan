@@ -14,7 +14,7 @@ export default function DropdownSection({ filter, onChange }: DropdownSectionPro
         options={RATING_OPTIONS}
         value={filter.rating}
         onChange={(value) => onChange({ ...filter, rating: value })}
-        placeholder="별점 선택"
+        placeholder="전체 선택"
       />
     </section>
   )
