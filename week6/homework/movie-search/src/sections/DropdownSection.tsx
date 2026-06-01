@@ -1,17 +1,20 @@
-import { useState } from 'react'
 import Dropdown from '@/shared/components/Dropdown'
-import { GENRE_OPTIONS } from '@/shared/constants/genres'
+import { RATING_OPTIONS } from '@/shared/constants/ratings'
+import type { MovieFilter } from '@/shared/types/common'
 
-export default function DropdownSection() {
-  const [genre, setGenre] = useState('')
+type DropdownSectionProps = {
+  filter: MovieFilter
+  onChange: (filter: MovieFilter) => void
+}
 
+export default function DropdownSection({ filter, onChange }: DropdownSectionProps) {
   return (
     <div className="w-full flex gap-4 flex-wrap bg-brand-secondary-light px-8 py-4 rounded-medium">
       <Dropdown
-        options={GENRE_OPTIONS}
-        value={genre}
-        onChange={setGenre}
-        placeholder="장르 선택"
+        options={RATING_OPTIONS}
+        value={filter.rating}
+        onChange={(value) => onChange({ ...filter, rating: value })}
+        placeholder="별점 선택"
       />
     </div>
   )

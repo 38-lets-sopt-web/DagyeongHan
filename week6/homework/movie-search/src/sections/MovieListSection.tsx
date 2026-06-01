@@ -1,9 +1,14 @@
 import { useEffect, useRef } from 'react'
 import Card from '@/shared/components/Card'
 import { useMovies } from '@/shared/hooks/useMovies'
+import type { MovieFilter } from '@/shared/types/common'
 
-export default function MovieListSection() {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useMovies()
+type MovieListSectionProps = {
+  filter: MovieFilter
+}
+
+export default function MovieListSection({ filter }: MovieListSectionProps) {
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useMovies(filter)
 
   const observerRef = useRef<HTMLDivElement>(null)
 
