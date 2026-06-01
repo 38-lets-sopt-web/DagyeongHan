@@ -1,4 +1,4 @@
-import Dropdown from '@/shared/components/Dropdown'
+import Dropdown from '@/pages/main/components/Dropdown'
 import { RATING_OPTIONS } from '@/shared/constants/ratings'
 import type { MovieFilter } from '@/shared/types/common'
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import Card from '@/shared/components/Card'
+import Card from '@/pages/main/components/Card'
 import { useMovies } from '@/shared/hooks/useMovies'
 import type { MovieFilter } from '@/shared/types/common'
 

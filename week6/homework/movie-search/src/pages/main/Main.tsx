@@ -1,6 +1,6 @@
 import { useState } from "react"
-import DropdownSection from "@/sections/DropdownSection"
-import MovieListSection from "@/sections/MovieListSection"
+import DropdownSection from "@/pages/main/sections/DropdownSection"
+import MovieListSection from "@/pages/main/sections/MovieListSection"
 import Header from "@/shared/components/Header"
 import type { MovieFilter } from "@/shared/types/common"
 
