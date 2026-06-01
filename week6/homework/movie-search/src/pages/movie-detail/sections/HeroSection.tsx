@@ -1,3 +1,5 @@
+import StatCard from '@/pages/movie-detail/components/StatCard'
+
 export default function HeroSection() {
   return (
     <section className="w-full flex flex-col bg-brand-secondary rounded-medium overflow-hidden">
@@ -11,22 +13,10 @@ export default function HeroSection() {
             <div>장르</div><div>장르</div>
           </div>
           <div className="grid grid-cols-2 gap-2">
-            <div className="border w-full p-2 rounded-medium">
-              <div>평점</div>
-              <div>7.6/10</div>
-            </div>
-            <div className="border w-full p-2 rounded-medium">
-              <div>투표 수</div>
-              <div>1,378</div>
-            </div>
-            <div className="border w-full p-2 rounded-medium">
-              <div>상영 시간</div>
-              <div>-</div>
-            </div>
-            <div className="border w-full p-2 rounded-medium">
-              <div>상태</div>
-              <div>-</div>
-            </div>
+            <StatCard label="평점" value="7.6/10" />
+            <StatCard label="투표 수" value="1,378" />
+            <StatCard label="상영 시간" value="-" />
+            <StatCard label="상태" value="-" />
           </div>
         </div>
       </div>
