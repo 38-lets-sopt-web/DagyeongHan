@@ -17,7 +17,7 @@ export default function MovieDetail() {
       <HeroSection data={data} />
       <OverviewSection />
       <div className="w-full flex gap-4">
-        <InfoSection />
+        <InfoSection data={data} />
         <RatingSection />
       </div>
     </div>
