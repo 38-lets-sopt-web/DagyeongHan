@@ -5,9 +5,9 @@ type StatCardProps = {
 
 export default function StatCard({ label, value }: StatCardProps) {
   return (
-    <div className="border w-full p-2 rounded-medium">
-      <div>{label}</div>
-      <div>{value}</div>
+    <div className="border border-brand-primary w-full p-2 rounded-medium">
+      <dt className="typo-caption1">{label}</dt>
+      <dd className="typo-title2">{value}</dd>
     </div>
   )
 }
