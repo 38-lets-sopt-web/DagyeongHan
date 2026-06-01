@@ -21,7 +21,7 @@ export default function MovieListSection({ filter }: MovieListSectionProps) {
   }, [hasNextPage, fetchNextPage])
 
   return (
-    <>
+    <section>
       <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {data?.pages.flatMap((page) => page.results).map((movie) => (
           <li key={movie.id}>
@@ -31,6 +31,6 @@ export default function MovieListSection({ filter }: MovieListSectionProps) {
         <div ref={observerRef} />
       </ul>
       {isFetchingNextPage && <p className="flex justify-center items-center text-neutral-300">Loading...</p>}
-    </>
+    </section>
   )
 }
