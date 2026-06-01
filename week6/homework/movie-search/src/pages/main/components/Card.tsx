@@ -3,9 +3,9 @@ import { Link } from 'react-router'
 
 const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL
 
-const Card = ({ title, release_date, overview, poster_path }: Movie) => {
+const Card = ({ id, title, release_date, overview, poster_path }: Movie) => {
   return (
-    <Link to='/movie-detail/:movieId'>
+    <Link to={`/movie-detail/${id}`}>
       <article className="w-full h-147.5 bg-neutral-100 rounded-small overflow-hidden cursor-pointer transition-transform duration-300 ease-[ease] hover:scale-102">
         <img
           className="w-full h-[400px] object-cover"
