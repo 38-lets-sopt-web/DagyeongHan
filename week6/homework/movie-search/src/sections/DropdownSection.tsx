@@ -9,13 +9,13 @@ type DropdownSectionProps = {
 
 export default function DropdownSection({ filter, onChange }: DropdownSectionProps) {
   return (
-    <div className="w-full flex gap-4 flex-wrap bg-brand-secondary-light px-8 py-4 rounded-medium">
+    <section className="w-full flex gap-4 flex-wrap bg-brand-secondary-light px-8 py-4 rounded-medium">
       <Dropdown
         options={RATING_OPTIONS}
         value={filter.rating}
         onChange={(value) => onChange({ ...filter, rating: value })}
         placeholder="별점 선택"
       />
-    </div>
+    </section>
   )
 }
