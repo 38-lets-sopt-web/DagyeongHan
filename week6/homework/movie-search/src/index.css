@@ -5,8 +5,15 @@
     box-sizing: border-box;
   }
 
+  html,
   body {
     @apply bg-black text-white font-sans;
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
   }
 }
 
