@@ -18,10 +18,10 @@ export default function Main() {
 }, [hasNextPage, fetchNextPage])
 
   return (
-    <main className="flex flex-col gap-10 px-30 py-10">
+    <main className="flex flex-col gap-10 px-50 py-10">
       <Header />
       <DropdownSection />
-      <ul className="flex flex-wrap gap-4">
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {data?.pages.flatMap((page) => page.results).map((movie) => (
           <li key={movie.id}>
             <Card {...movie} />
