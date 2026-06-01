@@ -15,7 +15,7 @@ export default function MovieDetail() {
     <div className="flex flex-col px-50 py-10 gap-4">
       <div>← 뒤로가기</div>
       <HeroSection data={data} />
-      <OverviewSection />
+      <OverviewSection data={data} />
       <div className="w-full flex gap-4">
         <InfoSection data={data} />
         <RatingSection />
