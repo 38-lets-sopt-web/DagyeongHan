@@ -1,1 +1,366 @@
 @import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-black text-white font-sans;
+  }
+}
+
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/PretendardVariable.woff2") format("woff2-variations");
+}
+
+@theme {
+  /* ── Font ── */
+  --font-pretendard: "Pretendard Variable", sans-serif;
+
+  /* ── Brand ── */
+  --color-brand-primary: #6ba8a9;
+  --color-brand-primary-light: #9ec8c9;
+  --color-brand-primary-dark: #4d8a8b;
+  --color-brand-secondary: #2b3345;
+  --color-brand-secondary-light: #3a4560;
+  --color-brand-secondary-dark: #1e2530;
+
+  /* ── Button ── */
+  --color-button-primary: #6ba8a9;
+  --color-button-primary-pressed: #4d8a8b;
+  --color-button-primary-ghost: rgba(107 168 169 / 0.15);
+  --color-button-disabled: #3a4560;
+  --color-button-neutral-ghost: #2b3345;
+  --color-button-neutral: #eaeaea;
+  --color-button-neutral-pressed: #ffffff;
+
+  /* ── Text ── */
+  --color-text-normal: #eaeaea;
+  --color-text-strong: #ffffff;
+  --color-text-alternative: #9aa5b4;
+  --color-text-disabled: #4d5a70;
+  --color-text-placeholder: #5a6880;
+  --color-text-caption: #7a8a9a;
+  --color-text-label: #c8d0dc;
+  --color-text-on-primary: #1e2530;
+  --color-text-on-secondary: #1e2530;
+  --color-text-on-success: #ffffff;
+  --color-text-primary-normal: #ef7a0d;
+  --color-text-primary-strong: #b56214;
+  --color-text-primary-alternative: #ff9026;
+  --color-text-primary-disabled: #ffd9a8;
+  --color-text-secondary-normal: #3bb5aa;
+  --color-text-secondary-strong: #28847c;
+  --color-text-secondary-alternative: #5ad8cc;
+
+  /* ── Icon ── */
+  --color-icon-normal: #666666;
+  --color-icon-strong: #1a1a1a;
+  --color-icon-alternative: #8a8a8a;
+  --color-icon-disabled: #bfbfbf;
+  --color-icon-on-primary: #ffffff;
+  --color-icon-on-secondary: #ffffff;
+  --color-icon-primary-normal: #ff9026;
+  --color-icon-primary-strong: #b56214;
+  --color-icon-primary-alternative: #ff9026;
+  --color-icon-primary-disabled: #ffd9a8;
+
+  /* ── State ── */
+  --color-state-success: #6ba8a9;
+  --color-state-success-light: #1e3535;
+  --color-state-success-strong: #4d8a8b;
+  --color-state-caution: #ffbb30;
+  --color-state-error: #ff5555;
+  --color-state-error-light: #3a1e1e;
+  --color-state-error-strong: #cc3333;
+  --color-state-error-2: #ff7777;
+
+  /* ── Background ── */
+  --color-bg-primary: #1e2530;
+  --color-bg-secondary: #2b3345;
+  --color-bg-input: #252e40;
+  --color-bg-elevated: #333d52;
+  --color-bg-skeleton: #2b3345;
+  --color-bg-overlay: rgba(0 0 0 / 0.6);
+
+  /* ── Border ── */
+  --color-border-normal: rgba(234 234 234 / 0.12);
+  --color-border-strong: rgba(234 234 234 / 0.20);
+  --color-border-alternative: rgba(234 234 234 / 0.08);
+  --color-border-disabled: rgba(234 234 234 / 0.06);
+  --color-border-focus-primary: #6ba8a9;
+  --color-border-focus-error: #ff5555;
+
+  /* ── Neutral ── */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-150: #f0f0f0;
+  --color-neutral-200: #e8e8e8;
+  --color-neutral-250: #e0e0e0;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-350: #bfbfbf;
+  --color-neutral-400: #a1a1a1;
+  --color-neutral-500: #8a8a8a;
+  --color-neutral-600: #666666;
+  --color-neutral-700: #444444;
+  --color-neutral-800: #2b2b2b;
+  --color-neutral-900: #1a1a1a;
+  --color-neutral-black: #000000;
+  --color-neutral-white: #ffffff;
+
+  /* ── Radius ── */
+  --radius-small: 8px;
+  --radius-medium: 12px;
+  --radius-large: 25px;
+
+  /* ── Font weight ── */
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ── Spacing (p-*, m-*, w-*, h-*, gap-*) ── */
+  --spacing-0: 0px;
+  --spacing-100: 4px;
+  --spacing-200: 8px;
+  --spacing-300: 12px;
+  --spacing-400: 16px;
+  --spacing-450: 18px;
+  --spacing-500: 20px;
+  --spacing-600: 24px;
+  --spacing-700: 32px;
+  --spacing-800: 40px;
+}
+
+:root {
+  --width-app-shell: 430px;
+  --letter-spacing: -0.005em;
+
+  --heading1-size: 36px;
+  --heading1-line-height: 44px;
+
+  --heading2-size: 32px;
+  --heading2-line-height: 40px;
+
+  --heading3-size: 24px;
+  --heading3-line-height: 30px;
+
+  --heading4-size: 20px;
+  --heading4-line-height: 24px;
+
+  --title1-size: 18px;
+  --title1-line-height: 22px;
+
+  --title2-size: 16px;
+  --title2-line-height: 20px;
+
+  --title3-size: 14px;
+  --title3-line-height: 18px;
+
+  --title4-size: 12px;
+  --title4-line-height: 16px;
+
+  --body1-size: 16px;
+  --body1-line-height: 24px;
+
+  --body2-size: 14px;
+  --body2-line-height: 20px;
+
+  --caption1-size: 14px;
+  --caption1-line-height: 20px;
+
+  --caption2-size: 12px;
+  --caption2-line-height: 16px;
+
+  --caption3-size: 10px;
+  --caption3-line-height: 12px;
+
+  --caption4-size: 8px;
+  --caption4-line-height: 10px;
+
+  --button1-size: 16px;
+  --button1-line-height: 24px;
+
+  --button2-size: 14px;
+  --button2-line-height: 20px;
+
+  --label1-size: 12px;
+  --label1-line-height: 16px;
+
+  --label2-size: 12px;
+  --label2-line-height: 16px;
+
+  --label3-size: 10px;
+  --label3-line-height: 12px;
+}
+
+html {
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-neutral-200);
+  color: var(--color-text-normal);
+  font-family: var(--font-pretendard);
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  max-width: var(--width-app-shell);
+  min-height: 100dvh;
+  margin-inline: auto;
+  background-color: var(--color-bg-primary);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.04);
+}
+
+button,
+a {
+  touch-action: manipulation;
+}
+
+select:focus {
+  outline: 2px solid var(--color-border-focus-primary) !important;
+  outline-offset: 2px;
+  box-shadow: none !important;
+}
+
+@utility typo-h1 {
+  font-size: var(--heading1-size);
+  line-height: var(--heading1-line-height);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-h2 {
+  font-size: var(--heading2-size);
+  line-height: var(--heading2-line-height);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-h3 {
+  font-size: var(--heading3-size);
+  line-height: var(--heading3-line-height);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-h4 {
+  font-size: var(--heading4-size);
+  line-height: var(--heading4-line-height);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-title1 {
+  font-size: var(--title1-size);
+  line-height: var(--title1-line-height);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-title2 {
+  font-size: var(--title2-size);
+  line-height: var(--title2-line-height);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-title3 {
+  font-size: var(--title3-size);
+  line-height: var(--title3-line-height);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-title4 {
+  font-size: var(--title4-size);
+  line-height: var(--title4-line-height);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-body1 {
+  font-size: var(--body1-size);
+  line-height: var(--body1-line-height);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-body2 {
+  font-size: var(--body2-size);
+  line-height: var(--body2-line-height);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-caption1 {
+  font-size: var(--caption1-size);
+  line-height: var(--caption1-line-height);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-caption2 {
+  font-size: var(--caption2-size);
+  line-height: var(--caption2-line-height);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-caption3 {
+  font-size: var(--caption3-size);
+  line-height: var(--caption3-line-height);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-caption4 {
+  font-size: var(--caption4-size);
+  line-height: var(--caption4-line-height);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-button1 {
+  font-size: var(--button1-size);
+  line-height: var(--button1-line-height);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-button2 {
+  font-size: var(--button2-size);
+  line-height: var(--button2-line-height);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-label1 {
+  font-size: var(--label1-size);
+  line-height: var(--label1-line-height);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-label2 {
+  font-size: var(--label2-size);
+  line-height: var(--label2-line-height);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing);
+}
+
+@utility typo-label3 {
+  font-size: var(--label3-size);
+  line-height: var(--label3-line-height);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing);
+}
