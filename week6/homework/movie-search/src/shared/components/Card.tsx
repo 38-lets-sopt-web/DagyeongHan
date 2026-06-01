@@ -13,7 +13,7 @@ const Card = ({ title, release_date, overview, poster_path }: Movie) => {
       <div className='flex flex-col gap-2 px-4 py-4'>
         <h3 className="typo-title1 text-neutral-800">{title}</h3>
         <p className="typo-body1 text-neutral-800">{release_date}</p>
-        <p className="typo-body1 text-neutral-800 overflow-hidden line-clamp-4">{overview}</p>
+        <p className="typo-body1 text-neutral-800 overflow-hidden line-clamp-4 h-24">{overview}</p>
       </div>
     </article>
   )
