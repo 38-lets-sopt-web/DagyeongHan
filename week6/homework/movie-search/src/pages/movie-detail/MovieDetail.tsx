@@ -13,7 +13,7 @@ export default function MovieDetail() {
   if (!data) return null
 
   return (
-    <div className="flex flex-col px-50 py-10 gap-4">
+    <div className="flex flex-col px-70 py-10 gap-4">
       <button type="button" onClick={() => navigate(-1)} className="self-start">← 뒤로가기</button>
       <HeroSection data={data} />
       <OverviewSection data={data} />

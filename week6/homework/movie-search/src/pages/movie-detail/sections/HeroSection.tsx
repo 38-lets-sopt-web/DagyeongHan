@@ -1,5 +1,6 @@
 import StatCard from '@/pages/movie-detail/components/StatCard'
 import type { MovieDetail } from '@/shared/schemas/movie'
+import { formatDate } from '@/shared/utils/format'
 
 const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL
 
@@ -14,11 +15,11 @@ export default function HeroSection({ data }: HeroSectionProps) {
       <div className="flex px-4 py-4 gap-4">
         <img className="w-54 h-85 rounded-medium object-cover" src={data.poster_path ? `${IMAGE_BASE_URL}${data.poster_path}` : undefined} alt={data.title} />
         <article className="flex flex-1 flex-col gap-4">
-          <time>{data.release_date}</time>
+          <time className='typo-caption2'>{formatDate(data.release_date)}</time>
           <h1 className='typo-h1'>{data.title}</h1>
           <ul className="flex gap-2 list-none">
             {data.genres.map((genre) => (
-              <li key={genre.id}>{genre.name}</li>
+              <li key={genre.id} className='px-2 py-1 border border-brand-primary-dark bg-brand-primary rounded-large text-neutral-900 typo-caption1'>{genre.name}</li>
             ))}
           </ul>
           <dl className="grid grid-cols-2 gap-2">

@@ -17,14 +17,14 @@ export default function InfoSection({ data }: InfoSectionProps) {
   ]
 
   return (
-    <SectionCard className='flex gap-2'>
+    <SectionCard className='flex flex-1 gap-3'>
       <h2 className='typo-title1'>기본 정보</h2>
       <table>
         <tbody>
           {rows.map(({ label, value }) => (
-            <tr key={label}>
-              <th className='typo-caption1 text-left pr-4'>{label}</th>
-              <td className='typo-body1'>{value}</td>
+            <tr key={label} className='border-b border-border-normal'>
+              <th className='typo-caption1 text-left pr-4 py-2'>{label}</th>
+              <td className='typo-body1 py-2'>{value}</td>
             </tr>
           ))}
         </tbody>
