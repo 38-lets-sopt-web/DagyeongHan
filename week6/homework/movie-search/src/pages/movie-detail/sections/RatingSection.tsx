@@ -24,7 +24,7 @@ export default function RatingSection({ movieId }: Props) {
   const handleDelete = () => {
     localStorage.removeItem(STORAGE_KEY(movieId))
     setValue('')
-    setMessage('')
+    setMessage(MESSAGES.RATING_DELETED)
   }
 
   return (
@@ -45,7 +45,7 @@ export default function RatingSection({ movieId }: Props) {
           <button type="submit" className='bg-button-primary text-text-on-primary typo-button1 px-2 py-1 rounded-small'>별점 저장</button>
           <button type="button" onClick={handleDelete} className='bg-button-neutral text-text-on-primary typo-button1 px-2 py-1 rounded-small'>별점 삭제하기</button>
         </div>
-        {message && <p className='typo-body2 text-brand-primary'>{message}</p>}
+        {message && <p className='typo-caption1 text-brand-primary-light'>{message}</p>}
       </form>
     </SectionCard>
   )
