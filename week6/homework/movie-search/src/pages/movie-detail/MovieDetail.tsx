@@ -23,7 +23,7 @@ export default function MovieDetail() {
       <OverviewSection data={data} />
       <div className="w-full flex gap-4">
         <InfoSection data={data} />
-        <RatingSection />
+        <RatingSection movieId={Number(movieId)} />
       </div>
     </div>
   )
