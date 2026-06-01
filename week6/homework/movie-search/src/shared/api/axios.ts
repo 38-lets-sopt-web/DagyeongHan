@@ -10,6 +10,11 @@ export const publicInstance = axios.create({
   },
 });
 
+publicInstance.interceptors.request.use((config) => {
+  config.params = { ...config.params, api_key: import.meta.env.VITE_API_KEY, language: 'ko-KR' }
+  return config
+})
+
 export const privateInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 10000,
