@@ -1,15 +1,20 @@
 import { createBrowserRouter } from 'react-router'
-import Home from '@/pages/Home'
+import Main from '@/pages/Main'
 import DesignSystem from '@/pages/DesignSystem'
+import MovieDetail from '@/pages/MovieDetail'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: Home,
+    Component: Main,
   },
   {
     path: "/design-system",
     Component: DesignSystem,
+  },
+  {
+    path: "movie-detail/:movieId",
+    Component: MovieDetail
   }
 ])
 
