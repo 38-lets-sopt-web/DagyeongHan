@@ -35,6 +35,8 @@ export default function RatingSection({ movieId }: Props) {
   }
 
   const handleDelete = async () => {
+    if (!localStorage.getItem(RATING_KEY(movieId))) return
+
     setIsLoading(true)
     try {
       const guestSessionId = await getGuestSession()
