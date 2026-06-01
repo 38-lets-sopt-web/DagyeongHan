@@ -1,6 +1,6 @@
-import { publicInstance } from './axios'
-import { API_ENDPOINTS } from './endpoints'
-import { MovieDetailSchema, MovieListResponseSchema, type MovieDetail, type MovieListResponse } from '@/shared/schemas/movie'
+import { publicInstance } from '@/shared/api/axios'
+import { API_ENDPOINTS } from '@/shared/api/endpoints'
+import { MovieListResponseSchema, type MovieListResponse } from '@/shared/schemas/movie'
 import type { MovieFilter } from '@/shared/types/common'
 
 export const getMovieList = async (page: number, filter: MovieFilter): Promise<MovieListResponse> => {
@@ -13,9 +13,4 @@ export const getMovieList = async (page: number, filter: MovieFilter): Promise<M
     },
   })
   return MovieListResponseSchema.parse(response.data)
-}
-
-export const getMovieDetail = async (movieId: number): Promise<MovieDetail> => {
-  const response = await publicInstance.get(API_ENDPOINTS.MOVIE.DETAIL(movieId))
-  return MovieDetailSchema.parse(response.data);
 }

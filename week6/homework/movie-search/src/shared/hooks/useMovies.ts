@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { getMovieList } from '@/shared/api/movie'
+import { getMovieList } from '@/pages/main/api/movie'
 import type { MovieFilter } from '@/shared/types/common'
 
 export const useMovies = (filter: MovieFilter) =>
