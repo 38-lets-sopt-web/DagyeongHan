@@ -19,7 +19,15 @@ export default function RatingSection({ movieId }: Props) {
   return (
     <SectionCard className="w-90 flex flex-col gap-3">
       <h2 className="typo-title1">별점 남기기</h2>
-      <form className='flex flex-col gap-2' onSubmit={(e) => { e.preventDefault(); if (value) localStorage.setItem(STORAGE_KEY(movieId), value) }}>
+      <form
+        className='flex flex-col gap-2'
+        onSubmit={(e) => { 
+          e.preventDefault();
+          const n = Number(value);
+          if (value && n >= 0.5 && n <= 10.0)
+          localStorage.setItem(STORAGE_KEY(movieId), value) 
+        }}
+      >
         <p className='typo-body2'>0.5 ~ 10.0</p>
         <input
           type="number"
