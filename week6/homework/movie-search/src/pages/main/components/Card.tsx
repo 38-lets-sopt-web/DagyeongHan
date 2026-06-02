@@ -9,7 +9,7 @@ const Card = ({ id, title, release_date, overview, poster_path }: Movie) => {
 
   return (
     <Link to={`/movie-detail/${id}`}>
-      <article className="w-full h-142.5 bg-brand-secondary rounded-small overflow-hidden cursor-pointer transition-transform duration-300 ease-[ease] hover:scale-102">
+      <article className="flex flex-col w-full h-142.5 bg-brand-secondary rounded-small overflow-hidden cursor-pointer transition-transform duration-300 ease-[ease] hover:scale-102">
         <img
           className="w-full h-[400px] object-cover object-top"
           src={`${IMAGE_BASE_URL}${poster_path}`}
