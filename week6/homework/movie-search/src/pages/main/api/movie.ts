@@ -1,0 +1,16 @@
+import { publicInstance } from '@/shared/api/axios'
+import { API_ENDPOINTS } from '@/shared/api/endpoints'
+import { MovieListResponseSchema, type MovieListResponse } from '@/shared/schemas/movie'
+import type { MovieFilter } from '@/shared/types/common'
+
+export const getMovieList = async (page: number, filter: MovieFilter): Promise<MovieListResponse> => {
+  const response = await publicInstance.get(API_ENDPOINTS.MOVIE.LIST, {
+    params: {
+      page,
+      sort_by: 'popularity.desc',
+      'vote_average.gte': filter.rating || undefined,
+      'vote_average.lte': filter.rating ? Number(filter.rating) + 0.9 : undefined,
+    },
+  })
+  return MovieListResponseSchema.parse(response.data)
+}
